@@ -6,10 +6,11 @@
 /*   By: lfabbian <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:00:18 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/09/20 20:04:04 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/09/21 08:53:38 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_stock_str.h"
+#include <stdlib.h>
 
 int	ft_strlen(char *str)
 {
@@ -51,7 +52,6 @@ struct	s_stock_str	*ft_strs_to_tab(int ac, char **av)
 	int			i;
 	t_stock_str	*stock;
 
-	stock = 0;
 	i = 0;
 	stock = malloc(sizeof(t_stock_str) * (ac + 1));
 	if (! stock)
@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 
 	i = 0;
 	a =ft_strs_to_tab(argc, argv);
-	while (i < argc)
+	while (i <= argc)
 	{
 		printf("%d, %s, %s\n", a[i].size, a[i].str, a[i].copy);
 		i++;
