@@ -1,43 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_print.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 14:33:02 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/09/22 20:31:40 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/09/22 18:57:11 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/09/22 19:21:59 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdio.h>
 
-int ft_strlen(char *str)
+char *ft_strcat(char *dest, char *src)
 {
 	int i;
+	int j;
 
-	i  = 0;
-	while (str[i] != '\0')
+	i = 0;
+	j = 0;
+	while (dest[i] != '\0')
 		i++;
-	return(i);
-}
-
-char	*ft_rev_print(char *str)
-{
-	int d;
-
-	d = ft_strlen(str) - 1;
-	while (d >= 0)
+	while (src[j] != '\0')
 	{
-		write(1, &str[d], 1);
-		d--;
+		dest[i] = src[j];
+		i++;
+		j++;
 	}
-	return(str);
+	dest[i] = '\0';
+	return(dest);
 }
-
-int main(int argc, char **argv)
+#include <stdio.h>
+int	main()
 {
-	if (argc > 1)
-		ft_rev_print(argv[1]);
-	write(1, "\n", 1);
+	char chaine[] = "is going to kill us";
+	char chaine2[] = "bull run";
+
+	printf("%s", ft_strcat(chaine2, chaine));
+	//printf("%s", strcat(chaine2, chaine));
+	return(0);
 }

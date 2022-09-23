@@ -1,43 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_print.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 14:33:02 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/09/22 20:31:40 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/09/22 18:38:53 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/09/22 18:56:26 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdio.h>
 
-int ft_strlen(char *str)
+int ft_strncmp(char *s1, char *s2, unsigned int n)
 {
 	int i;
 
-	i  = 0;
-	while (str[i] != '\0')
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (while ((s1[i] != '\0' || s2[i] != '\0') && s1[i] == s2[i] && i < n - 1))
 		i++;
-	return(i);
-}
-
-char	*ft_rev_print(char *str)
-{
-	int d;
-
-	d = ft_strlen(str) - 1;
-	while (d >= 0)
-	{
-		write(1, &str[d], 1);
-		d--;
-	}
-	return(str);
-}
-
-int main(int argc, char **argv)
-{
-	if (argc > 1)
-		ft_rev_print(argv[1]);
-	write(1, "\n", 1);
+	return (s1[i] - s2[i]);
 }

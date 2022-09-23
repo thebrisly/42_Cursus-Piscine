@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_print.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 14:33:02 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/09/22 20:31:40 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/09/22 18:24:33 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/09/22 18:36:48 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdio.h>
 
-int ft_strlen(char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int i;
 
-	i  = 0;
-	while (str[i] != '\0')
+	i = 0;
+	while ((s1[i] != '\0' || s2[i] != '\0') && s1[i] == s2[i])
 		i++;
-	return(i);
+	return (s1[i] - s2[i]);
 }
 
-char	*ft_rev_print(char *str)
+#include <stdio.h>
+#include <string.h>
+int main()
 {
-	int d;
+	char chaine1[] = "hello";
+	char chaine2[] = "salut";
 
-	d = ft_strlen(str) - 1;
-	while (d >= 0)
-	{
-		write(1, &str[d], 1);
-		d--;
-	}
-	return(str);
-}
-
-int main(int argc, char **argv)
-{
-	if (argc > 1)
-		ft_rev_print(argv[1]);
-	write(1, "\n", 1);
+	printf("%d", ft_strcmp(chaine1, chaine2));
+	printf("%d", strcmp(chaine1, chaine2));
 }
