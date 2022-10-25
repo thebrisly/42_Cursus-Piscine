@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:30:41 by brisly            #+#    #+#             */
-/*   Updated: 2022/10/20 13:57:16 by brisly           ###   ########.fr       */
+/*   Updated: 2022/10/25 13:18:59 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void  ft_strlcpy(char *dst, const char *src, size_t size)
  void;
 }
 
-#include <stdio.h>
 int main()
 {
 

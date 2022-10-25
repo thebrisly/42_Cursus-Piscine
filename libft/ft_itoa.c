@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 00:20:43 by brisly            #+#    #+#             */
-/*   Updated: 2022/10/25 14:34:39 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/10/25 15:18:41 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/10/25 15:20:22 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isdigit(int c)
+char *ft_itoa(int n)
 {
-    if (c >= '0' && c <= '9')
-        return (1);
-    return (0);
+    
 }
-
-/*#include <stdio.h>
-int main()
-{
-    printf("%d\n", ft_isdigit('a'));
-}*/

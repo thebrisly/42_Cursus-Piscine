@@ -37,6 +37,8 @@ char    *ft_strtrim(char const *s1, char const *set);
 char    *ft_strdup(const char *s1);
 void    *ft_calloc(size_t count, size_t size);
 char    *ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char    *ft_itoa(int n);
+char    **ft_split(char const *s, char c);
 
 
 
