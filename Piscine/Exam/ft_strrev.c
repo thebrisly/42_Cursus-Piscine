@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include <stdio.h>
 
-char *ft_strrev(char *str)
+/*char *ft_strrev(char *str)
 {
 	int debut;
 	int fin;
@@ -34,7 +34,7 @@ char *ft_strrev(char *str)
 	}
 	return (str);
 }
-/*
+
 int		ft_strlen(char *str)
 {
 	int i;
@@ -112,7 +112,7 @@ char	*ft_strrev(char *str)
 	}
 	return (str);
 }
-
+ */
 char *ft_strrev(char *str)
 {
 	int i;
@@ -136,6 +136,7 @@ char *ft_strrev(char *str)
 	}
 	return(str);
 }
+ /*
 int argc, char **argv)int argc, char **argv)?
 */
 int main(int argc, char **argv)
