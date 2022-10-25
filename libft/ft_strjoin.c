@@ -3,28 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:39:27 by brisly            #+#    #+#             */
-/*   Updated: 2022/10/23 22:01:47 by brisly           ###   ########.fr       */
+/*   Updated: 2022/10/25 13:03:35 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	strlen1(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (*(str + i) != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-char	*final_lenn(int size, char **strs, char *sep)
+char	*final_len(int size, char **strs, char *sep)
 {
 	char	*final;
 	int		final_len;
@@ -33,10 +21,10 @@ char	*final_lenn(int size, char **strs, char *sep)
 	j = 0;
 	while (j < size)
 	{
-		final_len = final_len + strlen1(strs[j]);
+		final_len = final_len + ft_strlen(strs[j]);
 		j++;
 	}
-	final_len = final_len + (strlen1(sep) * size - 1);
+	final_len = final_len + (ft_strlen(sep) * size - 1);
 	final = malloc(sizeof(char) * final_len);
 	if (size <= 0)
 	{
@@ -56,7 +44,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 
 	i_tab = 0;
 	i_final = 0;
-	final = final_lenn(size, strs, sep);
+	final = final_len(size, strs, sep);
 	while (i_tab < size)
 	{
 		i = 0;

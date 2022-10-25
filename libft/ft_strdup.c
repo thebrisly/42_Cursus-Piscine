@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 09:52:15 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/10/25 12:55:43 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/10/25 12:18:39 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/10/25 12:55:52 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_striteri(char *s, void (*f)(unsigned int, char*))
+char *strdup(const char *s1)
 {
-    int i;
-
-    i = 0;
-    while (s[i])
-    {
-        (*f)(i, &s[i]);
-        i++;
-    }
-    return (0);
+    
 }
