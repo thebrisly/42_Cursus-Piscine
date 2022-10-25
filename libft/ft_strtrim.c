@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:04:57 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/10/25 12:58:18 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:27:08 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,26 @@ char *ft_strtrim(char const *s1, char const *set)
 {
     char    *tab;
     int     i;
-    int     j;
-    int     len_str;
-    int     len_set;
+    int     count;
 
-    len_str = ft_strlen(s1);
-    len_set = ft_strlen(set);
-    tab = malloc(sizeof(char) * (len_str - (2*len_set)))
+    i = 0;
+    count = 0;
+    tab = malloc(sizeof(char) * /*TAILLE*/ );
     if (!tab)
         return (NULL);
-    i = 0;
-    while (s1[i])
+    return (tab);
+    while (s1[i] == set[i] && s1[i])
+        i++;
+    while (s1[ft_strlen(s1) - 1] == set[ft_strlen(set) - 1])
     {
-        j = 0;
-        while (set[j] && i > (len_str + len_set) - 2)
-        {
-            if (s1[i] ==0 set [j])
-                i++;
-            j++;
-        }
-        *tab = s1[i];
-        i++
-        *tab++;
+        count+=1;
+        *s1--;
+        *set--;
+    }
+    while (i < ft_strlen(s1) - count)
+    {
+        tab[i] == s1[i];
+        i++;
     }
     return (tab);
 }
