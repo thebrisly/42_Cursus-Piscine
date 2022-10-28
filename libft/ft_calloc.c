@@ -6,21 +6,25 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:00:54 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/10/25 13:49:42 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/10/28 15:02:50 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void    *ft_calloc(size_t count, size_t size)
+#include "libft.h"
+
+void	*ft_calloc(size_t count, size_t size)
 {
-    size_t  tab;
-    
-    tab = malloc(count * n)
-    if (!tab)
-        return (NULL);
-    while (count > 0)
-    {
-        *tab++ = 0;
-        count--;
-    }
-    return (tab);
+	unsigned char	*tab;
+	unsigned long	i;
+
+	i = 0;
+	tab = malloc(count * size);
+	if (!tab)
+		return (NULL);
+	while (count * size > i)
+	{
+		tab[i] = 0;
+		i++;
+	}
+	return (tab);
 }

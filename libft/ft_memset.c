@@ -3,32 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:28:33 by brisly            #+#    #+#             */
-/*   Updated: 2022/10/20 13:57:03 by brisly           ###   ########.fr       */
+/*   Updated: 2022/10/28 15:02:18 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    *ft_memset(void *s, int c, size_t n)
+void	*ft_memset(void *b, int c, size_t len)
 {
-    unsigned char    *s1;
+	unsigned char	*s1;
+	unsigned long	i;
 
-    s1 = (char *) s;
-    while (n > 0)
-    {
-        *(s1) = (unsigned char) c;
-        *(s1++);
-        n--;
-    }
-    return (s);
+	s1 = (unsigned char *) b;
+	while (len > 0)
+	{
+		s1[i] = (unsigned char) c;
+		i++;
+		len--;
+	}
+	return (b);
 }
-
-
-// PK DES GENS ONT PAS LE MEME MODELE ???????? a la place de s ils ont b et a la place de n "len" mdr niquez vous
-
 
 /* DESCRIPTION
        The memset() function fills the first n bytes of the memory area pointed to by s with the constant byte c.
