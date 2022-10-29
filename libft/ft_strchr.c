@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 10:31:50 by brisly            #+#    #+#             */
-/*   Updated: 2022/10/28 13:32:58 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:24:49 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ char	*ft_strchr(const char *s, int c)
 /*#include <stdio.h>
 int main()
 {
-    char a[] = "http://www.tutorialspoint.com";
-    printf("%s\n", ft_strchr(a, 's'));
+    char a[] = "teste";
+    printf("%s\n", ft_strchr(a, 'e'));
 }*/

@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:02:31 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/10/28 15:59:54 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:11:24 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char			*tab;
 
 	i = 0;
+	if (!s )
+		return (NULL);
+	if (start >= ft_strlen(s))
+		return (ft_calloc(1, 1));
+	if (len >= ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	tab = malloc(sizeof(char) * (len) + 1);
 	if (!tab)
 		return (NULL);
-	tab = malloc(sizeof(char) * (len) + 1);
-	if (start > ft_strlen(s))
-		tab = ft_calloc(1, 1);
-	while (len > 0 && s[i])
+	while (len > 0)
 	{
 		tab[i++] = s[start++];
 		len--;
@@ -35,8 +39,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 /*int main()
 {
     char    *a;
-    char test1[] = "hola";
+    char test1[] = "01234";
 
-    a = ft_substr(test1, 4, 20);
+    a = ft_substr(test1, 10, 10);
     printf("%s\n", a);
 }*/

@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:59:20 by brisly            #+#    #+#             */
-/*   Updated: 2022/10/28 10:41:09 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/10/29 16:03:58 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char			*s1;
+	unsigned char	*s1;
 	unsigned int	i;
 
-	s1 = (char *) s;
+	s1 = (unsigned char *) s;
 	i = 0;
 	while (n > i)
 	{
