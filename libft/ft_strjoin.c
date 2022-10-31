@@ -21,6 +21,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	j = 0;
 	tab = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
+	if (!tab)
+		return (NULL);
 	while (s1[i])
 		tab[j++] = s1[i++];
 	i = 0;
