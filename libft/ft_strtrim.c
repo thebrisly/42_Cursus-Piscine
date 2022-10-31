@@ -13,63 +13,77 @@
 
 #include "libft.h"
 
+//retourne l'index initial (on saura si skip le premier mot ou non)
+static int	ft_firstcheck(char const *s1, char const *set)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (set[i])
+	{
+		if (set[i] == s1[i])
+			count++;
+		i++;
+	}
+	if (count == (ft_strlen(set)))
+		return (count);
+	else
+		return (0);
+}
+
+//retourne l'index final (pour savoir ou s'arrêter avec le while)
+static int	ft_lastcheck(char const *s1, char const *set)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = ft_strlen(s1) - 1;
+	j = ft_strlen(set) - 1;
+	count = 0;
+	while (j >= 0)
+	{
+		if (set[j] == s1[i])
+			count++;
+		i--;
+		j--;
+	}
+	if (count == (ft_strlen(set)))
+		return (ft_strlen(s1) - ft_strlen(set));
+	else
+		return (ft_strlen(s1));
+}
+
 char *ft_strtrim(char const *s1, char const *set)
 {
 	char	*tab;
-	int		count;
 	int		i;
+	int		j;
+	int 	k;
 
-	count = 0;
-	j = 0;
-	tab = ft_calloc(sizeof(char), ft_strlen(s1));
+	i = 0;
+	tab = malloc(sizeof(char) * ft_strlen(s1));
 	if (!tab)
 		return (NULL);
-	while (set[i])
+	j = ft_firstcheck(s1, set);
+	k = ft_lastcheck(s1, set);
+	while (j < k)
 	{
-		if (s1[i] == set[i])
-			count++;
+		tab[i] = s1[j];
+		i++;
+		j++;
 	}
-	if (count == ft_strlen(set))
-
-	
+	tab[i] = '\0';
+	return (tab);
 }
 
 /*int main()
 {
     char *a;
-
-    char    test1[] = "arghearglloarg";
-    char    set[] = "arg";
+    char    test1[] = "612346";
+    char    set[] = "6";
     a = ft_strtrim(test1, set);
     printf("%s\n", a);
 }*/
-
-/*
-    char    *tab;
-    int     i;
-    int     count;
-    int     end_s1;
-    int     end_set;
-
-    i = 0;
-    end_s1 = ft_strlen(s1) - 1;
-    end_set = ft_strlen(set) - 1;
-    count = 0;
-    tab = malloc(sizeof(char) * (ft_strlen(s1) + 1));
-    if (!tab)
-        return (NULL);
-    while (s1[i] == set[i] && s1[i])
-        i++;
-    while (s1[end_s1] == set[end_set])
-    {
-        count+=1;
-        end_s1--;
-        end_set--;
-    }
-    while (i <= end_s1)
-    {
-        tab[i] = s1[i];
-        i++;
-    }
-    tab[i] = 0;
-    return (tab);*/
