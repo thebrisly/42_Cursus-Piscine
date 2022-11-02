@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 23:23:07 by brisly            #+#    #+#             */
-/*   Updated: 2022/10/29 13:27:39 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/01 10:27:32 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		return (NULL);
 	if (dst > src)
 	{
-		while (len > 0)
-		{		
-			dest1[len - 1] = src1[len - 1];
-			len--;
-		}
+		while (len-- > 0)
+			dest1[len] = src1[len];
 	}
 	else
 	{

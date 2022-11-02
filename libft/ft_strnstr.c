@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 16:29:39 by brisly            #+#    #+#             */
-/*   Updated: 2022/10/28 14:25:59 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/01 10:19:34 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,19 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	int	j;
 
 	i = 0;
+	j = 0;
 	if (needle[0] == '\0')
 		return ((char *) haystack);
 	while (haystack[i] != '\0' && i < len)
 	{
 		j = 0;
-		if (haystack[i] == needle[j])
+		while (haystack[i + j] == needle[j] && haystack[i + j] && (i + j) < len)
 		{
-			while (haystack[i + j] == needle[j] && (i + j) < len)
-			{
-				j++;
-				if (haystack[j] == '\0')
-					return ((char *) &haystack[i]);
-			}
+			j++;
+			if (needle[j] == '\0')
+				return ((char *) &haystack[i]);
 		}
 		i++;
 	}
 	return (0);
 }
-
-/*int main()
-{
-    char a[] = "http://www.tutorialspoint.com";
-    char b[] = "ria";
-    printf("%d\n", strnstr(a, b, 5));
-}*/

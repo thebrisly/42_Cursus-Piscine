@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:02:31 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/10/29 16:11:24 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/01 10:22:12 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char			*tab;
 
 	i = 0;
-	if (!s )
+	if (!s)
 		return (NULL);
 	if (start >= ft_strlen(s))
 		return (ft_calloc(1, 1));
