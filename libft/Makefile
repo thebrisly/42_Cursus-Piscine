@@ -6,7 +6,7 @@
 #    By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/28 13:23:30 by lfabbian          #+#    #+#              #
-#    Updated: 2022/11/01 09:24:44 by lfabbian         ###   ########.fr        #
+#    Updated: 2022/11/02 15:24:47 by lfabbian         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,13 @@ RM		= rm -f
 
 CFLAGS 	= -Wall -Wextra -Werror
 
+all:		${NAME}
+
 .c.o:
-		${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
 			ar rcs ${NAME} ${OBJS}
-
-all:		${NAME}
 
 clean:  
 			${RM} ${OBJS}

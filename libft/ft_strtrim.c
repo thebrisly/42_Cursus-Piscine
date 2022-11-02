@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:03:01 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/01 17:22:34 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:30:43 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,21 @@ static int	ft_startinit(int i, char const *s1, char const *set)
 
 static int	ft_endinit(int j, char const *s1, char const *set)
 {
+	if (j < 0)
+		j = 0;
 	while (ft_issep(s1[j], set))
 		j--;
 	return (j);
+}
+
+static int	ft_strlen1(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -50,7 +62,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i = ft_startinit(0, s1, set);
 	j = ft_endinit(ft_strlen(s1) - 1, s1, set);
 	k = 0;
-	if (i >= ft_strlen(s1))
+	if (i >= ft_strlen1(s1))
 		return (ft_strdup(""));
 	tab = malloc(sizeof(char) * ((j - i) + 2));
 	if (!tab || !s1)

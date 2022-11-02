@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 10:24:31 by brisly            #+#    #+#             */
-/*   Updated: 2022/10/28 11:11:06 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:43:53 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,3 @@ int	ft_tolower(int c)
 		return (c + 32);
 	return (c);
 }
-
-/*#include <stdio.h>
-int main()
-{
-    printf("%c\n", ft_tolower('h'));
-}*/

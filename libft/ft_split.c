@@ -6,24 +6,11 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 09:40:15 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/02 11:05:38 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:49:42 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	ft_size_word(char const *s, char c, int i)
-{
-	int	size;
-
-	size = 0;
-	while (s[i] != c && s[i])
-	{
-		size++;
-		i++;
-	}
-	return (size);
-}
 
 static int	ft_number_of_words(char const *s, char c)
 {
@@ -94,18 +81,3 @@ char	**ft_split(char const *s, char c)
 	tab[i_tab] = 0;
 	return (tab);
 }
-
-/*int main()
-{
-	int	i;
-	const char	*s = "cccheychellocaccl";
-	char	c = 'c';
-	char	**t = ft_split(s, c);
-
-	i = 0;
-	while (t[i])
-	{
-		printf("%s\n", t[i]);
-		i++;
-	}
-}*/

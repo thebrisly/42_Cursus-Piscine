@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 10:21:35 by brisly            #+#    #+#             */
-/*   Updated: 2022/10/28 11:11:41 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:43:50 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,3 @@ int	ft_toupper(int c)
 		return (c - 32);
 	return (c);
 }
-
-/*#include <stdio.h>
-int main()
-{
-    printf("%c\n", ft_toupper('6'));
-}*/
