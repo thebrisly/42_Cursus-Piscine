@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_check_type.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 09:52:42 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/06 10:52:39 by brisly           ###   ########.fr       */
+/*   Created: 2022/11/06 11:21:37 by brisly            #+#    #+#             */
+/*   Updated: 2022/11/07 08:57:34 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libftprintf.h"
 
-# include <unistd.h>
-# include <string.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <stdio.h>
-
-int ft_printf(const char *, ...);
-
-#endif
+int	ft_check_type()
+{
+	
+}
