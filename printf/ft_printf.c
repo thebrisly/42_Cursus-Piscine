@@ -6,31 +6,31 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 09:51:03 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/07 09:11:08 by brisly           ###   ########.fr       */
+/*   Updated: 2022/11/08 09:20:08 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *format, ...)
 {
 	int		i;
 	int		count;
 	va_list	args;
 
-	va_start (args, str);
+	va_start (args, format);
 	i = 0;
 	count = 0;
-	while (str[i])
+	while (format[i])
 	{
-		if (str[i] == '%')
+		if (format[i] == '%')
 		{
-			count += ...;
+			i++;
+			count += ft_check_types(format[i]);
 		}
 		else
-		{
-			
-		}
+			count += ft_putchar(format[i]);
+		i++;
 	}
 	va_end (args);
 	return (count);
