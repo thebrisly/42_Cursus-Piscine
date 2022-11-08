@@ -3,35 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_type.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 11:21:37 by brisly            #+#    #+#             */
-/*   Updated: 2022/11/08 08:29:18 by brisly           ###   ########.fr       */
+/*   Updated: 2022/11/08 15:26:45 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	ft_check_type(char c)
+int	ft_check_type(const char type, va_list args)
 {
 	int	count;
 
 	count = 0;
-	if (c == 'c')
-		count += ft_putchar(va_arg(args, int));
-	if (c == 's')
-		count +=
-	if (c == 'p')
-	if (c == 'd' || 'i')
+	if (type == 'c')
+		count += (char)ft_put_c(va_arg(args, int));
+	if (type == 's')
+		count += ft_put_s(va_arg(args, char *));
+	/*if (type == 'p')
+	if (type == 'd' || 'i')
+		count += ft_put_d_i(va_arg(args, int));
+	if (type == 'u')
 
-	if (c == 'u')
+	if (type == 'x')
 
-	if (c == 'x')
+	if (type == 'X')
 
-	if (c == 'X')
-
-	if (c == '%')
-	
+	if (type == '%')*/
+	return (count);	
 }
 
 /*%c Affiche un seul caractère.

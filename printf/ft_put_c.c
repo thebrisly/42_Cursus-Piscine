@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_helpers.c                                       :+:      :+:    :+:   */
+/*   ft_put_c.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 11:23:27 by brisly            #+#    #+#             */
-/*   Updated: 2022/11/06 11:25:29 by brisly           ###   ########.fr       */
+/*   Created: 2022/11/08 14:36:16 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/11/08 15:26:48 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int		ft_putchar(char c, int fd)
+int		ft_put_c(char c)
 {
 	return(write(1, &c, 1));
 }
