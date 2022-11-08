@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 09:51:03 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/08 15:26:46 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/08 22:29:20 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
-/*int main()
+int main()
 {
-	ft_printf("1: hello my name is %s and i am %c years old\n", "laura", 'a');
-	printf("2: hello my name is %s and i am %d years old\n", "laura", 'a');
-	printf("1.1: %d\n", printf("yop.\n"));
-	printf("2.1: %d\n", ft_printf("yop.\n"));
+	ft_printf("1: hello my name is %s and i am %d years old\n", "laura", 23);
+	printf("2: hello my name is %s and i am %d years old\n", "laura", 23);
+	printf("1.1: %d", printf("yop %s %d.\n", "laura", 23));
+	printf("2.1: %d", ft_printf("yop %s %d.\n", "laura", 23));
+	printf("TEST INT ORDI: %d", printf("%d.\n", 23));
+	printf("TEST INT MOI: %d\n", ft_printf("%d.\n", 23));
 	ft_printf("2.2: %d", ft_printf("yop.\n"));
-}*/
+}

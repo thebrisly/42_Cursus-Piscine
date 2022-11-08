@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_type.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 11:21:37 by brisly            #+#    #+#             */
-/*   Updated: 2022/11/08 15:26:45 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:58:41 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	ft_check_type(const char type, va_list args)
 		count += (char)ft_put_c(va_arg(args, int));
 	if (type == 's')
 		count += ft_put_s(va_arg(args, char *));
-	/*if (type == 'p')
-	if (type == 'd' || 'i')
+	if (type == 'd' || type == 'i')
 		count += ft_put_d_i(va_arg(args, int));
+	/*if (type == 'p')
 	if (type == 'u')
 
 	if (type == 'x')
