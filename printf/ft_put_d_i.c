@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:52:26 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/09 10:30:22 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:24:28 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_put_d_i(int nb)
 	else if (nb < 0)
 	{
 		count += ft_put_c('-');
-		ft_put_d_i(-nb);
+		count += ft_put_d_i(-nb);
 	}
 	else if (nb > 9)
 	{

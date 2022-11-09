@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 09:51:03 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/09 10:34:23 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:49:09 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,23 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
-/*int main()
+int main()
 {
+    int x = 59;
+	printf(" NULL %s NULL\n", NULL);
+	printf("ordi: %d\n", printf(" NULL %s NULL\n", NULL));
+	ft_printf(" NULL %s NULL", NULL);
+	printf("ordi: %d\n", ft_printf(" NULL %s NULL\n", NULL));
 	ft_printf("1: hello my name is %s and i am %i %% %d years old\n", "laura", 46, 2);
 	printf("2: hello my name is %s and i am %i %% %d years old\n", "laura", 46, 2);
+	printf("value of HEXA ORDI : %X\n", 10956);
+	printf("value of HEXA ORDI : %X\n", 146);
+	ft_printf("value of HEXA moi :	%X\n", 10956);
+	ft_printf("value of HEXA moi :	%X\n", 146);
 	printf("TEST COUNT ORDI: %d\n", printf("hello my name is %s and i am %i %% %d years old\n", "laura", 46, 2));
 	printf("TEST COUNT MOI: %d\n", ft_printf("hello my name is %s and i am %i %% %d years old\n", "laura", 46, 2));
-}*/
+
+	printf("---------------------------------------------------------------------------\n");
+	printf("Value using %%p: %p", &x);
+	printf("Value using %%x: %x", x);
+}

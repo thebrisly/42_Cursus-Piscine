@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 11:21:37 by brisly            #+#    #+#             */
-/*   Updated: 2022/11/09 10:36:14 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:59:25 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ int	ft_check_type(const char type, va_list args)
 		count += ft_put_s(va_arg(args, char *));
 	if (type == 'd' || type == 'i')
 		count += ft_put_d_i(va_arg(args, int));
-	/*if (type == 'p')*/
+	if (type == 'p')
+		count += ft_put_x(va_arg(args, ))
 	if (type == 'u')
 		count += ft_put_u(va_arg(args, unsigned int));
-	/*if (type == 'x')
-	if (type == 'X')*/
+	if (type == 'X' || type == 'x')
+		count += (char)ft_put_x(va_arg(args, int), type);
 	if (type == '%')
 		return (write(1, "%", 1));
 	return (count);

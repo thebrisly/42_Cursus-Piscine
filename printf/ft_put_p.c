@@ -1,28 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_s.c                                         :+:      :+:    :+:   */
+/*   ft_put_p.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 14:38:08 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/09 15:35:40 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/11/09 15:30:34 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/11/09 16:06:51 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_put_s(char *str)
-{
-	int	count;
-
-	count = 0;
-	if (str == NULL)
-		return(write(1, "(null)", 6));
-	while (str[count])
-	{
-		write(1, &str[count], 1);
-		count++;
-	}
-	return (count);
-}
+int ft_put_p();
