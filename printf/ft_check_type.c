@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_type.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 11:21:37 by brisly            #+#    #+#             */
-/*   Updated: 2022/11/08 16:58:41 by brisly           ###   ########.fr       */
+/*   Updated: 2022/11/09 10:36:14 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,12 @@ int	ft_check_type(const char type, va_list args)
 		count += ft_put_s(va_arg(args, char *));
 	if (type == 'd' || type == 'i')
 		count += ft_put_d_i(va_arg(args, int));
-	/*if (type == 'p')
+	/*if (type == 'p')*/
 	if (type == 'u')
-
-	if (type == 'x')
-
-	if (type == 'X')
-
-	if (type == '%')*/
-	return (count);	
+		count += ft_put_u(va_arg(args, unsigned int));
+	/*if (type == 'x')
+	if (type == 'X')*/
+	if (type == '%')
+		return (write(1, "%", 1));
+	return (count);
 }
-
-/*%c Affiche un seul caractère.
-• %s Affiche une chaîne de caractères (telle que définie par la convention C).
-• %p L’argument de pointeur void * doit être affiché en hexadécimal.
-• %d Affiche un nombre décimal (base 10).
-• %i Affiche un entier en base 10.
-• %u Affiche un nombre décimal non signé (base 10).
-• %x Affiche un nombre en hexadécimal (base 16) avec des lettres minuscules.
-• %X Affiche un nombre en hexadécimal (base 16) avec des lettres majuscules.
-• %% Affiche un signe pourcentage. */

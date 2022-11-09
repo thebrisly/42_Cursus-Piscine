@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_c.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:36:16 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/08 22:50:20 by brisly           ###   ########.fr       */
+/*   Updated: 2022/11/09 10:29:30 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_put_c(char c)
+int	ft_put_c(char c)
 {
-	return(write(1, &c, 1));
+	return (write(1, &c, 1));
 }
