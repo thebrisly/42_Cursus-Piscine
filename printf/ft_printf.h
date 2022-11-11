@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 09:52:42 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/09 15:22:16 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:58:51 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_put_s(char *str);
 int	ft_put_d_i(int nb);
 int	ft_put_u(unsigned int nb);
 int	ft_put_x(unsigned int nb, int type);
+int	ft_put_p(intptr_t *arg);
 int	ft_base16(unsigned int nb, char *alpha);
 
 #endif

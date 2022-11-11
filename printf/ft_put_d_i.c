@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_d_i.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:52:26 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/09 16:24:28 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:51:01 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ int	ft_put_d_i(int nb)
 	}
 	else
 		count += ft_put_c(nb + '0');
+	if (count < 0)
+		return (-1);
 	return (count);
 }

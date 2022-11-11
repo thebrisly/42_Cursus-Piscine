@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 09:51:03 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/09 15:49:09 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:42:48 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,15 @@ int	ft_printf(const char *str, ...)
 		i++;
 	}
 	va_end (args);
+	if (!count)
+		return (-1);
 	return (count);
 }
 
 int main()
 {
     int x = 59;
-	printf(" NULL %s NULL\n", NULL);
-	printf("ordi: %d\n", printf(" NULL %s NULL\n", NULL));
+	//printf("ordi: %d\n", printf(" NULL %s NULL\n", NULL));
 	ft_printf(" NULL %s NULL", NULL);
 	printf("ordi: %d\n", ft_printf(" NULL %s NULL\n", NULL));
 	ft_printf("1: hello my name is %s and i am %i %% %d years old\n", "laura", 46, 2);
@@ -53,6 +54,7 @@ int main()
 	printf("TEST COUNT MOI: %d\n", ft_printf("hello my name is %s and i am %i %% %d years old\n", "laura", 46, 2));
 
 	printf("---------------------------------------------------------------------------\n");
-	printf("Value using %%p: %p", &x);
-	printf("Value using %%x: %x", x);
+	printf("ORDI VALUE %%p: %p\n", "hi");
+	ft_printf("MY VALUE %%p: %p\n", "hi");
+	printf("Value using %%x: %x\n", x);
 }

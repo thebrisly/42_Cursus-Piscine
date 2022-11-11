@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_x.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:14:02 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/09 15:21:49 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:50:48 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ int	ft_base16(unsigned int nb, char *alpha)
 	}
 	else
 		count += ft_put_c(alpha[nb]);
+	if (count < 0)
+		return (-1);
 	return (count);
 }
