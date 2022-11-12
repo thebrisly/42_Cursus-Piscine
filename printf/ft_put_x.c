@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_x.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:14:02 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/11 15:50:48 by brisly           ###   ########.fr       */
+/*   Updated: 2022/11/12 10:48:18 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_put_x(unsigned int nb, int type)
 {
-	char *alpha;
+	char	*alpha;
 
 	if (type == 'x')
 		alpha = "0123456789abcdef";
@@ -23,7 +23,7 @@ int	ft_put_x(unsigned int nb, int type)
 	return (ft_base16(nb, alpha));
 }
 
-int	ft_base16(unsigned int nb, char *alpha)
+int	ft_base16(unsigned long nb, char *alpha)
 {
 	int	count;
 
