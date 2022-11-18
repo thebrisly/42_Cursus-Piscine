@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 16:43:10 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/16 14:12:15 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/11/16 11:08:48 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/11/16 15:12:38 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# ifndef BUFFER_SIZE
+# define BUFFER_SIZE 10
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
 
-char	*get_next_line()
-{
-	int fd;
-	int	bytes_read;
-	char	buffer[BUFFER_SIZE];
+char	*get_next_line();
 
-	fd = open("text.txt", O_RDONLY);
-	if (fd == -1)
-		return (NULL);
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	buffer[bytes_read] = 0;
-
-	return (buffer);
-}
-
-int main()
-{
-	printf("%s\n", get_next_line());
-	printf("%s\n", get_next_line());
-}
+#endif
