@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:43:10 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/16 14:12:15 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/27 14:16:26 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ char	*get_next_line()
 {
 	int fd;
 	int	bytes_read;
-	char	buffer[BUFFER_SIZE];
+	char	*buffer;
 
+	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	fd = open("text.txt", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
