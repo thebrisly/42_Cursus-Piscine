@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:43:10 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/27 14:16:26 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:28:55 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ char	*get_next_line()
 
 int main()
 {
-	printf("%s\n", get_next_line());
 	printf("%s\n", get_next_line());
 }
