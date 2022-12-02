@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:43:10 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/30 15:16:06 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:54:17 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@ char *get_next_line(int fd)
 {
 	static char	*stash;
 	char 		*buffer;
-	char 		*line;
+	//char 		*line;
 	
 	stash = malloc(BUFFER_SIZE);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	stash = stash_filling(fd, stash, buffer);
-	line = extract_line(stash, line);
-	stash = extract_new_stash(stash);
-	return(line);
+	//line = extract_line(stash, line);
+	//stash = extract_new_stash(stash);
+	return(stash);
+	// return (line);
 }
 
 char	*stash_filling(int fd, char *stash, char *buffer)
@@ -46,7 +47,7 @@ char	*stash_filling(int fd, char *stash, char *buffer)
 	return (stash);
 }
 
-char	*extract_new_stash()
+/*char	*extract_new_stash()
 {
 	return (NULL);
 }
@@ -54,12 +55,19 @@ char	*extract_new_stash()
 char	*extract_line(char *stash, char *line)
 {
 	
-}
+}*/
 
 int main()
 {
 	int	fd;
 
 	fd = open("text.txt", O_RDONLY);
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
 	printf("%s\n", get_next_line(fd));
 }

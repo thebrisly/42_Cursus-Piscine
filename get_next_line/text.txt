@@ -1,8 +1,4 @@
-Lo
-rem
- ipsum dolor sit amet,
- consectetur adipisicing elit, 
- sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Loremipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minit aliquip exm veniam, quis nostrud exercitation ullamco laboris 
 nisi u ea commodo consequat.
    
