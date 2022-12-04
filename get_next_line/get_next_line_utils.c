@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 12:27:28 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/02 14:20:53 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/12/04 16:37:19 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	while (s2[i])
 		tab[j++] = s2[i++];
-    free ((void *) s1);
+    //free ((void *) s1);
     tab[j] = 0;
 	return (tab);
 }
@@ -57,13 +57,6 @@ char	*ft_strchr(const char *s, int c)
 	if (s[i] == (char) c)
 		return ((char *) &s[i]);
 	return (NULL);
-}
-
-int ft_is_bsn(int c)
-{
-	if (c == '\n')
-		return (1);
-	return (0);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
