@@ -12,51 +12,47 @@
 
 #include "get_next_line.h"
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*stash;
-	char 		*buffer;
-	//char 		*line;
-	
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	char		*line;
+	char		*buffer;
+
+	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));$
 	if (!buffer)
 		return (NULL);
-	//stash = stash_filling(fd, stash, buffer); 
+	stash = stash_filling(fd, stash, buffer);
 	line = extract_line(stash, line);
 	stash = extract_new_stash(stash);
-	return (stash);
+	return (line);
 }
 
 char	*stash_filling(int fd, char *stash, char *buffer)
 {
-	int	i;
 	ssize_t	nbytes;
 
-	i = 0;
-	nbytes = read(fd, buffer, BUFFER_SIZE);
-	buffer[nbytes] = 0;
 	if (!stash)
-		stash = ft_strdup(buffer);
-	else
+			stash = ft_strdup(buffer);
+	while (!ft_strchr(stash, '\n') && nbytes != 0)
+	{
+		nbytes = read(fd, buffer, BUFFER_SIZE);
+		buffer[nbytes] = 0;
 		stash = ft_strjoin(stash, buffer);
+	}
+	free (buffer);
 	return (stash);
 }
 
-char	*extract_new_stash(char * stash)
+char	*extract_new_stash(char	*stash)
 {
 	int	i;
 
 	i = 0;
-	printf("--- extract --- NEW STASH: %s\n", stash);
 	while (stash[i])
 	{
 		if (stash[i] == '\n')
 		{
-			//free(stash);
-			printf("-----------ICI--------- \n");
-			printf("I: %d\n", i);
 			stash = ft_substr(stash, i + 1, (ft_strlen(stash) - (i)));
-			printf("STASH: %s\n", stash);
 			break ;
 		}
 		i++;
@@ -67,15 +63,22 @@ char	*extract_new_stash(char * stash)
 char	*extract_line(char *stash, char *line)
 {
 	int	len;
+	int	i;
 
 	len = 0;
-	while (stash[i] != 'n')
+	i = 0;
+	while (stash[i] != '\n')
+		len++;
+	line = malloc((len + 1) * sizeof(char));
+	if (!line)
+		return (NULL);
+	while (i <= len)
 	{
-		stash = stash_filling(fd, stash, buffer);
+		line[i] = stash[i];
 		i++;
 	}
-	while (stash[len] && stash[len] != '\n')
-		len++;
+	free (line);
+	return (line);
 }
 
 int main()
@@ -83,20 +86,13 @@ int main()
 	int	fd;
 
 	fd = open("text.txt", O_RDONLY);
-	printf("stash 1: %s\n", get_next_line(fd));
-	printf("stash 2: %s\n", get_next_line(fd));
-	printf("stash 3: %s\n", get_next_line(fd));
-	printf("stash 4: %s\n", get_next_line(fd));
-	printf("stash 5: %s\n", get_next_line(fd));
-	printf("stash 6: %s\n", get_next_line(fd));
-	printf("stash 7: %s\n", get_next_line(fd));
-	printf("stash 8: %s\n", get_next_line(fd));
-	printf("stash 9: %s\n", get_next_line(fd));
-	/*printf("stash 10: %s\n", get_next_line(fd));
-	printf("stash 11: %s\n", get_next_line(fd));
-	printf("stash 12: %s\n", get_next_line(fd));
-	printf("stash 13: %s\n", get_next_line(fd));
-	printf("stash 14: %s\n", get_next_line(fd));
-	printf("stash 15: %s\n", get_next_line(fd));
-	printf("stash 16: %s\n", get_next_line(fd));*/
+	printf("GNL 1: %s\n", get_next_line(fd));
+	printf("GNL 2: %s\n", get_next_line(fd));
+	printf("GNL 3: %s\n", get_next_line(fd));
+	printf("GNL 4: %s\n", get_next_line(fd));
+	printf("GNL 5: %s\n", get_next_line(fd));
+	printf("GNL 6: %s\n", get_next_line(fd));
+	printf("GNL 7: %s\n", get_next_line(fd));
+	printf("GNL 8: %s\n", get_next_line(fd));
+	printf("GNL 9: %s\n", get_next_line(fd));
 }
