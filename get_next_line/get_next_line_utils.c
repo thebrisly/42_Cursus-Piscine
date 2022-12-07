@@ -102,3 +102,4 @@ char	*ft_strdup(const char *s1)
 	tab[i] = '\0';
 	return (tab);
 }
+
