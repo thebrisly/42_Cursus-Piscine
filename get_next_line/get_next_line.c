@@ -30,6 +30,8 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (NULL);
 	stash = stash_filling(fd, stash, buffer);
+	//if (!stash || stash == '\n')
+	//	return (NULL);
 	line = extract_line(stash, line);
 	stash = extract_new_stash(stash);
 	return (line);
@@ -48,7 +50,6 @@ char	*stash_filling(int fd, char *stash, char *buffer)
 		if (nbytes == -1)
 		{
 			free (buffer);
-			free (stash);
 			return (NULL);
 		}
 		buffer[nbytes] = 0;
@@ -61,18 +62,20 @@ char	*stash_filling(int fd, char *stash, char *buffer)
 char	*extract_new_stash(char	*stash)
 {
 	int	i;
+	char *tmp;
 
+	tmp = NULL;
 	i = 0;
 	while (stash[i])
 	{
 		if (stash[i] == '\n')
 		{
-			stash = ft_substr(stash, i + 1, (ft_strlen(stash) - (i)));
+			tmp = ft_substr(stash, i + 1, (ft_strlen(stash) - (i)));
 			break ;
 		}
 		i++;
 	}
-	return (stash);
+	return (tmp);
 }
 
 char	*extract_line(char *stash, char *line)
@@ -87,17 +90,18 @@ char	*extract_line(char *stash, char *line)
 	line = malloc((len + 2) * sizeof(char));
 	if (!line)
 		return (NULL);
-	while (i < len)
+	while (stash[i] && stash[i] != '\n')
 	{
 		line[i] = stash[i];
 		i++;
 	}
-	line[i] = '\n';
-	line[i + 1] = 0;
+	if (stash[i] && stash[i] == '\n')
+		line[i++] = '\n';
+	line[i] = 0;
 	return (line);
 }
 
-int main()
+/*int main()
 {
 	int	fd;
 
@@ -111,4 +115,4 @@ int main()
 	printf("GNL 7: %s", get_next_line(fd));
 	printf("GNL 8: %s", get_next_line(fd));
 	printf("GNL 9: %s", get_next_line(fd));
-}
+}*/
