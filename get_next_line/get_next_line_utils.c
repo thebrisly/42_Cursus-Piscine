@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	int	i;
 
 	i = 0;
+	if (s[i] == '\0')
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
@@ -38,8 +40,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	while (s2[i])
 		tab[j++] = s2[i++];
-    //free ((void *) s1);
-    tab[j] = 0;
+	tab[j] = 0;
+	free ((void *)(s1));
 	return (tab);
 }
 
@@ -102,4 +104,3 @@ char	*ft_strdup(const char *s1)
 	tab[i] = '\0';
 	return (tab);
 }
-
