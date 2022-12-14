@@ -9,6 +9,7 @@
 /*   Updated: 2022/12/04 16:55:09 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*get_next_line(int fd)
@@ -18,20 +19,23 @@ char	*get_next_line(int fd)
 	char		*buffer;
 
 	line = NULL;
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-    {
-        free(stash);
-        free(buffer);
-        stash = NULL;
-        buffer = NULL;
-        return (NULL);
-    }
+	{
+		free(stash);
+		free(buffer);
+		stash = NULL;
+		buffer = NULL;
+		return (NULL);
+	}
 	if (!buffer)
 		return (NULL);
 	stash = stash_filling(fd, stash, buffer);
-	//if (!stash || stash == '\n')
-	//	return (NULL);
+	if (*stash == 0)
+	{
+		free (stash);
+		return (stash = 0);
+	}
 	line = extract_line(stash, line);
 	stash = extract_new_stash(stash);
 	return (line);
@@ -43,9 +47,9 @@ char	*stash_filling(int fd, char *stash, char *buffer)
 
 	nbytes = 1;
 	if (!stash)
-			stash = ft_strdup(buffer);
-	while (!ft_strchr(stash, '\n') && nbytes > 0)
-	{ 
+		stash = ft_strdup("");
+	while (nbytes > 0)
+	{
 		nbytes = read(fd, buffer, BUFFER_SIZE);
 		if (nbytes == -1)
 		{
@@ -53,7 +57,9 @@ char	*stash_filling(int fd, char *stash, char *buffer)
 			return (NULL);
 		}
 		buffer[nbytes] = 0;
-		stash = ft_strjoin(stash, buffer);
+		stash = ft_strjoin (stash, buffer);
+		if ((ft_strchr(buffer, '\n')))
+			break ;
 	}
 	free (buffer);
 	return (stash);
@@ -61,21 +67,29 @@ char	*stash_filling(int fd, char *stash, char *buffer)
 
 char	*extract_new_stash(char	*stash)
 {
-	int	i;
-	char *tmp;
+	int		len;
+	int		i;
+	char	*new_stash;
 
-	tmp = NULL;
+	len = 0;
 	i = 0;
-	while (stash[i])
+	if (stash == NULL)
+		return (NULL);
+	while (stash[len] != '\n' && stash[len])
+		len++;
+	if (stash[len] == '\n')
+		len++;
+	new_stash = malloc((ft_strlen(stash) - len + 1) * sizeof(char));
+	if (!new_stash)
+		return (NULL);
+	while (stash[len + i])
 	{
-		if (stash[i] == '\n')
-		{
-			tmp = ft_substr(stash, i + 1, (ft_strlen(stash) - (i)));
-			break ;
-		}
+		new_stash[i] = stash[len + i];
 		i++;
 	}
-	return (tmp);
+	free (stash);
+	new_stash[i] = 0;
+	return (new_stash);
 }
 
 char	*extract_line(char *stash, char *line)
@@ -85,23 +99,25 @@ char	*extract_line(char *stash, char *line)
 
 	len = 0;
 	i = 0;
+	if (stash == NULL)
+		return (NULL);
 	while (stash[len] != '\n' && stash[len])
 		len++;
-	line = malloc((len + 2) * sizeof(char));
+	if (stash[len] == '\n')
+		len++;
+	line = malloc((len + 1) * sizeof(char));
 	if (!line)
 		return (NULL);
-	while (stash[i] && stash[i] != '\n')
+	while (i < len)
 	{
 		line[i] = stash[i];
 		i++;
 	}
-	if (stash[i] && stash[i] == '\n')
-		line[i++] = '\n';
 	line[i] = 0;
 	return (line);
 }
 
-/*int main()
+/* int main()
 {
 	int	fd;
 
@@ -115,4 +131,5 @@ char	*extract_line(char *stash, char *line)
 	printf("GNL 7: %s", get_next_line(fd));
 	printf("GNL 8: %s", get_next_line(fd));
 	printf("GNL 9: %s", get_next_line(fd));
-}*/
+	close(fd);
+} */
