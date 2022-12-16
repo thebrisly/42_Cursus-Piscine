@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 15:33:59 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/16 11:22:09 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/12/16 10:08:18 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/12/16 10:52:38 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void ft_lstadd_front(t_list **lst, t_list *new)
 {
-    t_list	*data;
-
-    data = malloc(sizeof(t_list));
-    if (!data)
-        return  NULL;
-    data->content = content;
-    data->next = NULL;
-    return(data);
+    if (lst && new)
+    {
+        new->next = *lst;
+        *lst = new;
+    }
 }
-
-/*int main()
-{
-    t_list a;
-    a.content = 10; // As you did there, you specify which value from your struct !
-    printf("%d", a.content);
-}*/
