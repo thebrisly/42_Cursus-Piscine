@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   max.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 16:47:17 by brisly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:07:34 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/12/18 14:30:09 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/12/18 14:42:00 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
+int		max(int* tab, unsigned int len)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
+	int count = 0;
+	int result = 0;
+	int i = 0;
+	if (len > 0)
+	{
+		while (count < len)
+		{
+			if (tab[i] > result)
+				result = tab[i];
+			i++;
+			count++;
+		}
+		return (result);
+	}
+	return (0);
 }
 
 /*#include <stdio.h>
 
-int main(int argc, char **argv)
+int main()
 {
-	printf("result is: %d\n", ft_strcmp(argv[1], argv[2]));
+	int mark[] = {1, 3, 2, 10, 9};
+	printf("%d", max(mark, 5));
 }*/

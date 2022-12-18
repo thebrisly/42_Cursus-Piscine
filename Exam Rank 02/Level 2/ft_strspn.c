@@ -1,28 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strspn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 16:47:17 by brisly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:07:34 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/12/18 13:32:00 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/12/18 13:45:35 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
+#include <stdlib.h>
+
+size_t	ft_strspn(const char *s, const char *accept)
 {
-	int	i;
+	int i;
+	int	j;
+	int check;
 
 	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	while (s[i])
+	{
+		j = 0;
+		check = 0;
+		while (accept[j])
+		{
+			if (s[i] == accept[j])
+				check = 1;
+			j++;
+		}
+		if (check == 0)
+			return (i);
 		i++;
-	return (s1[i] - s2[i]);
+	}
+	return (i);
 }
 
 /*#include <stdio.h>
-
-int main(int argc, char **argv)
+int main()
 {
-	printf("result is: %d\n", ft_strcmp(argv[1], argv[2]));
+	char *s = "hello";
+	const char *accept = "jfkhpell";
+	printf("%zu\n", ft_strspn(s, accept));
 }*/

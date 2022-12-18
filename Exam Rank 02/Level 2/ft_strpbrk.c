@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 16:47:17 by brisly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:07:34 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/12/18 10:24:44 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/12/18 10:39:04 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
+char	*ft_strpbrk(const char *s1, const char *s2)
 {
-	int	i;
+	int i;
+	int	j;
 
 	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	while (s1[i])
+	{
+		j = 0;
+		while (s2[j])
+		{
+			if (s2[j] == s1[i])
+				return (s1[i]);
+			j++;
+		}
 		i++;
-	return (s1[i] - s2[i]);
+	}
+	return (NULL);
 }
-
-/*#include <stdio.h>
-
-int main(int argc, char **argv)
-{
-	printf("result is: %d\n", ft_strcmp(argv[1], argv[2]));
-}*/

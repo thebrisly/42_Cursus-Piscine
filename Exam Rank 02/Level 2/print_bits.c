@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   print_bits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 16:47:17 by brisly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:07:34 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/12/18 15:26:50 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/12/18 15:28:37 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
+#include <unistd.h>
 
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
+void print_bits(unsigned char octet)
+{
+	int	i = 8;
+	unsigned char 	bit;
+
+	while (i--)
+	{
+		bit = (octet >> i & 1) + '0';
+		write(1, &bit, 1);
+	}
 }
-
-/*#include <stdio.h>
-
-int main(int argc, char **argv)
-{
-	printf("result is: %d\n", ft_strcmp(argv[1], argv[2]));
-}*/

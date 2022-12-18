@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   last_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 16:47:17 by brisly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:07:34 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/12/18 14:10:10 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/12/18 14:34:22 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
+#include <unistd.h>
 
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+int main (int argc, char **a)
+{
+	if (argc == 2)
+	{
+		int i = 0;
+
+		while (a[1][i])
+			i++;
+		i--;
+		while (a[1][i] > 32)
+			i--;
 		i++;
-	return (s1[i] - s2[i]);
+		while (a[1][i])
+		{
+			write(1, &a[1][i], 1);
+			i++;
+		}
+	}
+	write (1, "\n", 1);
 }
-
-/*#include <stdio.h>
-
-int main(int argc, char **argv)
-{
-	printf("result is: %d\n", ft_strcmp(argv[1], argv[2]));
-}*/

@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 16:47:17 by brisly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:07:34 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/12/18 10:08:41 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/12/18 10:24:32 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
+#include <stdlib.h>
+
+char    *ft_strdup(char *src)
 {
+	char	*tmp;
+	int	len;
 	int	i;
 
+	len = 0;
 	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	while (src[len])
+		len++;
+	tmp = malloc(sizeof(char) * len + 1);
+	if (!tmp)
+		return (NULL);
+	while (src[i])
+	{
+		tmp[i] = src[i];
 		i++;
-	return (s1[i] - s2[i]);
+	}
+	tmp[i] = 0;
+	return (tmp);
 }
-
-/*#include <stdio.h>
-
-int main(int argc, char **argv)
-{
-	printf("result is: %d\n", ft_strcmp(argv[1], argv[2]));
-}*/

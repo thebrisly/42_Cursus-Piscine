@@ -1,44 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   union.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 16:24:40 by brisly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:07:33 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/12/18 15:28:42 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/12/18 15:39:32 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_atoi(const char *str)
+int check(int c, char *str, int index)
 {
-	int	result;
-	int	sign;
-	int	i;
+	int i = 0;
 
-	i = 0;
-	result = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-')
+	while(i < index)
 	{
-		sign = -1;
+		if (str[i] == c)
+			return 0;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
-	return (sign * result);
+	return  1;
 }
-
-/*#include <stdio.h>
 
 int main(int argc, char **argv)
 {
-	printf("%d\n", ft_atoi(argv[1]));
-}*/
+	int i = 0;
+	int j = 0;
+	int k = 0;
+
+	if (argc == 3)
+	{
+		while(argv[1][i] != '\0')
+		{
+			i++;
+		}
+		while(argv[2][j] != '\0')
+		{
+			argv[1][i] = argv[2][j];
+			i++;
+			j++;
+		}
+		i--;
+		while(k <= i)
+		{
+			if(check(argv[1][k], argv[1], k) == 1)
+				write (1, &argv[1][k], 1);
+			k++;
+		}
+	}
+	write (1, "\n", 1);
+}
