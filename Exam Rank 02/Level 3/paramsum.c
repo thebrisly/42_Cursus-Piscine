@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   last_word.c                                        :+:      :+:    :+:   */
+/*   paramsum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 14:10:10 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/18 22:11:09 by brisly           ###   ########.fr       */
+/*   Created: 2022/12/19 17:45:06 by brisly            #+#    #+#             */
+/*   Updated: 2022/12/19 17:53:41 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
-int main (int argc, char **a)
+void	ft_putnbr(int n)
 {
-	if (argc == 2)
-	{
-		int i = 0;
+	if (n > 9)
+		ft_putnbr(n/10);
+	n = (n % 10) + '0';
+	write(1, &n, 1);
+}
 
-		while (a[1][i])
-			i++;
-		i--;
-		while (a[1][i] > 32)
-			i--;
-		i++;
-		while (a[1][i])
-		{
-			write(1, &a[1][i], 1);
-			i++;
-		}
+int main(int argc, char **argv)
+{
+	int	numbers = 0;
+	(void) argv;
+	numbers = argc -1;
+	if (argc == 1)
+		write(1, "0\n", 2);
+	else
+	{
+		ft_putnbr(numbers);
+		write(1, "\n", 1);
 	}
-	write (1, "\n", 1);
 }

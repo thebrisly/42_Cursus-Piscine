@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 10:39:15 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/18 13:31:46 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:13:48 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ char    *ft_strrev(char *str)
 	return (str);
 }
 
-/*int	main(void)
+int	main(void)
 {
 	char s[] = "Hello World";
 	ft_strrev(s);
 	printf("%s\n", s);
 	return (0);
 }
-/*
