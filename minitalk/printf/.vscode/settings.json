@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "__bit_reference": "c",
+        "algorithm": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "unordered_map": "c",
+        "ft_printf.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

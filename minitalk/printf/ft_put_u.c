@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_put_u.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 13:55:42 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/27 20:15:18 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/11/09 10:01:14 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/11/12 10:48:16 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <signal.h>
-# include "libft.h"
-# include "ft_printf.h"
+#include "ft_printf.h"
 
-#endif
+int	ft_put_u(unsigned int nb)
+{
+	int	count;
+
+	count = 0;
+	if (nb > 9)
+	{
+		count += ft_put_d_i(nb / 10);
+		count += ft_put_d_i(nb % 10);
+	}
+	else if (nb >= 0 && nb < 10)
+		count += ft_put_c(nb + '0');
+	if (count < 0)
+		return (-1);
+	return (count);
+}

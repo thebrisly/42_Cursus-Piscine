@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 13:55:42 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/27 20:15:18 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/10/12 15:30:41 by brisly            #+#    #+#             */
+/*   Updated: 2022/10/29 14:30:37 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <signal.h>
-# include "libft.h"
-# include "ft_printf.h"
+#include "libft.h"
 
-#endif
+char	*ft_strrchr(const char *s, int c)
+{
+	unsigned int	i;
+	char			*occ;
+
+	occ = NULL;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char) c)
+			occ = (char *) &s[i];
+		i++;
+	}
+	if (s[i] == (char) c)
+		occ = (char *) &s[i];
+	return (occ);
+}
+
+/*#include <stdio.h>
+int main()
+{
+    char a[] = "http://www.tutorialspoint.com";
+    printf("%s\n", ft_strrchr(a, 't'));
+}*/

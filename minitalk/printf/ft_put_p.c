@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_put_p.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 13:55:42 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/27 20:15:18 by lfabbian         ###   ########.fr       */
+/*   Created: 2022/11/09 15:30:34 by lfabbian          #+#    #+#             */
+/*   Updated: 2022/11/12 10:48:13 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <signal.h>
-# include "libft.h"
-# include "ft_printf.h"
+#include "ft_printf.h"
 
-#endif
+int	ft_put_p(void *arg)
+{
+	int				count;
+	char			*alpha;
+	unsigned long	arg2;
+
+	arg2 = (unsigned long)arg;
+	alpha = "0123456789abcdef";
+	count = 0;
+	count += ft_put_s("0x");
+	count += ft_base16(arg2, alpha);
+	return (count);
+}

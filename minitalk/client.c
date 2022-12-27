@@ -3,36 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:53:56 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/26 09:51:19 by brisly           ###   ########.fr       */
+/*   Updated: 2022/12/27 20:34:02 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void send_message(int pid, char *message)
+void	send_signals(int pid, char *message)
 {
-	int	i;
+	int				letter;
+	int				i;
+	unsigned char	bit;
 
-	i = 0;
-	kill(pid, SIGUSR1); // Envoi du signal SIGUSR1 au serveur pour signaler qu'un message va être envoyé
-	while (message[i++])
+	letter = 0;
+	while (message[letter])
 	{
-		kill(pid, message[i]); // Envoi du caractère c au serveur
-		usleep(100); // Pause pour laisser le temps au serveur de traiter le caractère reçu
+		i = 0;
+		while (i < 8)
+		{
+			bit = (message[letter] >> (7 - i)) & 1;
+			if (bit == 0)
+				kill(pid, SIGUSR1);
+			else if (bit == 1)
+				kill(pid, SIGUSR2);
+		i++;
+		}
+	letter++;
 	}
-	kill(pid, 0); // Envoi d'un caractere null pour signaler la fin du message
 }
 
 int	main(int argc, char **argv)
 {
 	char	*message;
-	int		*server_id;
+	int		server_id;
 
-	server_id = atoi(argv[1]);
-	message = argv[2];
 	if (argc == 3)
-		send_message(server_id, message);
+	{
+		server_id = ft_atoi(argv[1]);
+		message = argv[2];
+		send_signals(server_id, message);
+	}
+	else
+		printf("Wrong args. Must be like that: ./<PROGRAM> <PID> <MESSAGE>");
+	return (0);
 }
