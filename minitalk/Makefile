@@ -1,32 +1,30 @@
 SRCS	= client.c server.c
 
-#OBJS	:= $(SRCS:%.c=%.o)
-SRV_OBJ = server.o
-CLT_OBJ = client.o
+OBJS	:= $(SRCS:%.c=%.o)
 
 NAME	= minitalk
 
 CC		= gcc
 RM		= rm -f
 
-CFLAGS 	= -Wall -Wextra -Werror -Ilibft -Iprintf
+CFLAGS 	= -Wall -Wextra -Werror
 
 all:		${NAME}
 
 %.o:	%.c
-		${CC} ${CFLAGS} -c $< -o $@
+		${CC} ${CFLAGS} -Ilibft -Iprintf -c $? -o $@
 
 ${NAME}:	 server client
 
-server:		${SRV_OBJ}
+server:		server.o
 		@make -C libft
 		@make -C printf
-		${CC} ${CFLAGS} -Llibft -lft -Lprintf -lftprintf $? -o server
+		${CC} ${CFLAGS} $? -Llibft -lft -Lprintf -lftprintf -o server
 
-client:		${CLT_OBJ}
+client:		client.o
 		@make -C libft
 		@make -C printf
-		${CC} ${CFLAGS} -Llibft -lft -Lprintf -lftprintf $? -o client
+		${CC} ${CFLAGS} $? -Llibft -lft -Lprintf -lftprintf -o client
 
 libft:
 		make -C libft
@@ -40,8 +38,8 @@ clean:
 			${RM} ${OBJS}
 
 fclean:		clean
-			${RM} ${NAME}
+			${RM} server client
 
 re:			fclean all
 
-.PHONY:		server client libft printf
+.PHONY:		libft printf
