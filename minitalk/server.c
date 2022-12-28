@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:53:54 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/28 14:22:50 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:07:13 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	signal_handler(int signum)
 		}
 		counter = 0;
 		result = 0;
-		len +=1;
+		len += 1;
 	}
 }
 
@@ -83,7 +83,6 @@ int	main(void)
 	ft_printf("Server's PID: %d\n", getpid());
 	signal_received.sa_handler = signal_handler;
 	signal_received.sa_flags = 0;
-	sigemptyset(&signal_received.sa_mask);
 	sigaction(SIGUSR1, &signal_received, NULL);
 	sigaction(SIGUSR2, &signal_received, NULL);
 	while (1)
