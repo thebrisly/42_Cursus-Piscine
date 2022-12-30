@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:53:54 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/28 15:07:13 by lfabbian         ###   ########.fr       */
+/*   Updated: 2022/12/30 08:50:51 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_recursive_power(int nb, int power)
 	}
 }
 
-char	*ft_strjoinn(char const *s1, char const letter)
+char	*letter_to_string(char const *s1, char const letter)
 {
 	int		i;
 	int		j;
@@ -63,7 +63,7 @@ void	signal_handler(int signum)
 	counter++;
 	if (counter == 8)
 	{
-		final = ft_strjoinn(final, result);
+		final = letter_to_string(final, result);
 		if (result == '\0')
 		{
 			ft_printf("%s\n", final);
