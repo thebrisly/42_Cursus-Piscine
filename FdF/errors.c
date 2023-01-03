@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 15:25:40 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/03 18:01:26 by lfabbian         ###   ########.fr       */
+/*   Created: 2023/01/03 16:03:25 by lfabbian          #+#    #+#             */
+/*   Updated: 2023/01/03 16:04:36 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-
-int ft_read_fd(char *file)
+void ft_read_fd(fd)
 {
-	int fd;
+	int	fd;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-    	ft_printf("Error opening file");
-    	return (0);
-  	}
-	return (fd);
-}
-
-
-int main(int argc, char **argv)
-{
-	int fd;
-
-	if (argc == 2)
-	{
-		fd = ft_read_fd(argv[1]);
-		ft_printf("GNL 1: %s", get_next_line(fd));
-	}
-	else
-		ft_printf("Wrong number of args");
+	fd = open(fd, O_RDONLY)
+	if (fd == -1)
+        printf("Error with file descriptor n");
+    return 0;
 }

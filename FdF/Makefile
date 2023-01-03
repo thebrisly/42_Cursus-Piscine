@@ -14,7 +14,7 @@ all:		${NAME}
 %.o:	%.c
 		${CC} ${CFLAGS} -Ilibft -Iprintf -I./minilibx -c $? -o $@
 
-${NAME}:		fdf.o
+${NAME}:		${OBJS}
 		@make -C libft
 		@make -C printf
 		@make -C minilibx
@@ -36,7 +36,7 @@ clean:
 			${RM} ${OBJS}
 
 fclean:		clean
-			${RM} fdf
+			${RM} ${NAME}
 
 re:			fclean all
 

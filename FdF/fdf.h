@@ -6,11 +6,14 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:42:04 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/02 13:46:22 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/03 16:22:54 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
+#include "ft_printf.h"
+#include "libft.h"
+#include <fcntl.h>
 #ifndef FDF_H
 # define FDF_H
 
