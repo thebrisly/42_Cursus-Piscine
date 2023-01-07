@@ -6,11 +6,11 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 12:27:28 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/04 16:37:19 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:18:53 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {

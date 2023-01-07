@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:42:04 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/03 16:22:54 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:18:32 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,23 @@
 # define MENU_BACKGROUND 0x950740
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
+# define	WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
+# define MLX_ERROR 1
 
-// color start, color end and curent percent on the slope
+typedef struct	s_vars {
+	void	*mlx;
+	void	*win;
+}	t_vars;
+
+//colors.c: color start, color end and curent percent on the slope
 int		palette_one(double percent);
 int		palette_two(double percent, int z);
 int		palette_three(double percent);
 int		palette_four(double percent);
 int		palette_five(double percent);
+
+//errors.c:
+//int	init_errors(void mlx, void window);
+
 #endif

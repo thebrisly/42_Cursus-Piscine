@@ -6,11 +6,11 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:43:10 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/12/04 16:55:09 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:18:46 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*get_next_line(int fd)
 {

@@ -1,4 +1,4 @@
-SRCS	= fdf.c
+SRCS	= fdf_tests.c
 
 OBJS	:= $(SRCS:%.c=%.o)
 
