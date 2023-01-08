@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   basics.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:03:25 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/07 19:15:49 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/08 11:10:06 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void ft_read_fd(fd)
+int ft_read_fd(char *file)
 {
-	int	fd;
+	int fd;
 
-	fd = open(fd, O_RDONLY)
-	if (fd == -1)
-        printf("Error with file descriptor n");
-    return 0;
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+    	ft_printf("Error opening file");
+    	return (0);
+  	}
+	return (fd);
 }
 
-/*int	init_errors(void *mlx, void *window)
+int env_init()
 {
-	if (mlx == NULL)
+	vars	vars;
+
+	vars.mlx = mlx_init();
+	if (vars.mlx == NULL)
 	{
-		free(mlx);
+		free(vars.mlx);
 		return (MLX_ERROR);
 	}
-	else if (window == NULL)
+	vars.win = mlx_new_window(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "FdF");
+	if (vars.win == NULL)
 		return (MLX_ERROR);
-	return(0);
-}*/
+	mlx_loop(vars.mlx);
+}
