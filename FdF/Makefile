@@ -18,7 +18,7 @@ ${NAME}:		${OBJS}
 		@make -C libft
 		@make -C printf
 		@make -C minilibx
-		${CC} ${CFLAGS} $? -Llibft -lft -Lprintf -lftprintf -L./minilibx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+		${CC} ${CFLAGS} $^ -Llibft -lft -Lprintf -lftprintf -L./minilibx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
 
 libft:
 		make -C libft

@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:42:04 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/08 14:54:09 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:06:53 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		palette_four(double percent);
 int		palette_five(double percent);
 
 //basics.c:
-void parse_map(t_env env, char *file);
+void map_info(t_env env, char *file);
 int env_init(t_env env);
 
 //hooks.c

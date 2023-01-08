@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:25:40 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/08 14:37:07 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:25:18 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int main(int argc, char **argv)
 	env.map_path = argv[1];
 	if (argc == 2)
 	{
-		parse_map(env, env.map_path);
+		map_info(env, env.map_path);
+		//parse_map(fd);
 		env_init(env);
 	}
 	else

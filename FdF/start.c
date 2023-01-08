@@ -6,13 +6,13 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:03:25 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/08 14:55:25 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:20:53 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void parse_map(t_env env, char *file)
+void map_info(t_env env, char *file)
 {
 	int fd;
 	char *line;
@@ -40,7 +40,7 @@ void parse_map(t_env env, char *file)
 	close (fd);
 }
 
-void take_p_from_map()
+void parse_map()
 {
 
 }
