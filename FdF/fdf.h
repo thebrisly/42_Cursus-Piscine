@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:42:04 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/08 11:07:33 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:54:09 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 #include <fcntl.h>
+#include <stdlib.h>
 #ifndef FDF_H
 # define FDF_H
 
@@ -29,12 +30,29 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define MLX_ERROR 1
+# define ZOOM_FACTOR 1.1
 
-typedef struct	s_vars {
+typedef struct s_vector0 {
+	int	x;
+	int	y;
+	int	z;
+}	t_vector0;
+
+typedef struct	s_env {
 	void	*mlx;
 	void	*win;
-}	vars;
-
+	void	*image;
+	char	*address;
+	char	*map_path;
+	int		map_w;
+	int		map_h;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		counter;
+	float	zoom;
+	float	alpha;
+}	t_env;
 
 //colors.c: color start, color end and curent percent on the slope
 int		palette_one(double percent);
@@ -44,7 +62,12 @@ int		palette_four(double percent);
 int		palette_five(double percent);
 
 //basics.c:
-int ft_read_fd(char *file);
-int env_init();
+void parse_map(t_env env, char *file);
+int env_init(t_env env);
+
+//hooks.c
+void h_management(t_env base);
+int esc_win(int key);
+int close_win();
 
 #endif

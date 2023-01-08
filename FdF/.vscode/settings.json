@@ -2,6 +2,7 @@
 	"C_Cpp.errorSquiggles": "disabled",
 	"files.associations": {
 		"fdf.h": "c",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"__node_handle": "c"
 	}
 }
