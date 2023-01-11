@@ -6,17 +6,17 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:42:04 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/08 15:06:53 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:21:32 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "ft_printf.h"
-#include "libft.h"
-#include <fcntl.h>
-#include <stdlib.h>
 #ifndef FDF_H
 # define FDF_H
+# include "mlx.h"
+# include "ft_printf.h"
+# include "libft.h"
+# include <fcntl.h>
+# include <stdlib.h>
 
 # define SHELL_RED "\033[0;31m"
 # define SHELL_YELLOW "\033[0;33m"
@@ -32,20 +32,33 @@
 # define MLX_ERROR 1
 # define ZOOM_FACTOR 1.1
 
-typedef struct s_vector0 {
+typedef struct s_ivector {
 	int	x;
 	int	y;
 	int	z;
-}	t_vector0;
+}	t_ivector;
 
-typedef struct	s_env {
+typedef struct s_vector1 {
+	int	x;
+	int	y;
+}	t_vector1;
+
+typedef struct s_vector2 {
+	int	x;
+	int	y;
+}	t_vector2;
+
+typedef struct s_env {
 	void	*mlx;
 	void	*win;
 	void	*image;
 	char	*address;
 	char	*map_path;
+	char	**final_tab;
 	int		map_w;
 	int		map_h;
+	int		x;
+	int		y;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -54,20 +67,24 @@ typedef struct	s_env {
 	float	alpha;
 }	t_env;
 
-//colors.c: color start, color end and curent percent on the slope
+/*colors.c: color start, color end and curent percent on the slope*/
 int		palette_one(double percent);
 int		palette_two(double percent, int z);
 int		palette_three(double percent);
 int		palette_four(double percent);
 int		palette_five(double percent);
 
-//basics.c:
-void map_info(t_env env, char *file);
-int env_init(t_env env);
+/*basics.c:*/
+void	map_info(t_env *env, char *file);
+void	parse_map(t_env *env, char *file);
+int		env_init(t_env *env);
 
-//hooks.c
-void h_management(t_env base);
-int esc_win(int key);
-int close_win();
+/*hooks.c*/
+void	h_management(t_env *env);
+int		esc_win(int key, t_env *env);
+int close_win(t_env *env);
+
+/*fdf.c*/
+int		error(char *error_message);
 
 #endif

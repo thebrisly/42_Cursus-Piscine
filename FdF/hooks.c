@@ -6,33 +6,33 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 16:17:24 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/08 13:53:01 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:26:46 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	h_management(t_env env)
+void	h_management(t_env *env)
 {
-	mlx_key_hook(env.win, &esc_win, NULL);
-	mlx_hook(env.win, 17, 0, &close_win, NULL);
+	mlx_key_hook(env->win, &esc_win, &env);
+	mlx_hook(env->win, 17, 0, &close_win, &env);
 	//mlx_key_hook(env.win, &key_callback, NULL);
 	//mlx_mouse_hook(env.win, &key_callback, NULL);
 }
 
-int esc_win(int key)
+int esc_win(int key, t_env *env)
 {
     if (key == 53)
     {
-        mlx_destroy_window(NULL, NULL);
+        mlx_destroy_window(env->mlx, env->win);
 		exit(0);
     }
     return (0);
 }
 
-int close_win()
+int close_win(t_env *env)
 {
-    mlx_destroy_window(NULL, NULL);
+    mlx_destroy_window(env->mlx, env->win);
     exit(0);
 }
 

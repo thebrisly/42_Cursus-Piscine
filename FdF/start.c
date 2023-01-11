@@ -6,60 +6,82 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:03:25 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/08 15:20:53 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:22:08 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void map_info(t_env env, char *file)
+void	map_info(t_env *env, char *file)
 {
-	int fd;
-	char *line;
-	char **tab;
+	int		fd;
+	char	*line;
+	char	**tab;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-	{
-    	ft_printf("Map Error");
-		exit(1);
-	}
-	env.map_h = 0;
-	env.map_w = 0;
+		error("Map error !");
+	env->map_h = 0;
+	env->map_w = 0;
 	line = get_next_line(fd);
 	tab = ft_split(line, ' ');
-	while (tab[env.map_w])
-		env.map_w++;
-	ft_printf("---- %d ----\n", env.map_w);
+	while (tab[env->map_w])
+		env->map_w++;
 	while (line)
 	{
-		env.map_h++;
+		env->map_h++;
 		line = get_next_line(fd);
 	}
-	ft_printf("---- %d ----\n", env.map_h);
+	ft_printf("HEIGHT: %d\n", env->map_h);
+	ft_printf("WIDTH: %d\n", env->map_w);
 	close (fd);
 }
 
-void parse_map()
+void	parse_map(t_env *env, char *file)
 {
+	int		fd;
+	char	*line;
+	char	**line_tab;
 
+	env->y = 0;
+	fd = open(file, O_RDONLY);
+	env->final_tab = malloc(env->map_h * sizeof(int *));
+	if (!env->final_tab)
+		error("Malloc failed");
+	ft_printf("HEIGHT: %d\n", env->map_h);
+	ft_printf("WIDTH: %d\n", env->map_w);
+	while (env->y < env->map_h)
+	{
+		env->final_tab[env->y] = malloc(env->map_w * sizeof(int));
+		if (!env->final_tab[env->y])
+			error("Malloc failed");
+		line = get_next_line(fd);
+		line_tab = ft_split(line, ' ');
+		env->x = 0;
+		while (env->x < env->map_w)
+		{
+			env->final_tab[env->y][env->x] = ft_atoi(line_tab[env->x]);
+			env->x++;
+		}
+		env->y++;
+	}
 }
 
-int env_init(t_env env)
+int	env_init(t_env *env)
 {
-	env.alpha = 0.5;
-	env.mlx = mlx_init();
-	if (env.mlx == NULL)
+	env->alpha = 0.5;
+	env->mlx = mlx_init();
+	if (env->mlx == NULL)
 	{
-		free(env.mlx);
+		free(env->mlx);
 		return (MLX_ERROR);
 	}
-	env.win = mlx_new_window(env.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "FdF");
-	if (env.win == NULL)
+	env->win = mlx_new_window(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "FdF");
+	if (env->win == NULL)
 		return (MLX_ERROR);
-	env.image = mlx_new_image(env.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	env.address = mlx_get_data_addr(env.image, &env.bits_per_pixel, &env.line_length, &env.endian);
+	env->image = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	env->address = mlx_get_data_addr(env->image, &env->bits_per_pixel, &env->line_length, &env->endian);
 	h_management(env);
-	mlx_loop(env.mlx);
+	mlx_loop(env->mlx);
 	return (0);
 }

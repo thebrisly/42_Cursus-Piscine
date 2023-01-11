@@ -1,4 +1,4 @@
-SRCS	= fdf.c start.c hooks.c
+SRCS	= fdf.c hooks.c start.c
 
 OBJS	:= $(SRCS:%.c=%.o)
 

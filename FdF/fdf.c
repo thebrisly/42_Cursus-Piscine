@@ -6,23 +6,30 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:25:40 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/08 15:25:18 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:26:58 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_env	env;
 
+	env.alpha = 0.5;
 	env.map_path = argv[1];
 	if (argc == 2)
 	{
-		map_info(env, env.map_path);
-		//parse_map(fd);
-		env_init(env);
+		map_info(&env, env.map_path);
+		parse_map(&env, env.map_path);
+		env_init(&env);
 	}
 	else
-		ft_printf("Wrong number of args");
+		error("Wrong number of args");
+}
+
+int	error(char *error_message)
+{
+	ft_printf("%s\n", error_message);
+	exit (1);
 }

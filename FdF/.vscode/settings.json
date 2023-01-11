@@ -3,6 +3,8 @@
 	"files.associations": {
 		"fdf.h": "c",
 		"mlx.h": "c",
-		"__node_handle": "c"
+		"__node_handle": "c",
+		"ft_printf.h": "c",
+		"stdlib.h": "c"
 	}
 }
