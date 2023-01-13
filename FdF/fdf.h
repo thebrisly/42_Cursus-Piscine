@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:42:04 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/11 15:21:32 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:30:29 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <stdlib.h>
+# include <math.h>
 
 # define SHELL_RED "\033[0;31m"
 # define SHELL_YELLOW "\033[0;33m"
@@ -36,35 +37,38 @@ typedef struct s_ivector {
 	int	x;
 	int	y;
 	int	z;
-}	t_ivector;
+}	t_ipoint;
 
-typedef struct s_vector1 {
+typedef struct s_fpoint {
 	int	x;
 	int	y;
-}	t_vector1;
+}	t_fpoint;
 
-typedef struct s_vector2 {
-	int	x;
-	int	y;
-}	t_vector2;
+typedef struct s_delta {
+	int	dx;
+	int	dy;
+}	t_delta;
 
 typedef struct s_env {
-	void	*mlx;
-	void	*win;
-	void	*image;
-	char	*address;
-	char	*map_path;
-	char	**final_tab;
-	int		map_w;
-	int		map_h;
-	int		x;
-	int		y;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		counter;
-	float	zoom;
-	float	alpha;
+	void		*mlx;
+	void		*win;
+	void		*image;
+	char		*address;
+	char		*map_path;
+	char		**final_tab;
+	int			map_w;
+	int			map_h;
+	int			x;
+	int			y;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			counter;
+	float		zoom;
+	float		alpha;
+	t_ipoint	*initial_points;
+	t_fpoint	*final_points;
+	t_delta		*delta;
 }	t_env;
 
 /*colors.c: color start, color end and curent percent on the slope*/
@@ -82,9 +86,18 @@ int		env_init(t_env *env);
 /*hooks.c*/
 void	h_management(t_env *env);
 int		esc_win(int key, t_env *env);
-int close_win(t_env *env);
+int		close_win(t_env *env);
 
 /*fdf.c*/
 int		error(char *error_message);
+
+/*mathematics.c*/
+void	three_dim_point(t_env *env);
+void	two_dim_point(t_env *env);
+
+/*draw.c*/
+void	put_pixel(t_env *env, int x, int y, int color);
+void	draw_point(t_env *env);
+void	draw_line(t_env *env);
 
 #endif
