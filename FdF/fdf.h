@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:42:04 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/13 15:30:29 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:58:29 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define MENU_BACKGROUND 0x950740
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
+# define RED 0xFF0000
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
@@ -40,13 +41,13 @@ typedef struct s_ivector {
 }	t_ipoint;
 
 typedef struct s_fpoint {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 }	t_fpoint;
 
 typedef struct s_delta {
-	int	dx;
-	int	dy;
+	float	dx;
+	float	dy;
 }	t_delta;
 
 typedef struct s_env {
@@ -55,11 +56,12 @@ typedef struct s_env {
 	void		*image;
 	char		*address;
 	char		*map_path;
-	char		**final_tab;
+	int			**final_tab;
 	int			map_w;
 	int			map_h;
 	int			x;
 	int			y;
+	int			i;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
@@ -90,14 +92,20 @@ int		close_win(t_env *env);
 
 /*fdf.c*/
 int		error(char *error_message);
+int render(t_env *env);
 
-/*mathematics.c*/
+/*points.c*/
 void	three_dim_point(t_env *env);
 void	two_dim_point(t_env *env);
 
 /*draw.c*/
 void	put_pixel(t_env *env, int x, int y, int color);
-void	draw_point(t_env *env);
 void	draw_line(t_env *env);
+
+/*limits.c*/
+void	limits(t_env *env);
+void	no_limit(t_env *env);
+void	right_limit();
+void	low_limit();
 
 #endif

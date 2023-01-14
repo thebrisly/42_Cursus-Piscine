@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 10:47:54 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/13 15:30:24 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:57:05 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,33 @@ void put_pixel(t_env *env, int x, int y, int color)
     }
 }
 
+/*Line generation algorithm*/
 /*
-//draw point
-void	draw_point(t_env *env)
+void draw_line(t_env *env)
 {
+    int p;
 
-}
+	env->delta.dx = x1 - x0;
+	env->delta.dy = y1 - y0;
+	env->x = x0;
+	env->y = y0;
 
-//draw line
-void	draw_line(t_env *env)
-{
-	while()
+	p = 2 * dy - dx;
+
+	while (env->x < x1)
 	{
-		put_pixel();
+		if (p >= 0)
+		{
+			put_pixel(env, x,y,7);
+			y = y + 1;
+			p = p + 2 * dy - 2 * dx;
+		}
+		else
+		{
+			put_pixel(env, x,y,7);
+			p = p + 2 * dy;
+		}
+		x=x+1;
 	}
-}*/
+}
+*/

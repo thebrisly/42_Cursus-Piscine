@@ -1,4 +1,4 @@
-SRCS	= fdf.c hooks.c start.c mathematics.c draw.c
+SRCS	= fdf.c hooks.c start.c points.c draw.c
 
 OBJS	:= $(SRCS:%.c=%.o)
 

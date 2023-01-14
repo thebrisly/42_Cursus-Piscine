@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:03:25 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/13 15:30:25 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/14 14:33:18 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,18 @@ int	env_init(t_env *env)
 		return (MLX_ERROR);
 	env->image = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	env->address = mlx_get_data_addr(env->image, &env->bits_per_pixel, &env->line_length, &env->endian);
-	//two_dim_point(env);
+	two_dim_point(env);
+	//mlx_hook(env->win, 2, 0, esc_win, &env);
 	h_management(env);
+	//mlx_loop_hook(env->mlx, render, env);
+	mlx_put_image_to_window(env->mlx, env->win, env->image, 0, 0);
 	mlx_loop(env->mlx);
 	return (0);
 }
+
+/*int render(t_env *env)
+{
+	ft_printf("ICI\n", env);
+	return 0;
+}
+*/
