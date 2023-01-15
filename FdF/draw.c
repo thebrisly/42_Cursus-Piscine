@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 10:47:54 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/14 15:57:05 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:24:14 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 //draw pixel
 void put_pixel(t_env *env, int x, int y, int color)
 {
+	//ft_printf("JE SUIS DANS PUT PIXEL LINE");
     char *pxl;
     if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
     {
@@ -24,32 +25,35 @@ void put_pixel(t_env *env, int x, int y, int color)
 }
 
 /*Line generation algorithm*/
-/*
-void draw_line(t_env *env)
+/*DDA Line Drawing Algorithm*/
+void draw_line(t_env *env, t_fpoint point0, t_fpoint point1)
 {
-    int p;
+	float	step;
+	float	x;
+	float	y;
+	int		i;
 
-	env->delta.dx = x1 - x0;
-	env->delta.dy = y1 - y0;
-	env->x = x0;
-	env->y = y0;
-
-	p = 2 * dy - dx;
-
-	while (env->x < x1)
+	i = 0;
+	printf("X0: %f Y0: %f X1: %f Y1 %f\n", point0.x, point0.y, point1.x, point1.y);
+	env->delta[i].dx = fabsf(point1.x - point0.x);
+	env->delta[i].dy = fabsf(point1.y - point0.y);
+	//ft_printf("JE SUIS DANS DRAW LINE");
+	if (env->delta[i].dx >= env->delta[i].dy)
+		step = env->delta[i].dx;
+	else
+		step = env->delta[i].dy;
+	//ft_printf("JE SUIS DANS DRAW LINE");
+	env->delta[i].dx = env->delta[i].dx / step;
+	env->delta[i].dy = env->delta[i].dy / step;
+	x = point0.x;
+	y = point0.y;
+	while (i < step)
 	{
-		if (p >= 0)
-		{
-			put_pixel(env, x,y,7);
-			y = y + 1;
-			p = p + 2 * dy - 2 * dx;
-		}
-		else
-		{
-			put_pixel(env, x,y,7);
-			p = p + 2 * dy;
-		}
-		x=x+1;
+		put_pixel(env, x, y, RED);
+		x = x + env->delta[i].dx;
+		y = y + env->delta[i].dy;
+		i++;
 	}
 }
-*/
+
+/*draw background for the bonus*/

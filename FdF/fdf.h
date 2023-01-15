@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:42:04 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/14 15:58:29 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:33:30 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ typedef struct s_env {
 	void		*mlx;
 	void		*win;
 	void		*image;
+	void		*background;
 	char		*address;
+	char		*background_address;
 	char		*map_path;
 	int			**final_tab;
 	int			map_w;
@@ -65,7 +67,7 @@ typedef struct s_env {
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	int			counter;
+	int			scale;
 	float		zoom;
 	float		alpha;
 	t_ipoint	*initial_points;
@@ -89,6 +91,7 @@ int		env_init(t_env *env);
 void	h_management(t_env *env);
 int		esc_win(int key, t_env *env);
 int		close_win(t_env *env);
+int		mouse_handler(int mousecode, int x, int y, t_env *env);
 
 /*fdf.c*/
 int		error(char *error_message);
@@ -100,12 +103,12 @@ void	two_dim_point(t_env *env);
 
 /*draw.c*/
 void	put_pixel(t_env *env, int x, int y, int color);
-void	draw_line(t_env *env);
+void	draw_line(t_env *env, t_fpoint point0, t_fpoint point1);
 
 /*limits.c*/
 void	limits(t_env *env);
 void	no_limit(t_env *env);
-void	right_limit();
-void	low_limit();
+void	right_limit(t_env *env);
+void	low_limit(t_env *env);
 
 #endif

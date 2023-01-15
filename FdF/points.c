@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mathematics.c                                      :+:      :+:    :+:   */
+/*   points.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:45:43 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/14 15:56:45 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:35:11 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,17 @@ void	two_dim_point(t_env *env)
 	while (i < (env->map_w * env->map_h))
 	{
 		env->final_points[i].x =  env->initial_points[i].x + \
-				cosf(env->alpha) * env->initial_points[i].z;
-		env->final_points[i].y =  env->initial_points[i].y + \
-				(sinf(env->alpha) * env->initial_points[i].z);
-		printf("X: %f Y: %f\n",env->final_points[i].x, env->final_points[i].y);
-		put_pixel(env, env->final_points[i].x + (WINDOW_WIDTH/2), env->final_points[i].y + WINDOW_HEIGHT/2, RED);
-		//ft_printf("ixi");
+				cosf(env->alpha) * env->initial_points[i].z - \
+				cosf(env->alpha) *env->initial_points[i].y;
+		env->final_points[i].y =  env->initial_points[i].y * -1 * \
+				sinf(env->alpha) - env->initial_points[i].z * \
+				sinf(env->alpha);
+		env->final_points[i].x *= env->scale;
+		env->final_points[i].y *= env->scale;
+		printf("X0: %f Y0: %f\n",env->final_points[i+1].x, env->final_points[i+1].y);
+		//printf("X1: %f Y1: %f\n",env->final_points[env->i].x, env->final_points[env->i].y);
+		//limits(env);
+		//put_pixel(env, env->final_points[env->i].x + (WINDOW_WIDTH/2), env->final_points[env->i].y + WINDOW_HEIGHT/2, RED);
 		i++;
 	}
 }
