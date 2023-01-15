@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:32:50 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/15 17:28:58 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:38:03 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	limits(t_env *env)
 	int	c_y;
 
 	c_y = 1;
-	env->i = 0;
 	printf("X0: %f Y0: %f\n",env->final_points[env->i+1].x, env->final_points[env->i+1].y);
 	while (c_y != env->map_h)
 	{
@@ -28,7 +27,6 @@ void	limits(t_env *env)
 		if (c_x == env->map_w)
 			right_limit(env);
 		c_y++;
-		env->i++;
 	}
 	c_x = 1;
 	if (c_y == env->map_w)
@@ -37,7 +35,6 @@ void	limits(t_env *env)
 		{
 			low_limit(env);
 			c_x++;
-			env->i++;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:45:43 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/15 17:35:11 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:38:01 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	two_dim_point(t_env *env)
 				sinf(env->alpha);
 		env->final_points[i].x *= env->scale;
 		env->final_points[i].y *= env->scale;
-		printf("X0: %f Y0: %f\n",env->final_points[i+1].x, env->final_points[i+1].y);
+		//printf("X0: %f Y0: %f\n",env->final_points[i].x, env->final_points[i].y);
 		//printf("X1: %f Y1: %f\n",env->final_points[env->i].x, env->final_points[env->i].y);
-		//limits(env);
+		limits(env);
 		//put_pixel(env, env->final_points[env->i].x + (WINDOW_WIDTH/2), env->final_points[env->i].y + WINDOW_HEIGHT/2, RED);
 		i++;
 	}
