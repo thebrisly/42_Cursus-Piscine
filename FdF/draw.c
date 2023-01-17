@@ -6,54 +6,71 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 10:47:54 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/15 17:24:14 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:27:37 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 //draw pixel
-void put_pixel(t_env *env, int x, int y, int color)
+void	put_pixel(t_env *env, int x, int y, int color)
 {
-	//ft_printf("JE SUIS DANS PUT PIXEL LINE");
-    char *pxl;
-    if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
-    {
-        pxl = env->address + (y * env->line_length + x * (env->bits_per_pixel / 8));
-        *(unsigned int *)pxl = color;
-    }
+	char	*pxl;
+
+	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
+	{
+		pxl = env->address + (y * env->line_length + \
+						x * (env->bits_per_pixel / 8));
+		*(unsigned int *)pxl = color;
+	}
 }
 
 /*Line generation algorithm*/
 /*DDA Line Drawing Algorithm*/
-void draw_line(t_env *env, t_fpoint point0, t_fpoint point1)
+void	draw_line(t_env *env, t_fpoint point0, t_fpoint point1)
 {
 	float	step;
 	float	x;
 	float	y;
 	int		i;
+	t_delta	delta;
 
 	i = 0;
-	printf("X0: %f Y0: %f X1: %f Y1 %f\n", point0.x, point0.y, point1.x, point1.y);
-	env->delta[i].dx = fabsf(point1.x - point0.x);
-	env->delta[i].dy = fabsf(point1.y - point0.y);
-	//ft_printf("JE SUIS DANS DRAW LINE");
-	if (env->delta[i].dx >= env->delta[i].dy)
-		step = env->delta[i].dx;
+	delta.dx = point1.x - point0.x;
+	delta.dy = point1.y - point0.y;
+	if (fabsf(delta.dx) >= fabsf(delta.dy))
+		step = fabsf(delta.dx);
 	else
-		step = env->delta[i].dy;
-	//ft_printf("JE SUIS DANS DRAW LINE");
-	env->delta[i].dx = env->delta[i].dx / step;
-	env->delta[i].dy = env->delta[i].dy / step;
+		step = fabsf(delta.dy);
+	delta.dx = delta.dx / step;
+	delta.dy = delta.dy / step;
 	x = point0.x;
 	y = point0.y;
 	while (i < step)
 	{
-		put_pixel(env, x, y, RED);
-		x = x + env->delta[i].dx;
-		y = y + env->delta[i].dy;
+		put_pixel(env, x + WINDOW_WIDTH / 2, y + WINDOW_HEIGHT / 2, RED);
+		x = x + delta.dx;
+		y = y + delta.dy;
 		i++;
 	}
 }
 
 /*draw background for the bonus*/
+void	draw_background(t_env *env)
+{
+	int	h;
+	int	w;
+
+	h = 0;
+	w = 0;
+	while (h <= WINDOW_HEIGHT)
+	{
+		w = 0;
+		while (w <= WINDOW_WIDTH)
+		{
+			put_pixel(env, w, h, BLACK);
+			w++;
+		}
+		h++;
+	}
+}

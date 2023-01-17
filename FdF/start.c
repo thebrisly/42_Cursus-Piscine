@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:03:25 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/15 15:15:02 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:31:42 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	parse_map(t_env *env, char *file)
 		while (env->x < env->map_w)
 		{
 			env->final_tab[env->y][env->x] = ft_atoi(line_tab[env->x]);
-			//ft_printf("LINE: %d, COL: %d, ALT: %d\n", env->y, env->x, env->final_tab[env->y][env->x]);
 			env->x++;
 		}
 		env->y++;
@@ -66,7 +65,6 @@ void	parse_map(t_env *env, char *file)
 
 int	env_init(t_env *env)
 {
-	env->alpha = -1;
 	env->scale = 15;
 	env->mlx = mlx_init();
 	if (env->mlx == NULL)
@@ -78,22 +76,23 @@ int	env_init(t_env *env)
 	if (env->win == NULL)
 		return (MLX_ERROR);
 	env->image = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	env->address = mlx_get_data_addr(env->image, &env->bits_per_pixel, &env->line_length, &env->endian);
+	env->address = mlx_get_data_addr(env->image, &env->bits_per_pixel, \
+	&env->line_length, &env->endian);
 	two_dim_point(env);
+	limits(env);
 	h_management(env);
 	mlx_loop_hook(env->mlx, render, env);
-	//mlx_put_image_to_window(env->mlx, env->win, env->image, 0, 0);
 	mlx_loop(env->mlx);
 	return (0);
 }
 
 int	render(t_env *env)
 {
-	//draw_background(env);
+	draw_background(env);
 	two_dim_point(env);
-	//limits(env);
+	limits(env);
+	h_management(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->image, 0, 0);
-	//env->alpha+=0.01;
+	env->alpha += 0.01;
 	return (0);
 }
-

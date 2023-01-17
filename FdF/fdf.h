@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:42:04 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/15 16:33:30 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:28:12 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define WINDOW_HEIGHT 1080
 # define MLX_ERROR 1
 # define ZOOM_FACTOR 1.1
+# define TRANS_FACTOR 10
 
 typedef struct s_ivector {
 	int	x;
@@ -64,10 +65,13 @@ typedef struct s_env {
 	int			x;
 	int			y;
 	int			i;
+	int			c_x;
+	int			c_y;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
 	int			scale;
+	int			translation;
 	float		zoom;
 	float		alpha;
 	t_ipoint	*initial_points;
@@ -89,13 +93,13 @@ int		env_init(t_env *env);
 
 /*hooks.c*/
 void	h_management(t_env *env);
-int		esc_win(int key, t_env *env);
+int		key_handler(int key, t_env *env);
 int		close_win(t_env *env);
 int		mouse_handler(int mousecode, int x, int y, t_env *env);
 
 /*fdf.c*/
 int		error(char *error_message);
-int render(t_env *env);
+int		render(t_env *env);
 
 /*points.c*/
 void	three_dim_point(t_env *env);
@@ -104,6 +108,7 @@ void	two_dim_point(t_env *env);
 /*draw.c*/
 void	put_pixel(t_env *env, int x, int y, int color);
 void	draw_line(t_env *env, t_fpoint point0, t_fpoint point1);
+void	draw_background(t_env *env);
 
 /*limits.c*/
 void	limits(t_env *env);

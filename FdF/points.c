@@ -6,12 +6,13 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:45:43 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/15 17:38:01 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:30:42 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*Fill in the three-dimensional table*/
 void	three_dim_point(t_env *env)
 {
 	int	i;
@@ -26,16 +27,16 @@ void	three_dim_point(t_env *env)
 		env->x = 0;
 		while (env->x < env->map_w)
 		{
-			env->initial_points[i] = (t_ipoint){env->x, env->y, env->final_tab[env->y][env->x]};
-			//ft_printf("X: %d Y: %d Z: %d\n", env->initial_points[i].x, env->initial_points[i].y, env->initial_points[i].z);
+			env->initial_points[i] = (t_ipoint){env->x, env->y, \
+								env->final_tab[env->y][env->x]};
 			i++;
 			env->x++;
 		}
-		//ft_printf("NEXT LINE\n");
 		env->y++;
 	}
 }
 
+/*Fill in the two-dimensional table*/
 void	two_dim_point(t_env *env)
 {
 	int	i;
@@ -46,18 +47,16 @@ void	two_dim_point(t_env *env)
 		error("Malloc failed");
 	while (i < (env->map_w * env->map_h))
 	{
-		env->final_points[i].x =  env->initial_points[i].x + \
-				cosf(env->alpha) * env->initial_points[i].z - \
-				cosf(env->alpha) *env->initial_points[i].y;
-		env->final_points[i].y =  env->initial_points[i].y * -1 * \
-				sinf(env->alpha) - env->initial_points[i].z * \
-				sinf(env->alpha);
+		env->final_points[i].x = env->initial_points[i].y \
+				* cosf(env->alpha) + env->initial_points[i].y \
+				* cosf(env->alpha + 2) + env->initial_points[i].z \
+				* cosf(env->alpha - 2);
+		env->final_points[i].y = env->initial_points[i].x \
+				* sinf(env->alpha) + env->initial_points[i].y \
+				* sinf(env->alpha + 2) + env->initial_points[i].z \
+				* sinf(env->alpha - 2);
 		env->final_points[i].x *= env->scale;
 		env->final_points[i].y *= env->scale;
-		//printf("X0: %f Y0: %f\n",env->final_points[i].x, env->final_points[i].y);
-		//printf("X1: %f Y1: %f\n",env->final_points[env->i].x, env->final_points[env->i].y);
-		limits(env);
-		//put_pixel(env, env->final_points[env->i].x + (WINDOW_WIDTH/2), env->final_points[env->i].y + WINDOW_HEIGHT/2, RED);
 		i++;
 	}
 }

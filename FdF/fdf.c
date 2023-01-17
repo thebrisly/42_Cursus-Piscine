@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:25:40 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/14 13:03:15 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:22:35 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	t_env	env;
 
 	env.alpha = 0.5;
+	env.translation = 15;
 	env.map_path = argv[1];
 	if (argc == 2)
 	{
