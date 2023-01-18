@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 10:47:54 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/17 15:27:37 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:05:08 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	draw_line(t_env *env, t_fpoint point0, t_fpoint point1)
 	y = point0.y;
 	while (i < step)
 	{
-		put_pixel(env, x + WINDOW_WIDTH / 2, y + WINDOW_HEIGHT / 2, RED);
+		put_pixel(env, x + WINDOW_WIDTH / 2 + env->translation, \
+		y + WINDOW_HEIGHT / 2 + env->translation, RED);
 		x = x + delta.dx;
 		y = y + delta.dy;
 		i++;

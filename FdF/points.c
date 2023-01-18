@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:45:43 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/17 15:30:42 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:04:07 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	three_dim_point(t_env *env)
 		}
 		env->y++;
 	}
+	free_final_tab(env);
 }
 
 /*Fill in the two-dimensional table*/
@@ -49,11 +50,13 @@ void	two_dim_point(t_env *env)
 	{
 		env->final_points[i].x = env->initial_points[i].y \
 				* cosf(env->alpha) + env->initial_points[i].y \
-				* cosf(env->alpha + 2) + env->initial_points[i].z \
+				* cosf(env->alpha + 2) \
+				+ (env->initial_points[i].z * env->altitude) \
 				* cosf(env->alpha - 2);
 		env->final_points[i].y = env->initial_points[i].x \
 				* sinf(env->alpha) + env->initial_points[i].y \
-				* sinf(env->alpha + 2) + env->initial_points[i].z \
+				* sinf(env->alpha + 2) \
+				+ (env->initial_points[i].z * env->altitude) \
 				* sinf(env->alpha - 2);
 		env->final_points[i].x *= env->scale;
 		env->final_points[i].y *= env->scale;

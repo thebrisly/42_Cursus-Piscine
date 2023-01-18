@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 09:40:15 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/14 13:02:21 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:31:13 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,20 @@ static char	*ft_word_into_tab(char const *s, int start, int end)
 	return (tab_string);
 }
 
+static void	*ft_free(char **strs, int count)
+{
+	int	i;
+
+	i = 0;
+	while (i < count)
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;
@@ -75,6 +89,8 @@ char	**ft_split(char const *s, char c)
 		while (s[j] != c && s[j])
 			j++;
 		tab[i_tab] = ft_word_into_tab(s, i, j);
+		if (!(tab[i_tab]))
+			return (ft_free(tab, j));
 		i = j;
 		i_tab++;
 	}

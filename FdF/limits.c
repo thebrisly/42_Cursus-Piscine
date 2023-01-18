@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:32:50 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/17 15:25:13 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/18 11:49:49 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	limits(t_env *env)
 			env->i++;
 		}
 	}
+	free (env->final_points);
 }
 
 void	no_limit(t_env *env)

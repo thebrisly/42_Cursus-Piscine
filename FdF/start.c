@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:03:25 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/17 15:31:42 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:27:11 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,18 @@ void	map_info(t_env *env, char *file)
 	line = get_next_line(fd);
 	tab = ft_split(line, ' ');
 	while (tab[env->map_w])
+	{
+		free(tab[env->map_w]);
 		env->map_w++;
+	}
 	while (line)
 	{
+		free(line);
 		env->map_h++;
 		line = get_next_line(fd);
 	}
+	free(line);
+	free(tab);
 	close (fd);
 }
 
@@ -41,7 +47,6 @@ void	parse_map(t_env *env, char *file)
 	char	*line;
 	char	**line_tab;
 
-	env->y = 0;
 	fd = open(file, O_RDONLY);
 	env->final_tab = malloc(env->map_h * sizeof(int *));
 	if (!env->final_tab)
@@ -53,19 +58,20 @@ void	parse_map(t_env *env, char *file)
 			error("Malloc failed");
 		line = get_next_line(fd);
 		line_tab = ft_split(line, ' ');
-		env->x = 0;
-		while (env->x < env->map_w)
+		free(line);
+		env->x = -1;
+		while (++env->x < env->map_w)
 		{
 			env->final_tab[env->y][env->x] = ft_atoi(line_tab[env->x]);
-			env->x++;
+			free(line_tab[env->x]);
 		}
 		env->y++;
+		free(line_tab);
 	}
 }
 
 int	env_init(t_env *env)
 {
-	env->scale = 15;
 	env->mlx = mlx_init();
 	if (env->mlx == NULL)
 	{
@@ -91,8 +97,6 @@ int	render(t_env *env)
 	draw_background(env);
 	two_dim_point(env);
 	limits(env);
-	h_management(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->image, 0, 0);
-	env->alpha += 0.01;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 16:17:24 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/17 15:29:48 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:03:00 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,24 @@ void	h_management(t_env *env)
 	mlx_hook(env->win, 17, 0, close_win, env);
 	mlx_hook(env->win, 4, 0, mouse_handler, env);
 	mlx_hook(env->win, 2, 1L << 0, key_handler, env);
-	//mlx_key_hook(env.win, &key_callback, NULL);
-	//mlx_mouse_hook(env.win, &key_callback, NULL);
 }
 
 int	key_handler(int key, t_env *env)
 {
 	if (key == 53)
 		close_win(env);
-	else if (key == 0 || key == 123 || key == 13 || key == 126)
-		env->translation -= TRANS_FACTOR;
-	else if (key == 2 || key == 124 || key == 1 || key == 125)
-		env->translation += TRANS_FACTOR;
+	else if (key == 13 || key == 126)
+		env->translation -= TRANS_FACTOR_X;
+	else if (key == 1 || key == 125)
+		env->translation += TRANS_FACTOR_X;
+	else if (key == 0 || key == 123)
+		env->alpha += 0.01;
+	else if (key == 2 || key == 124)
+		env->alpha -= 0.01;
+	else if (key == 6)
+		env->altitude += ALTITUDE;
+	else if (key == 7)
+		env->altitude -= ALTITUDE;
 	return (0);
 }
 

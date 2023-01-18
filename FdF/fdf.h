@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:42:04 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/17 15:28:12 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:49:52 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@
 # define WINDOW_HEIGHT 1080
 # define MLX_ERROR 1
 # define ZOOM_FACTOR 1.1
-# define TRANS_FACTOR 10
+# define TRANS_FACTOR_X 10
+# define TRANS_FACTOR_Y 5
+# define ALTITUDE 0.1
 
 typedef struct s_ivector {
 	int	x;
@@ -55,9 +57,7 @@ typedef struct s_env {
 	void		*mlx;
 	void		*win;
 	void		*image;
-	void		*background;
 	char		*address;
-	char		*background_address;
 	char		*map_path;
 	int			**final_tab;
 	int			map_w;
@@ -72,6 +72,7 @@ typedef struct s_env {
 	int			endian;
 	int			scale;
 	int			translation;
+	float		altitude;
 	float		zoom;
 	float		alpha;
 	t_ipoint	*initial_points;
@@ -86,10 +87,11 @@ int		palette_three(double percent);
 int		palette_four(double percent);
 int		palette_five(double percent);
 
-/*basics.c:*/
+/*start.c:*/
 void	map_info(t_env *env, char *file);
 void	parse_map(t_env *env, char *file);
 int		env_init(t_env *env);
+int		render(t_env *env);
 
 /*hooks.c*/
 void	h_management(t_env *env);
@@ -99,7 +101,7 @@ int		mouse_handler(int mousecode, int x, int y, t_env *env);
 
 /*fdf.c*/
 int		error(char *error_message);
-int		render(t_env *env);
+void	free_final_tab(t_env	*env);
 
 /*points.c*/
 void	three_dim_point(t_env *env);

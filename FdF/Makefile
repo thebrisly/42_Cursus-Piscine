@@ -4,10 +4,10 @@ OBJS	:= $(SRCS:%.c=%.o)
 
 NAME	= fdf
 
-CC		= gcc
+CC		= gcc -g
 RM		= rm -f
 
-CFLAGS 	= -Wall -Wextra -Werror
+CFLAGS 	= -Wall -Wextra -Werror #-fsanitize=address
 
 all:		${NAME}
 
