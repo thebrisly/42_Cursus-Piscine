@@ -6,11 +6,18 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 09:40:15 by lfabbian          #+#    #+#             */
-/*   Updated: 2022/11/02 14:49:42 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/22 15:56:16 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+typedef struct s_split {
+	char	**tab;
+	int		i;
+	int		j;
+	int		i_tab;
+}	t_split;
 
 static int	ft_number_of_words(char const *s, char c)
 {
@@ -54,30 +61,43 @@ static char	*ft_word_into_tab(char const *s, int start, int end)
 	return (tab_string);
 }
 
-char	**ft_split(char const *s, char c)
+static void	*ft_free(char **strs, int count)
 {
-	char	**tab;
-	int		i;
-	int		j;
-	int		i_tab;
+	int	i;
 
 	i = 0;
-	j = 0;
-	i_tab = 0;
-	tab = malloc(sizeof(char *) * (ft_number_of_words(s, c) + 1));
-	if (!tab || !s)
-		return (NULL);
-	while (i_tab < ft_number_of_words(s, c))
+	while (i < count)
 	{
-		while (s[i] == c && s[i])
-			i++;
-		j = i;
-		while (s[j] != c && s[j])
-			j++;
-		tab[i_tab] = ft_word_into_tab(s, i, j);
-		i = j;
-		i_tab++;
+		free(strs[i]);
+		i++;
 	}
-	tab[i_tab] = 0;
-	return (tab);
+	free(strs);
+	return (NULL);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	t_split	split;
+
+	split.i = 0;
+	split.j = 0;
+	split.i_tab = 0;
+	split.tab = malloc(sizeof(char *) * (ft_number_of_words(s, c) + 1));
+	if (!split.tab || !s)
+		return (NULL);
+	while (split.i_tab < ft_number_of_words(s, c))
+	{
+		while (s[split.i] == c && s[split.i])
+			split.i++;
+		split.j = split.i;
+		while (s[split.j] != c && s[split.j])
+			split.j++;
+		split.tab[split.i_tab] = ft_word_into_tab(s, split.i, split.j);
+		if (!(split.tab[split.i_tab]))
+			return (ft_free(split.tab, split.j));
+		split.i = split.j;
+		split.i_tab++;
+	}
+	split.tab[split.i_tab] = 0;
+	return (split.tab);
 }
