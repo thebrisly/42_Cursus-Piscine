@@ -6,11 +6,18 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 09:40:15 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/18 16:31:13 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/20 09:55:52 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+typedef struct s_split {
+	char	**tab;
+	int		i;
+	int		j;
+	int		i_tab;
+}	t_split;
 
 static int	ft_number_of_words(char const *s, char c)
 {
@@ -70,30 +77,27 @@ static void	*ft_free(char **strs, int count)
 
 char	**ft_split(char const *s, char c)
 {
-	char	**tab;
-	int		i;
-	int		j;
-	int		i_tab;
+	t_split	split;
 
-	i = 0;
-	j = 0;
-	i_tab = 0;
-	tab = malloc(sizeof(char *) * (ft_number_of_words(s, c) + 1));
-	if (!tab || !s)
+	split.i = 0;
+	split.j = 0;
+	split.i_tab = 0;
+	split.tab = malloc(sizeof(char *) * (ft_number_of_words(s, c) + 1));
+	if (!split.tab || !s)
 		return (NULL);
-	while (i_tab < ft_number_of_words(s, c))
+	while (split.i_tab < ft_number_of_words(s, c))
 	{
-		while (s[i] == c && s[i])
-			i++;
-		j = i;
-		while (s[j] != c && s[j])
-			j++;
-		tab[i_tab] = ft_word_into_tab(s, i, j);
-		if (!(tab[i_tab]))
-			return (ft_free(tab, j));
-		i = j;
-		i_tab++;
+		while (s[split.i] == c && s[split.i])
+			split.i++;
+		split.j = split.i;
+		while (s[split.j] != c && s[split.j])
+			split.j++;
+		split.tab[split.i_tab] = ft_word_into_tab(s, split.i, split.j);
+		if (!(split.tab[split.i_tab]))
+			return (ft_free(split.tab, split.j));
+		split.i = split.j;
+		split.i_tab++;
 	}
-	tab[i_tab] = 0;
-	return (tab);
+	split.tab[split.i_tab] = 0;
+	return (split.tab);
 }

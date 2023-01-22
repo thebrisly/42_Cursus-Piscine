@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:03:25 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/18 16:27:11 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/22 10:21:33 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	map_info(t_env *env, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error("Map error !");
-	env->map_h = 0;
-	env->map_w = 0;
 	line = get_next_line(fd);
+	if (!line)
+		error("Map empty !");
 	tab = ft_split(line, ' ');
 	while (tab[env->map_w])
 	{
@@ -38,6 +38,34 @@ void	map_info(t_env *env, char *file)
 	}
 	free(line);
 	free(tab);
+	close (fd);
+}
+
+void	check_format(t_env *env, char *file)
+{
+	int		fd;
+	char	*line;
+	char	**tab;
+	int		x;
+
+	fd = open(file, O_RDONLY);
+	line = get_next_line(fd);
+	while (line)
+	{
+		tab = ft_split(line, ' ');
+		free(line);
+		x = 0;
+		while (tab[x])
+		{
+			free(tab[x]);
+			x++;
+		}
+		free(tab);
+		if (x < env->map_w || x > env->map_w)
+			error("Wrong map format");
+		line = get_next_line(fd);
+	}
+	free(line);
 	close (fd);
 }
 

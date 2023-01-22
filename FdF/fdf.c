@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:25:40 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/18 16:24:53 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:09:37 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ int	main(int argc, char **argv)
 	env.scale = 30;
 	env.altitude = 1;
 	env.y = 0;
+	env.map_h = 0;
+	env.map_w = 0;
 	env.map_path = argv[1];
 	if (argc == 2)
 	{
 		map_info(&env, env.map_path);
+		check_format(&env, env.map_path);
 		parse_map(&env, env.map_path);
 		three_dim_point(&env);
 		env_init(&env);

@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 13:42:04 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/18 14:49:52 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/20 09:33:36 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	map_info(t_env *env, char *file);
 void	parse_map(t_env *env, char *file);
 int		env_init(t_env *env);
 int		render(t_env *env);
+void	check_format(t_env *env, char *file);
 
 /*hooks.c*/
 void	h_management(t_env *env);

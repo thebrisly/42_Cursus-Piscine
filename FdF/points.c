@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:45:43 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/18 14:04:07 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:27:06 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ void	two_dim_point(t_env *env)
 		error("Malloc failed");
 	while (i < (env->map_w * env->map_h))
 	{
-		env->final_points[i].x = env->initial_points[i].y \
+		env->final_points[i].y = env->initial_points[i].y \
 				* cosf(env->alpha) + env->initial_points[i].y \
 				* cosf(env->alpha + 2) \
 				+ (env->initial_points[i].z * env->altitude) \
 				* cosf(env->alpha - 2);
-		env->final_points[i].y = env->initial_points[i].x \
+		env->final_points[i].x = env->initial_points[i].x \
 				* sinf(env->alpha) + env->initial_points[i].y \
 				* sinf(env->alpha + 2) \
 				+ (env->initial_points[i].z * env->altitude) \
 				* sinf(env->alpha - 2);
-		env->final_points[i].x *= env->scale;
+		env->final_points[i].x *= -env->scale;
 		env->final_points[i].y *= env->scale;
 		i++;
 	}
