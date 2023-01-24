@@ -1,6 +1,8 @@
 SRCS	= main.c
 
+SRC_DIR = sources/
 OBJS	:= $(SRCS:%.c=%.o)
+SRC = $(addprefix $(SRC_DIR), $(SRCS))
 
 NAME	= push_swap
 
@@ -11,14 +13,13 @@ CFLAGS 	= -Wall -Wextra -Werror #-fsanitize=address
 
 all:		${NAME}
 
-%.o:	%.c
-		${CC} ${CFLAGS} -Ilibft -Iprintf -I./minilibx -c $? -o $@
+%.o:	$(SRC_DIR)%.c
+		${CC} ${CFLAGS} -Ilibft -Iprintf -c $? -o $@
 
-${NAME}:		${OBJS}
+${NAME}:	${OBJS}
 		@make -C libft
 		@make -C printf
-		@make -C minilibx
-		${CC} ${CFLAGS} $^ -Llibft -lft -Lprintf -lftprintf -L./minilibx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+		${CC} ${CFLAGS} $^ -Llibft -lft -Lprintf -lftprintf -o ${NAME}
 
 libft:
 		make -C libft
@@ -26,13 +27,9 @@ libft:
 printf:
 		make -C printf
 
-minilibx:
-		make -C minilibx
-
 clean:
 			make clean -C libft
 			make clean -C printf
-			make clean -C minilibx
 			${RM} ${OBJS}
 
 fclean:		clean
