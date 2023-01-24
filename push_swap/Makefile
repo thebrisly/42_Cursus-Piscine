@@ -1,4 +1,4 @@
-SRCS	= main.c
+SRCS	= main.c errors.c algorithms.c instructions2.c instructions1.c instructions3.c
 
 SRC_DIR = sources/
 OBJS	:= $(SRCS:%.c=%.o)
