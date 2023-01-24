@@ -6,75 +6,91 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:12:43 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/24 10:15:52 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:23:13 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*sa (swap a) : Intervertit les 2 premiers éléments au sommet de la pile a.
-Ne fait rien s’il n’y en a qu’un ou aucun.
-sb (swap b ) : Intervertit les 2 premiers éléments au sommet de la pile b.
-Ne fait rien s’il n’y en a qu’un ou aucun.
-ss : sa et sb en même temps.
-pa (push a) : Prend le premier élément au sommet de b et le met sur a.
-Ne fait rien si b est vide.
-pb (push b) : Prend le premier élément au sommet de a et le met sur b.
-Ne fait rien si a est vide*/
-
-
-//Intervertit les 2 premiers éléments au sommet de la pile a. Ne fait rien s’il n’y en a qu’un ou aucun.
+/*Intervertit les 2 premiers éléments au sommet de la pile a. Ne fait rien s’il n’y en a qu’un ou aucun */
 void	ft_swapa(t_init *s)
 {
-	int    first_i;
-	int    second_i;
 	int    tmp;
 
-	first_i = 0;
-	second_i = 1;
-	if (s->pile_a[second_i] && s->pile_a[first_i])
+	if (s->pile_a[0] && s->pile_a[1])
 	{
-		tmp = s->pile_a[first_i];
-		s->pile_a[first_i] = s->pile_a[second_i];
-		s->pile_a[second_i] = tmp;
-		ft_printf("sa\n");
+		tmp = s->pile_a[0];
+		s->pile_a[0] = s->pile_a[1];
+		s->pile_a[1] = tmp;
+		if (s->counter == 0)
+			ft_printf("sa\n");
 	}
 }
 
-//Intervertit les 2 premiers éléments au sommet de la pile b. Ne fait rien s’il n’y en a qu’un ou aucun.
+/*Intervertit les 2 premiers éléments au sommet de la pile b. Ne fait rien s’il n’y en a qu’un ou aucun */
 void	ft_swapb(t_init *s)
 {
-	int    first_i;
-	int    second_i;
 	int    tmp;
 
-	first_i = 0;
-	second_i = 1;
-	if (s->pile_b[second_i] && s->pile_b[first_i])
+	if (s->pile_b[0] && s->pile_b[1])
 	{
-		tmp = s->pile_b[first_i];
-		s->pile_b[first_i] = s->pile_a[second_i];
-		s->pile_b[second_i] = tmp;
-		ft_printf("sb\n");
+		tmp = s->pile_b[0];
+		s->pile_b[0] = s->pile_b[1];
+		s->pile_b[1] = tmp;
+		if (s->counter == 0)
+			ft_printf("sb\n");
 	}
 }
 
 // ss : sa et sb en même temps.
-void	ft_swaps()
+void	ft_swaps(t_init	*s)
 {
-	ft_swapa;
-	ft_swapb,
+	s->counter = 1;
+	ft_swapa(s);
+	ft_swapb(s);
+	ft_printf("ss\n");
+	s->counter = 0;
 	//trouver un moyen de pas print sa et sb mais juste ss
 }
 
 //Prend le premier élément au sommet de b et le met sur a. Ne fait rien si b est vide.
-void	ft_pusha()
+void	ft_pusha(t_init *s)
 {
+	int i_a;
 
+	i_a = s->int_numb;
+	if (s->pile_b[0])
+	{
+		while(--i_a > 0)
+			s->pile_a[i_a] = s->pile_a[i_a - 1];
+		s->pile_a[i_a] = s->pile_b[i_a];
+		while (i_a < s->int_numb - 1)
+		{
+			s->pile_b[i_a] = s->pile_b[i_a + 1];
+			i_a++;
+		}
+		s->pile_b[i_a] = 0;
+		ft_printf("pa\n");
+	}
 }
 
 //Prend le premier élément au sommet de a et le met sur b. Ne fait rien si a est vide
-void	ft_pushb()
+void	ft_pushb(t_init *s)
 {
+	int i_b;
 
+	i_b = s->int_numb;
+	if (s->pile_a[0])
+	{
+		while(--i_b > 0)
+			s->pile_b[i_b] = s->pile_b[i_b - 1];
+		s->pile_b[i_b] = s->pile_a[i_b];
+		while (i_b < s->int_numb - 1)
+		{
+			s->pile_a[i_b] = s->pile_a[i_b + 1];
+			i_b++;
+		}
+		s->pile_a[i_b] = 0;
+		ft_printf("pb\n");
+	}
 }
