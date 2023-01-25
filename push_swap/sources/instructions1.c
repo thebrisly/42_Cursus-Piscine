@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:12:43 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/24 14:23:13 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:03:10 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,20 @@ void	ft_swaps(t_init	*s)
 //Prend le premier élément au sommet de b et le met sur a. Ne fait rien si b est vide.
 void	ft_pusha(t_init *s)
 {
-	int i_a;
+	int	i_b;
+	int	i_a;
 
-	i_a = s->int_numb;
+	i_b = 0;
 	if (s->pile_b[0])
 	{
-		while(--i_a > 0)
+		s->int_a += 1;
+		i_a = s->int_a;
+		while (--i_a > 0)
 			s->pile_a[i_a] = s->pile_a[i_a - 1];
 		s->pile_a[i_a] = s->pile_b[i_a];
-		while (i_a < s->int_numb - 1)
+		s->int_b -= 1;
+		i_b = s->int_b;
+		while (i_a < i_b)
 		{
 			s->pile_b[i_a] = s->pile_b[i_a + 1];
 			i_a++;
@@ -77,15 +82,20 @@ void	ft_pusha(t_init *s)
 //Prend le premier élément au sommet de a et le met sur b. Ne fait rien si a est vide
 void	ft_pushb(t_init *s)
 {
-	int i_b;
+	int	i_a;
+	int	i_b;
 
-	i_b = s->int_numb;
+	i_a = 0;
 	if (s->pile_a[0])
 	{
-		while(--i_b > 0)
+		s->int_b += 1;
+		i_b = s->int_b;
+		while (--i_b > 0)
 			s->pile_b[i_b] = s->pile_b[i_b - 1];
 		s->pile_b[i_b] = s->pile_a[i_b];
-		while (i_b < s->int_numb - 1)
+		s->int_a -= 1;
+		i_a = s->int_a;
+		while (i_b < i_a)
 		{
 			s->pile_a[i_b] = s->pile_a[i_b + 1];
 			i_b++;

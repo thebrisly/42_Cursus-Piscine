@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   no_place.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/24 12:57:08 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/25 14:08:42 by lfabbian         ###   ########.fr       */
+/*   Created: 2023/01/25 13:01:37 by lfabbian          #+#    #+#             */
+/*   Updated: 2023/01/25 13:05:18 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	error(char *error_message)
+void	three_alg_help(t_init *s)
 {
-	ft_printf("%s\n", error_message);
-	exit (1);
+	ft_rotatea(s);
+	ft_swapa(s);
+	ft_reverse_rotatea(s);
 }
-

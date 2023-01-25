@@ -1,0 +1,14 @@
+# Target labels
+ imgui-populate
+# Source files and their labels
+/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/CMakeFiles/imgui-populate
+/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/CMakeFiles/imgui-populate.rule
+/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/CMakeFiles/imgui-populate-complete.rule
+/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-build.rule
+/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-configure.rule
+/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-download.rule
+/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-install.rule
+/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-mkdir.rule
+/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-patch.rule
+/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-test.rule
+/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-update.rule

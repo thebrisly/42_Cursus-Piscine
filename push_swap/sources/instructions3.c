@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 14:36:33 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/24 14:51:16 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:20:41 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_reverse_rotatea(t_init *s)
 	int	tmp;
 	int	i;
 
-	i = s->int_numb - 1;
+	i = s->int_a - 1;
 	tmp = s->pile_a[i];
 	while(i > 0)
 	{
@@ -36,7 +36,7 @@ void	ft_reverse_rotateb(t_init *s)
 	int	tmp;
 	int	i;
 
-	i = s->int_numb - 1;
+	i = s->int_b - 1;
 	tmp = s->pile_b[i];
 	while(i > 0)
 	{

@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/CMakeFiles/imgui-populate"
+		},
+		{
+			"file" : "/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/CMakeFiles/imgui-populate.rule"
+		},
+		{
+			"file" : "/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/CMakeFiles/imgui-populate-complete.rule"
+		},
+		{
+			"file" : "/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-build.rule"
+		},
+		{
+			"file" : "/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-configure.rule"
+		},
+		{
+			"file" : "/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-download.rule"
+		},
+		{
+			"file" : "/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-install.rule"
+		},
+		{
+			"file" : "/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-mkdir.rule"
+		},
+		{
+			"file" : "/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-patch.rule"
+		},
+		{
+			"file" : "/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-test.rule"
+		},
+		{
+			"file" : "/Users/lfabbian/Desktop/GithubLaura/push_swap/push_swap_visualizer-master/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"imgui-populate"
+		],
+		"name" : "imgui-populate"
+	}
+}

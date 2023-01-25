@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:11:52 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/24 14:46:59 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:01:51 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 typedef struct s_init {
 	int	*pile_a;
 	int	*pile_b;
-	int	int_numb;
+	int	int_a;
+	int	int_b;
 	int	counter;
 }	t_init;
 
@@ -42,7 +43,19 @@ void	ft_reverse_rotatea(t_init *s);
 void	ft_reverse_rotateb(t_init *s);
 void	ft_reverse_rotater(t_init *s);
 
-/* algorithms.c */
+/* algorithms1/2.c */
 void	algorithms(t_init *s);
+void	big_algorithm(t_init *s);
+void	two_args_alg(t_init *s);
+void	three_int_alg(t_init *s);
+void	four_int_alg(t_init *s);
+void	five_int_alg(t_init *s);
+
+/* checks.c */
+int		in_order(t_init *s);
+void	free_stacks(t_init *s);
+
+/* no p_place.c */
+void	three_alg_help(t_init *s);
 
 #endif
