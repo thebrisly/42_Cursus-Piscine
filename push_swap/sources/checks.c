@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:08:47 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/25 14:16:11 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/27 16:00:01 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,31 @@ int	in_order(t_init *s)
 		return (0);
 }
 
-void	check_errors(t_init *s)
+void	check_max_min(int *tab, int len)
 {
-	(void) s;
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		ft_printf("ICI\n");
+		printf("TEST: %i\n", tab[i]);
+		if (tab[i] < -2147483648)
+			error("Error\n");
+		else if (tab[i] > 2147483647)
+			error("Error\n");
+		i++;
+	}
 }
 
-void	free_stacks(t_init *s)
+void	check_non_num(char c)
 {
-	free(s->pile_a);
-	free(s->pile_b);
-	exit (1);
+	if (ft_isdigit(c) == 0)
+		error("Error");;
+}
+
+int	check_double(t_init *s)
+{
+	(void) s;
+	return 0;
 }

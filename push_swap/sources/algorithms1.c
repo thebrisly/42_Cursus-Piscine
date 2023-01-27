@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:14:16 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/25 16:03:25 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:20:31 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	algorithms(t_init *s)
 		four_int_alg(s);
 	else if (s->int_a == 5)
 		five_int_alg(s);
-	else
+	else if (s->int_a > 6)
 		big_algorithm(s);
-	free (s->pile_b);
+	//free_stacks(s);
 }
 
 void	two_args_alg(t_init *s)
@@ -61,33 +61,30 @@ void	three_int_alg(t_init *s) //3
 	}
 }
 
-void	four_int_alg(t_init *s) // not defined
+void	four_int_alg(t_init *s)
 {
-	int	i;
-	int	min;
-	int	counter;
-
-	i = 1;
-	counter = 0;
-	min = s->pile_a[i];
-	while (i < 4)
+	s->i = 1;
+	s->counter = 0;
+	s->min = s->pile_a[0];
+	while (s->i < s->int_a)
 	{
-		if (s->pile_a[i] < min)
+		if (s->pile_a[s->i] < s->min)
 		{
-			min = s->pile_a[i];
-			counter = i;
-			i = 1;
+			s->min = s->pile_a[s->i];
+			s->counter = s->i;
+			s->i = 1;
 		}
-		i++;
+		s->i++;
 	}
-	i = 0;
-	while (i < counter)
+	s->i = 0;
+	while (s->i < s->counter)
 	{
-		ft_reverse_rotatea(s);
-		i++;
+		ft_rotatea(s);
+		s->i++;
 	}
 	ft_pushb(s);
-	three_int_alg(s);
+	if (!in_order(s))
+		three_int_alg(s);
 	ft_pusha(s);
 }
 

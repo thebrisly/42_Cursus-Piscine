@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   no_place.c                                         :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 13:01:37 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/25 13:05:18 by lfabbian         ###   ########.fr       */
+/*   Created: 2023/01/27 10:13:34 by lfabbian          #+#    #+#             */
+/*   Updated: 2023/01/27 10:13:56 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	three_alg_help(t_init *s)
+void	free_stacks(t_init *s)
 {
-	ft_rotatea(s);
-	ft_swapa(s);
-	ft_reverse_rotatea(s);
+	free(s->pile_a);
+	free(s->pile_b);
 }
