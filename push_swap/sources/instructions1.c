@@ -6,16 +6,17 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:12:43 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/25 16:03:10 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/29 13:51:03 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*Intervertit les 2 premiers éléments au sommet de la pile a. Ne fait rien s’il n’y en a qu’un ou aucun */
+/*Intervertit les 2 premiers éléments au sommet de la pile a.
+Ne fait rien s’il n’y en a qu’un ou aucun */
 void	ft_swapa(t_init *s)
 {
-	int    tmp;
+	int	tmp;
 
 	if (s->pile_a[0] && s->pile_a[1])
 	{
@@ -27,10 +28,11 @@ void	ft_swapa(t_init *s)
 	}
 }
 
-/*Intervertit les 2 premiers éléments au sommet de la pile b. Ne fait rien s’il n’y en a qu’un ou aucun */
+/*Intervertit les 2 premiers éléments au sommet de la pile b.
+Ne fait rien s’il n’y en a qu’un ou aucun */
 void	ft_swapb(t_init *s)
 {
-	int    tmp;
+	int	tmp;
 
 	if (s->pile_b[0] && s->pile_b[1])
 	{
@@ -42,7 +44,7 @@ void	ft_swapb(t_init *s)
 	}
 }
 
-// ss : sa et sb en même temps.
+/* ss : sa et sb en même temps.*/
 void	ft_swaps(t_init	*s)
 {
 	s->counter = 1;
@@ -50,10 +52,10 @@ void	ft_swaps(t_init	*s)
 	ft_swapb(s);
 	ft_printf("ss\n");
 	s->counter = 0;
-	//trouver un moyen de pas print sa et sb mais juste ss
 }
 
-//Prend le premier élément au sommet de b et le met sur a. Ne fait rien si b est vide.
+/*Prend le premier élément au sommet de b et le met sur a.
+Ne fait rien si b est vide.*/
 void	ft_pusha(t_init *s)
 {
 	int	i_b;
@@ -79,7 +81,8 @@ void	ft_pusha(t_init *s)
 	}
 }
 
-//Prend le premier élément au sommet de a et le met sur b. Ne fait rien si a est vide
+/* Prend le premier élément au sommet de a et le met sur b.
+Ne fait rien si a est vide */
 void	ft_pushb(t_init *s)
 {
 	int	i_a;

@@ -6,13 +6,11 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:14:16 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/27 15:20:31 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/29 13:58:44 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-//this file is for the algorithms
 
 void	algorithms(t_init *s)
 {
@@ -83,7 +81,7 @@ void	four_int_alg(t_init *s)
 		s->i++;
 	}
 	ft_pushb(s);
-	if (!in_order(s))
+	if (!check_order(s))
 		three_int_alg(s);
 	ft_pusha(s);
 }

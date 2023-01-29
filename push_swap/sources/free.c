@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:13:34 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/27 10:13:56 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/29 11:44:33 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ void	free_stacks(t_init *s)
 {
 	free(s->pile_a);
 	free(s->pile_b);
+	exit(1);
 }

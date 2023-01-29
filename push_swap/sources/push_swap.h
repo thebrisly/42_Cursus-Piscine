@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:11:52 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/27 15:51:31 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/29 13:58:00 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 typedef struct s_init {
 	char	**arguments;
-	char	*tab;
 	int		*pile_a;
 	int		*pile_b;
 	int		int_a;
@@ -28,7 +27,6 @@ typedef struct s_init {
 	int		j;
 	int		counter;
 }	t_init;
-
 
 /* main.c*/
 void	mult_args_init(t_init *ps, int argc, char **argv);
@@ -59,9 +57,10 @@ void	four_int_alg(t_init *s);
 void	five_int_alg(t_init *s);
 
 /* checks.c */
-int		in_order(t_init *s);
-void	check_non_num(char c);
-void	check_max_min(int *tab, int len);
+int		check_order(t_init *s);
+void	check_non_num(t_init *ps, char c);
+void	check_max_min(char *str);
+void	check_doubles(int *tab, int len);
 
 /* free.c */
 void	free_stacks(t_init *s);

@@ -6,23 +6,24 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:14:07 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/25 14:20:31 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/29 13:51:55 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Décale d’une position vers le haut tous les élements de la pile a. Le premier élément devient le dernier. */
+/* Décale d’une position vers le haut tous les élements de la pile a.
+Le premier élément devient le dernier. */
 void	ft_rotatea(t_init *s)
 {
-	int tmp;
+	int	tmp;
 	int	i;
 
 	i = 0;
 	tmp = s->pile_a[i];
 	while (i < s->int_a - 1)
 	{
-		s->pile_a[i] = s->pile_a[i+1];
+		s->pile_a[i] = s->pile_a[i + 1];
 		i++;
 	}
 	s->pile_a[i] = tmp;
@@ -30,17 +31,18 @@ void	ft_rotatea(t_init *s)
 		ft_printf("ra\n");
 }
 
-/* Décale d’une position vers le haut tous les élements de la pile b. Le premier élément devient le dernier. */
+/* Décale d’une position vers le haut tous les élements de la pile b.
+Le premier élément devient le dernier. */
 void	ft_rotateb(t_init *s)
 {
-	int tmp;
+	int	tmp;
 	int	i;
 
 	i = 0;
 	tmp = s->pile_b[i];
 	while (i < s->int_b - 1)
 	{
-		s->pile_b[i] = s->pile_b[i+1];
+		s->pile_b[i] = s->pile_b[i + 1];
 		i++;
 	}
 	s->pile_b[i] = tmp;
