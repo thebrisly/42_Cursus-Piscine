@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:14:16 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/29 13:58:44 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/29 14:33:00 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	algorithms(t_init *s)
 {
+	s->min = s->pile_a[0];
 	if (s->int_a == 2)
 		two_args_alg(s);
 	else if (s->int_a == 3)
@@ -62,24 +63,18 @@ void	three_int_alg(t_init *s) //3
 void	four_int_alg(t_init *s)
 {
 	s->i = 1;
-	s->counter = 0;
-	s->min = s->pile_a[0];
+	s->counter_a = 0;
 	while (s->i < s->int_a)
 	{
 		if (s->pile_a[s->i] < s->min)
 		{
 			s->min = s->pile_a[s->i];
-			s->counter = s->i;
+			s->counter_a = s->i;
 			s->i = 1;
 		}
 		s->i++;
 	}
-	s->i = 0;
-	while (s->i < s->counter)
-	{
-		ft_rotatea(s);
-		s->i++;
-	}
+	find_smallest(s);
 	ft_pushb(s);
 	if (!check_order(s))
 		three_int_alg(s);

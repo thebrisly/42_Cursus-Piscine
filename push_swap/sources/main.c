@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 10:31:01 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/29 14:12:31 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/29 14:19:01 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		check_doubles(ps.pile_a, ps.int_a);
-		ps.counter = 0;
 		if (check_order(&ps))
 			free_stacks(&ps);
 		else

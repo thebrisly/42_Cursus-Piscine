@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:11:52 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/29 13:58:00 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/29 14:31:05 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_init {
 	int		i;
 	int		j;
 	int		counter;
+	int		counter_a;
 }	t_init;
 
 /* main.c*/
@@ -55,6 +56,9 @@ void	two_args_alg(t_init *s);
 void	three_int_alg(t_init *s);
 void	four_int_alg(t_init *s);
 void	five_int_alg(t_init *s);
+
+/* alg_utils.c */
+void	find_smallest(t_init *s);
 
 /* checks.c */
 int		check_order(t_init *s);
