@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:11:52 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/29 14:31:05 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/31 15:11:28 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include "ft_printf.h"
 # include "libft.h"
 # include <stdlib.h>
+# define DEF_COLOR "\033[0;39m"
+# define RED "\033[0;91m"
 
 typedef struct s_init {
 	char	**arguments;
@@ -26,7 +28,9 @@ typedef struct s_init {
 	int		i;
 	int		j;
 	int		counter;
-	int		counter_a;
+	int		small_i;
+	int		big_i;
+	float	median;
 }	t_init;
 
 /* main.c*/
@@ -59,10 +63,11 @@ void	five_int_alg(t_init *s);
 
 /* alg_utils.c */
 void	find_smallest(t_init *s);
+void	push_up(t_init *s);
 
 /* checks.c */
 int		check_order(t_init *s);
-void	check_non_num(t_init *ps, char c);
+void	check_non_num(char *str);
 void	check_max_min(char *str);
 void	check_doubles(int *tab, int len);
 

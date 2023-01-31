@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:14:16 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/29 14:33:00 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:07:40 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	algorithms(t_init *s)
 {
-	s->min = s->pile_a[0];
 	if (s->int_a == 2)
 		two_args_alg(s);
 	else if (s->int_a == 3)
@@ -25,7 +24,6 @@ void	algorithms(t_init *s)
 		five_int_alg(s);
 	else if (s->int_a > 6)
 		big_algorithm(s);
-	//free_stacks(s);
 }
 
 void	two_args_alg(t_init *s)
@@ -62,26 +60,24 @@ void	three_int_alg(t_init *s) //3
 
 void	four_int_alg(t_init *s)
 {
-	s->i = 1;
-	s->counter_a = 0;
-	while (s->i < s->int_a)
-	{
-		if (s->pile_a[s->i] < s->min)
-		{
-			s->min = s->pile_a[s->i];
-			s->counter_a = s->i;
-			s->i = 1;
-		}
-		s->i++;
-	}
 	find_smallest(s);
-	ft_pushb(s);
+	push_up(s);
 	if (!check_order(s))
+	{
+		ft_pushb(s);
 		three_int_alg(s);
-	ft_pusha(s);
+		ft_pusha(s);
+	}
 }
 
-void	five_int_alg(t_init *s) // 12
+void	five_int_alg(t_init *s)
 {
-	(void) s;
+	find_smallest(s);
+	push_up(s);
+	if (!check_order(s))
+	{
+		ft_pushb(s);
+		four_int_alg(s);
+		ft_pusha(s);
+	}
 }

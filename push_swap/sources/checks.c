@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:08:47 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/29 13:57:44 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/31 13:32:09 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,15 @@
 int	check_order(t_init *s)
 {
 	int	i;
-	int	count;
 
 	i = 0;
-	count = 0;
 	while (i < s->int_a - 1)
 	{
-		while (s->pile_a[i] < s->pile_a[i + 1])
-		{
-			count++;
-			i++;
-		}
+		if (s->pile_a[i] > s->pile_a[i + 1])
+			return (0);
 		i++;
 	}
-	if (count == s->int_a - 1)
-		return (1);
-	else
-		return (0);
+	return (1);
 }
 
 void	check_max_min(char *str)
@@ -61,13 +53,19 @@ void	check_max_min(char *str)
 	}
 }
 
-void	check_non_num(t_init *ps, char c)
+void	check_non_num(char *str)
 {
-	if ((c == '-' || c == '+'))
-		ps->j++;
-	else if (ft_isdigit(c) == 0)
-		error("Error");
-	ps->j++;
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			error("Error");
+		i++;
+	}
 }
 
 void	check_doubles(int *tab, int len)

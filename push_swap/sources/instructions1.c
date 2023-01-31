@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:12:43 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/29 13:51:03 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:07:48 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_swapa(t_init *s)
 {
 	int	tmp;
 
-	if (s->pile_a[0] && s->pile_a[1])
+	if (s->int_a > 1)
 	{
 		tmp = s->pile_a[0];
 		s->pile_a[0] = s->pile_a[1];
@@ -34,7 +34,7 @@ void	ft_swapb(t_init *s)
 {
 	int	tmp;
 
-	if (s->pile_b[0] && s->pile_b[1])
+	if (s->int_b > 1)
 	{
 		tmp = s->pile_b[0];
 		s->pile_b[0] = s->pile_b[1];
@@ -62,7 +62,7 @@ void	ft_pusha(t_init *s)
 	int	i_a;
 
 	i_b = 0;
-	if (s->pile_b[0])
+	if (s->int_b > 0)
 	{
 		s->int_a += 1;
 		i_a = s->int_a;
@@ -89,7 +89,7 @@ void	ft_pushb(t_init *s)
 	int	i_b;
 
 	i_a = 0;
-	if (s->pile_a[0])
+	if (s->int_a > 0)
 	{
 		s->int_b += 1;
 		i_b = s->int_b;

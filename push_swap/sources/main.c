@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 10:31:01 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/29 14:19:01 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/01/31 15:15:26 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,11 @@ int	main(int argc, char **argv)
 			two_args_init(&ps, argv);
 		else
 			mult_args_init(&ps, argc, argv);
-		int	i = 0;
-		ft_printf("\nAVANT PUSH SWAP: \nPILE A | PILE B\n");
-		while (i < ps.int_a)
-		{
-			ft_printf("%d | %d\n", ps.pile_a[i], ps.pile_b[i]);
-			i++;
-		}
 		check_doubles(ps.pile_a, ps.int_a);
 		if (check_order(&ps))
 			free_stacks(&ps);
 		else
 			algorithms(&ps);
-		i = 0;
-		ft_printf("\nAPRES PUSH SWAP: \nPILE A | PILE B\n");
-		while (i < (ps.int_a))
-		{
-			ft_printf("%d | %d\n", ps.pile_a[i], ps.pile_b[i]);
-			i++;
-		}
 		free_stacks(&ps);
 	}
 }
@@ -56,10 +42,8 @@ void	two_args_init(t_init *ps, char **argv)
 		error("Error [MALLOC]");
 	while (ps->arguments[ps->int_a])
 	{
-		ps->j = 0;
 		ps->counter = 0;
-		while (ps->arguments[ps->int_a][ps->j])
-			check_non_num(ps, ps->arguments[ps->int_a][ps->j]);
+		check_non_num(ps->arguments[ps->int_a]);
 		ps->int_a++;
 	}
 	create_stacks(ps);
@@ -79,9 +63,7 @@ void	mult_args_init(t_init *ps, int argc, char **argv)
 	create_stacks(ps);
 	while (ps->i < ps->int_a)
 	{
-		ps->j = 0;
-		while (argv[ps->i + 1][ps->j])
-			check_non_num(ps, argv[ps->i + 1][ps->j]);
+		check_non_num(argv[ps->i + 1]);
 		check_max_min(argv[ps->i + 1]);
 		ps->pile_a[ps->i] = ft_atoi(argv[ps->i + 1]);
 		ps->i++;
