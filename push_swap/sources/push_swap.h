@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:11:52 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/31 15:11:28 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/02/04 14:33:42 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ void	free_stacks(t_init *s);
 void	three_alg_help(t_init *s);
 void	create_stacks(t_init *s);
 long	ft_atol(const char *str);
+int	get_min(char **tab, int len);
+void		ft_normalize(t_init *s);
 
 #endif

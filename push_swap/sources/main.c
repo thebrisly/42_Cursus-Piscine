@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 10:31:01 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/31 15:15:26 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/02/04 14:36:39 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_init	ps;
+	int i;
 
 	ps.int_a = 0;
 	ps.int_b = 0;
@@ -24,13 +25,23 @@ int	main(int argc, char **argv)
 	{
 		if (argc == 2)
 			two_args_init(&ps, argv);
-		else
+		if (argc > 2)
 			mult_args_init(&ps, argc, argv);
 		check_doubles(ps.pile_a, ps.int_a);
 		if (check_order(&ps))
 			free_stacks(&ps);
 		else
+		{
+			ft_normalize(&ps);
+			i = 0;
+			ft_printf("\nAPRES PUSH SWAP: \nPILE A | PILE B\n");
+			while (i < (ps.int_a))
+			{
+				ft_printf("%d | %d\n", ps.pile_a[i], ps.pile_b[i]);
+				i++;
+			}
 			algorithms(&ps);
+		}
 		free_stacks(&ps);
 	}
 }

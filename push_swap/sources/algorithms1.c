@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:14:16 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/31 14:07:40 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/02/04 13:09:54 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	algorithms(t_init *s)
 		four_int_alg(s);
 	else if (s->int_a == 5)
 		five_int_alg(s);
-	else if (s->int_a > 6)
+	else if (s->int_a >= 6)
 		big_algorithm(s);
 }
 
@@ -32,7 +32,7 @@ void	two_args_alg(t_init *s)
 		ft_swapa(s);
 }
 
-void	three_int_alg(t_init *s) //3
+void	three_int_alg(t_init *s)
 {
 	if (s->pile_a[0] > s->pile_a[1])
 	{

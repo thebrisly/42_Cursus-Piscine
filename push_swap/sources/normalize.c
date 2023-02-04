@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithms2.c                                      :+:      :+:    :+:   */
+/*   normalize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 13:44:01 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/02/04 13:58:47 by lfabbian         ###   ########.fr       */
+/*   Created: 2023/02/04 11:20:47 by lfabbian          #+#    #+#             */
+/*   Updated: 2023/02/04 14:32:43 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	big_algorithm(t_init *s)
+void	ft_normalize(t_init *s)
 {
-	int	i;
-	int	j;
 	int	size;
+	int	i;
+	int	index;
+	char	**tmp;
 
+	tmp = malloc(sizeof(char) * s->int_a);
 	i = 0;
 	size = s->int_a;
-	while (((!check_order(s))))
+	while (i < size)
 	{
-		j = 0;
-		while (j < size && (!check_order(s)))
-		{
-			j++;
-			if (((s->pile_a[0] >> i) & 1) == 0)
-				ft_pushb(s);
-			else
-				ft_rotatea(s);
-		}
-		while (s->int_b > 0)
-			ft_pusha(s);
+		tmp[i] = ft_itoa(s->pile_a[i]);
 		i++;
 	}
+	i = 0;
+	while (i < size)
+	{
+		index = get_min(tmp, size);
+		s->pile_a[index] = i;
+		i++;
+	}
+	free (tmp);
 }
