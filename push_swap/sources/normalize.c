@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:20:47 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/02/04 14:32:43 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/02/18 11:16:37 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 void	ft_normalize(t_init *s)
 {
-	int	size;
-	int	i;
-	int	index;
-	char	**tmp;
+	int		i;
+	int		j;
+	int		count;
 
-	tmp = malloc(sizeof(char) * s->int_a);
+	init_stack(s);
+	i = -1;
+	while (++i < s->int_a)
+		s->tmp[i] = s->pile_a[i];
 	i = 0;
-	size = s->int_a;
-	while (i < size)
+	while (i < s->int_a)
 	{
-		tmp[i] = ft_itoa(s->pile_a[i]);
+		j = -1;
+		count = -1;
+		while (++j < s->int_a)
+		{
+			if (s->tmp[i] < s->tmp[j])
+				count++;
+		}
+		s->pile_a[i] = ((s->int_a - 1) - count);
 		i++;
 	}
-	i = 0;
-	while (i < size)
-	{
-		index = get_min(tmp, size);
-		s->pile_a[index] = i;
-		i++;
-	}
-	free (tmp);
+	free (s->tmp);
 }

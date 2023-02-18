@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:08:47 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/01/31 13:32:09 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:21:12 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ void	check_max_min(char *str)
 		if (str[0] == '-')
 		{
 			if (len > 11)
-				error("Error");
+				error();
 			if (len == 11 && ft_strncmp("-2147483648", str, 11) < 0)
-				error("Error");
+				error();
 		}
 		else
 		{
 			if (len > 10)
-				error("Error");
+				error();
 			if (len == 10 && ft_strncmp("2147483647", str, 10) < 0)
-				error("Error");
+				error();
 		}
 	i++;
 	}
@@ -58,12 +58,12 @@ void	check_non_num(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '-' || str[i] == '+')
+	if ((str[i] == '-' || str[i] == '+') && ft_isdigit(str[i + 1]))
 		i++;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			error("Error");
+			error();
 		i++;
 	}
 }
@@ -80,7 +80,7 @@ void	check_doubles(int *tab, int len)
 		while (j < len)
 		{
 			if (tab[i] == tab[j])
-				error("Error");
+				error();
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 13:01:37 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/02/04 14:36:41 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/02/18 11:26:51 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,23 @@ void	create_stacks(t_init *ps)
 {
 	ps->pile_a = malloc(ps->int_a * sizeof(int));
 	if (!ps->pile_a)
-		error("Error [MALLOC]");
+		error();
 	ps->pile_b = malloc(ps->int_a * sizeof(int));
 	if (!ps->pile_b)
-		error("Error [MALLOC]");
+		error();
 }
 
-
-int	get_min(char **tab, int len)
+void	init_stack(t_init *s)
 {
-	int	i;
-	int min;
-	int index;
+	int		size;
+	int		i;
 
-	min = ft_atoi(tab[0]);
+	s->tmp = malloc(sizeof(long) * s->int_a);
 	i = 0;
-	while (i < len)
+	size = s->int_a;
+	while (i < size)
 	{
-		if (tab[i][0] == 'a')
-			i++;
-		else if (ft_atoi(tab[i]) < min)
-		{
-			min = ft_atoi(tab[i]);
-			index = i;
-			i = 0;
-			i++;
-		}
-		else
-			i++;
+		s->tmp[i] = s->pile_a[i];
+		i++;
 	}
-	tab[index][0] = 'a';
-	return (index);
 }

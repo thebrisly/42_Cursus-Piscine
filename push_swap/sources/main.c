@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 10:31:01 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/02/04 14:36:39 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:30:10 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int argc, char **argv)
 {
 	t_init	ps;
-	int i;
 
 	ps.int_a = 0;
 	ps.int_b = 0;
@@ -33,13 +32,6 @@ int	main(int argc, char **argv)
 		else
 		{
 			ft_normalize(&ps);
-			i = 0;
-			ft_printf("\nAPRES PUSH SWAP: \nPILE A | PILE B\n");
-			while (i < (ps.int_a))
-			{
-				ft_printf("%d | %d\n", ps.pile_a[i], ps.pile_b[i]);
-				i++;
-			}
 			algorithms(&ps);
 		}
 		free_stacks(&ps);
@@ -50,7 +42,7 @@ void	two_args_init(t_init *ps, char **argv)
 {
 	ps->arguments = ft_split(argv[1], ' ');
 	if (!ps->arguments)
-		error("Error [MALLOC]");
+		error();
 	while (ps->arguments[ps->int_a])
 	{
 		ps->counter = 0;

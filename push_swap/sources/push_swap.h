@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:11:52 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/02/04 14:33:42 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/02/18 11:25:40 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include <stdlib.h>
 # define DEF_COLOR "\033[0;39m"
 # define RED "\033[0;91m"
+# define LONG_V 9223372036854775808
 
 typedef struct s_init {
 	char	**arguments;
 	int		*pile_a;
 	int		*pile_b;
+	int		*tmp;
 	int		int_a;
 	int		int_b;
 	int		min;
@@ -38,7 +40,7 @@ void	mult_args_init(t_init *ps, int argc, char **argv);
 void	two_args_init(t_init *ps, char **argv);
 
 /* errors.c */
-int		error(char *error_message);
+int		error(void);
 
 /* instructions1/2/3.c */
 void	ft_swapa(t_init *s);
@@ -77,8 +79,9 @@ void	free_stacks(t_init *s);
 /* helpers.c */
 void	three_alg_help(t_init *s);
 void	create_stacks(t_init *s);
-long	ft_atol(const char *str);
-int	get_min(char **tab, int len);
-void		ft_normalize(t_init *s);
+void	init_stack(t_init *s);
+
+/* normalize */
+void	ft_normalize(t_init *s);
 
 #endif
