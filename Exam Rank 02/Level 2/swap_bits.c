@@ -6,11 +6,11 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:27:29 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/02/20 12:36:15 by brisly           ###   ########.fr       */
+/*   Updated: 2023/02/20 18:54:44 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 unsigned char swap_bits(unsigned char octet)
 {
-
+	return ((octet >> 4 | octet << 4));
 }
