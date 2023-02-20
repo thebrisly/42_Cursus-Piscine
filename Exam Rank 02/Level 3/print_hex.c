@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_bits.c                                       :+:      :+:    :+:   */
+/*   print_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 15:26:50 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/02/19 22:31:12 by brisly           ###   ########.fr       */
+/*   Created: 2023/02/20 13:37:21 by brisly            #+#    #+#             */
+/*   Updated: 2023/02/20 13:50:14 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void print_bits(unsigned char octet)
+int ft_atoi(char *str)
 {
-	int	i = 8;
-	unsigned char 	bit;
-
-	while (i--)
+	int result = 0;
+	int i = 0;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		bit = (octet >> i & 1) + '0';
-		write(1, &bit, 1);
+		result = result * 10 + str[i] - '0';
+		i++;
 	}
+	return (result);
 }
 
-void print_bits(unsigned char octet)
+void	print_hex(int n)
 {
+	char digits[] = "0123456789abcdef";
+	char base_16;
 
+	if (n >= 16)
+		print_hex(n / 16);
+	base_16 = digits[n % 16];
+	write(1, &base_16, 1);
+}
+
+int main(int argc, char **argv)
+{
+	if (argc == 2)
+		print_hex(ft_atoi(argv[1]));
+	write (1, "\n", 1);
 }

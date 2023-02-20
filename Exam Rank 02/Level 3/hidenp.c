@@ -1,38 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_bits.c                                     :+:      :+:    :+:   */
+/*   hidenp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 15:27:05 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/02/19 22:29:13 by brisly           ###   ########.fr       */
+/*   Created: 2023/02/20 11:41:25 by brisly            #+#    #+#             */
+/*   Updated: 2023/02/20 11:54:37 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned char	reverse_bits(unsigned char octet)
-{
-	int		i = 8;
-	unsigned char	res = 0;
+#include <unistd.h>
+#include <stdio.h>
 
-	while (i > 0)
-	{
-		res = res * 2 + (octet % 2);
-		octet = octet / 2;
-		i--;
-	}
-	return (res);
-}
-
-unsigned char	reverse_bits(unsigned char octet)
+int	ft_strlen(char *to_find)
 {
 	int i = 0;
-	unsigned char res = 0;
+	while (to_find[i])
+		i++;
+	return(i);
+}
 
-	while (i > 0)
+int main(int argc, char **argv)
+{
+	int i;
+	int j;
+	int len;
+
+	i = 0;
+	j = 0;
+	len = ft_strlen(argv[1]);
+	if (argc == 3)
 	{
-		res = res * 2 (octet % 2);
-		octet = octet / 2;
-		i--;
+		while(argv[2][i])
+		{
+			if (argv[2][i] == argv[1][j])
+				j++;
+			i++;
+		}
+		if (j == len)
+			write (1, "1", 1);
+		else
+			write (1, "0", 1);
 	}
+	write(1, "\n", 1);
 }

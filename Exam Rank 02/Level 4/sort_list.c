@@ -1,38 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_bits.c                                     :+:      :+:    :+:   */
+/*   sort_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 15:27:05 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/02/19 22:29:13 by brisly           ###   ########.fr       */
+/*   Created: 2023/02/20 09:20:09 by brisly            #+#    #+#             */
+/*   Updated: 2023/02/20 09:32:55 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned char	reverse_bits(unsigned char octet)
-{
-	int		i = 8;
-	unsigned char	res = 0;
+//#include "list.h"
 
-	while (i > 0)
-	{
-		res = res * 2 + (octet % 2);
-		octet = octet / 2;
-		i--;
-	}
-	return (res);
+typedef struct s_list t_list;
+
+struct s_list
+{
+	int     data;
+	t_list  *next;
 }
 
-unsigned char	reverse_bits(unsigned char octet)
-{
-	int i = 0;
-	unsigned char res = 0;
 
-	while (i > 0)
+
+t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
+{
+	int swap;
+	t_list tmp;
+
+	tmp = lst;
+	while (lst->next != NULL)
 	{
-		res = res * 2 (octet % 2);
-		octet = octet / 2;
-		i--;
+		if ((*cmp)(lst->data, lst->next) == 0)
+		{
+			swap = lst->data;
+			lst->data = lst->next;
+			lst->next = swap;
+			lst = tmp;
+		}
+		else
+			lst = lst->next;
 	}
+	lst = tmp;
+	return (lst);
 }
