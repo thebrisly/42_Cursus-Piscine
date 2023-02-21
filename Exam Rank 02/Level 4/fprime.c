@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pgdc.c                                             :+:      :+:    :+:   */
+/*   fprime.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 13:51:33 by brisly            #+#    #+#             */
-/*   Updated: 2023/02/20 21:57:55 by brisly           ###   ########.fr       */
+/*   Created: 2023/02/20 22:23:46 by brisly            #+#    #+#             */
+/*   Updated: 2023/02/20 22:23:48 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
-int		main(int argc, char **argv)
+int	main(int argc, char *argv[])
 {
-	if (argc == 3)
-	{
-		int number1 = atoi(argv[1]);
-		int number2 = atoi(argv[2]);
+	int	i;
+	int	number;
 
-		if (number1 >= 0 && number2 >= 0)
+	if (argc == 2)
+	{
+		i = 1;
+		number = atoi(argv[1]);
+		if (number == 1)
+			printf("1");
+		while (number >= ++i)
 		{
-			while (number1 != number2)
+			if (number % i == 0)
 			{
-				if (number1 > number2)
-					number1 = number1 - number2;
-				else
-					number2 = number2 - number1;
+				printf("%d", i);
+				if (number == i)
+					break ;
+				printf("*");
+				number /= i;
+				i = 1;
 			}
-			printf("%d", number1);
 		}
 	}
 	printf("\n");
+	return (0);
 }

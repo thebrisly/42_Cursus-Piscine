@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pgdc.c                                             :+:      :+:    :+:   */
+/*   lcm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 13:51:33 by brisly            #+#    #+#             */
-/*   Updated: 2023/02/20 21:57:55 by brisly           ###   ########.fr       */
+/*   Created: 2023/02/20 22:20:08 by brisly            #+#    #+#             */
+/*   Updated: 2023/02/20 22:21:03 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-int		main(int argc, char **argv)
+unsigned int lcm(unsigned int a, unsigned int b)
 {
-	if (argc == 3)
-	{
-		int number1 = atoi(argv[1]);
-		int number2 = atoi(argv[2]);
+	unsigned int n;	
 
-		if (number1 >= 0 && number2 >= 0)
-		{
-			while (number1 != number2)
-			{
-				if (number1 > number2)
-					number1 = number1 - number2;
-				else
-					number2 = number2 - number1;
-			}
-			printf("%d", number1);
-		}
+	if (a == 0 || b == 0)
+		return (0);
+	if (a > b)
+		n = a;
+	else
+		n = b;
+	while (1)
+	{
+		if (n % a == 0 && n % b == 0)
+			return (n);
+		++n;
 	}
-	printf("\n");
 }
