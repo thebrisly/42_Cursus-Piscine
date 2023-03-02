@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:40:00 by dferreir          #+#    #+#             */
-/*   Updated: 2023/02/28 14:47:08 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:29:11 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	minishell(char **envp)
 
 	ms.env = envp;
 	ms.paths = get_path(ms.env);
+	ms.env_dup = 0;
+	env_init(&ms);
 	while (1)
 	{
 		ft_putstr_fd("\033[0;91m₼ℹηℹ\033[1;91mℍ\033[0;91mΞ⅃L⫸ \033[0m", 2); //print prompt every time
@@ -28,7 +30,7 @@ void	minishell(char **envp)
 		free(ms.prompt);
 		if (prompt_exists)
 		{
-			if(is_builtin(ms)); //check if builtin cmds, if yes, proceed
+			if(is_builtin(&ms)); //check if builtin cmds, if yes, proceed
 			else if (prompt_exists) //if prompt has cmds, use existing cmds || replace by prompt check
 			{
 				ms.pid = fork(); //duplicate process
