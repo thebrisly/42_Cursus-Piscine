@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:01:16 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/01 15:30:19 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:21:26 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ typedef struct s_env
 
 typedef struct s_minishell
 {
+	int		dol;
+	int		quote;
 	int		pid;
-	int		env_len;
-	int		*size_args;
+	int		start;
+	int		end;
+	int		*args_size;
 	char	*prompt;
 	char	*cmd;
-    char    *str_var;
 	char	**args;
 	char	**env;
 	char	**paths;
@@ -55,8 +57,17 @@ char	**get_path(char **envp);
 
 char	*get_cmd(char **paths, char *cmd);
 
-int		str_to_args(t_minishell *ms);
+int		str_to_array(t_minishell *ms);
 
+void	str_count(t_minishell *ms);
+
+void	mini_echo(t_minishell *ms);
+
+void	mini_pwd(t_minishell *ms);
+
+void	mini_exit(t_minishell *ms);
+
+int		is_builtin(t_minishell *ms);
 
 /* env */
 void	add_env_var(t_minishell *ms, char *key, char *value);
@@ -66,15 +77,11 @@ t_env	*env_new(char *key, char *value);
 t_env	*env_last(t_env	*lst);
 void	env_add_end(t_env **lst, t_env *new);
 int		env_size(t_env *lst);
-
 void	add_var_env(t_minishell *ms);
+void    free_env(t_minishell *ms);
 
-void	mini_echo(t_minishell *ms);
-
-void	mini_pwd(t_minishell *ms);
-
-void	mini_exit(t_minishell *ms);
-
-int		is_builtin(t_minishell *ms);
+/* signals */
+void    signal_handler(int signum);
+void    signal_init(void);
 
 #endif

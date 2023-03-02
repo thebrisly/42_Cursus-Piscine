@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dferreir <dferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:25:03 by dferreir          #+#    #+#             */
-/*   Updated: 2023/02/28 14:34:00 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:48:27 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	mini_exit(t_minishell *ms)
 	while (ms->args[++i])
 		free(ms->args[i]);
 	free(ms->args);
+	free_env(ms);
 	write(1, msg, ft_strlen(msg));
 	exit(0);
 }
