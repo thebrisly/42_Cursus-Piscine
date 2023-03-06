@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:35:17 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/03/02 15:36:49 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/03 10:06:16 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ void	signal_handler(int signum)
 
 void	signal_init(void)
 {
+	// struct sigaction	signal_received;
+
+	// signal_received.sa_handler = signal_handler;
+	// signal_received.sa_flags = 0;
+	//sigaction(SIGINT, &signal_received, NULL);
+
 	signal(SIGQUIT, signal_handler);
 	signal(SIGINT, signal_handler);
 }

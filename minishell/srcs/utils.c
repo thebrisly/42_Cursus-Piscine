@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:40:22 by dferreir          #+#    #+#             */
-/*   Updated: 2023/02/28 14:48:06 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/05 13:45:58 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ char	*get_cmd(char **paths, char *cmd)
 		free(command);
 		paths++; //recommencer avec nouvelle path
 	}
-	write(2, cmd, ft_strlen(cmd));
-	print_err(" doesn't exits");
+//	write(2, cmd, ft_strlen(cmd));
+//	print_err(" doesn't exits");
 	return (0);
 }
 
