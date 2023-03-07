@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:01:16 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/06 13:54:46 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:41:52 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_minishell
 	char	**env;
 	char	**paths;
 	t_env	*env_dup;
-	t_env	*env_dupp;
+	t_env	*env_dup2;
 	t_env	*export;
 }	t_minishell;
 
@@ -76,16 +76,12 @@ char	**get_path(char **envp);
 
 char	*get_cmd(char **paths, char *cmd);
 
-//int		str_to_args(t_minishell *ms);
-
 int		str_to_array(t_minishell *ms);
 
-void	str_count(t_minishell *ms);
-
 /* env */
-void	add_env_var(t_minishell *ms, char *key, char *value);
+t_env	*add_env_var(t_minishell *ms, char *key, char *value, t_env *temp);
 
-void	env_init(t_minishell *ms);
+t_env	*env_init(t_minishell *ms);
 
 void	mini_env(t_minishell *ms);
 

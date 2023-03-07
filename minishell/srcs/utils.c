@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:40:22 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/05 13:45:58 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:41:21 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,70 +61,5 @@ char	*get_cmd(char **paths, char *cmd)
 		free(command);
 		paths++; //recommencer avec nouvelle path
 	}
-//	write(2, cmd, ft_strlen(cmd));
-//	print_err(" doesn't exits");
 	return (0);
-}
-
-int	word_counter2(const char *s)
-{
-	int	nb_words;
-	int	swtch;
-
-	nb_words = 0;
-	swtch = 0;
-	while (*s)
-	{
-		if (*s != ' ' && *s != '\t' && swtch == 0)
-		{
-			nb_words++;
-			swtch = 1;
-		}
-		if ((*s == '\t' || *s == ' ') && swtch == 1)
-			swtch = 0;
-		s++;
-	}
-	return (nb_words);
-}
-
-char	*str_maker2(const char *s, int start, int end)
-{
-	char	*new_s;
-	size_t	i;
-
-	i = 0;
-	new_s = malloc((end - start + 1) * sizeof(char));
-	while (start < end)
-		new_s[i++] = s[start++];
-	new_s[i] = 0;
-	return (new_s);
-}
-
-int	str_to_args(t_minishell *ms)
-{
-	char	**new_strs;
-	size_t	i;
-	size_t	j;
-	int		start;
-
-	i = 0;
-	j = 0;
-	start = -42;
-	new_strs = malloc((word_counter2(ms->prompt) + 1) * sizeof(char *));
-	if (!ms->prompt || !new_strs || ft_strlen(ms->prompt) == 1)
-		return (0);
-	while (i <= ft_strlen(ms->prompt))
-	{
-		if (ms->prompt[i] != ' ' && ms->prompt[i] != '\t' && ms->prompt[i] != '\n' && start < 0)
-			start = i;
-		else if ((ms->prompt[i] == ' ' || ms->prompt[i] == '\t' || ms->prompt[i] == '\n' || !ms->prompt[i]) && start >= 0)
-		{
-			new_strs[j++] = str_maker2(ms->prompt, start, i);
-			start = -42;
-		}
-		i++;
-	}
-	new_strs[j] = 0;
-	ms->args = new_strs;
-	return (1);
 }

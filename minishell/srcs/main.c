@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:40:00 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/06 12:55:41 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:04:42 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	minishell(t_minishell *ms)
 		while (++i < ms->end - ms->start)
 			ms->args_tmp[i] = ft_strdup(ms->args[i + ms->start]);
 		ms->args_tmp[i] = 0;
+//		if (!ft_strncmp(ms->args[ms->end], "|", 2))
+//			ms->pip = 1;
 		if (!ms->or)
 		{
 			if(is_builtin(ms));
@@ -58,6 +60,7 @@ void	minishell(t_minishell *ms)
 				}
 				else
 					ms->err = 1;
+				free(ms->cmd);
 			}
 			if ((!ms->args[ms->end] || ft_strncmp(ms->args[ms->end], "||", 3)) && ms->err)
 				printf("%s does not exit\n", ms->args_tmp[0]);
@@ -88,7 +91,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		ms.env = envp;
 		ms.env_dup = 0;
-		env_init(&ms);
+		ms.env_dup = env_init(&ms);
 		ms.paths = get_path(ms.env);
 		while (1)
 		{

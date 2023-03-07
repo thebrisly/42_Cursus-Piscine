@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 12:38:20 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/03/07 14:01:19 by lfabbian         ###   ########.fr       */
+/*   Created: 2023/03/07 13:42:47 by lfabbian          #+#    #+#             */
+/*   Updated: 2023/03/07 13:58:48 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-void	mini_unset(t_minishell *ms)
+char	*get_value(t_minishell *ms, char *str)
 {
-	t_env	*current;
+	t_env	*tmp;
 
-	current = ms->env_dup;
-	while (current)
+	tmp = ms->env_dup;
+	while (tmp)
 	{
-		if (current.key)
+		if (ft_strcmp(str, tmp->value) == 0)
+			return (tmp->key);
+		tmp = tmp->next;
 	}
+	return (NULL);
 }
 
-// faire une fonction qui enleve
+//char *is
+// if "is" != 0 alors ca veut dire qu'il est dedans
