@@ -6,58 +6,61 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:34:38 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/07 13:42:15 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:58:28 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-t_env	*add_env_var(t_minishell *ms, char *key, char *value, t_env *temp)
+void	add_env_var(t_minishell *ms, char *key, char *value)
 {
 	t_env	*new_var;
-	(void) ms;
 
 	new_var = env_new(key ,value);
 	if (!new_var)
-		return (NULL);
-	env_add_end(&temp, new_var);
-	return (new_var);
+		return ;
+	env_add_end(&ms->env_dup, new_var);
+	// ft_printf("%s\n", ms->env_dup->key);
 }
 
-t_env	*env_init(t_minishell *ms)
+void	env_init(t_minishell *ms)
 {
 	int		i;
 	char	**tmp;
-	t_env	*temp;
-	t_env	*start;
 
 	i = 0;
-	temp = 0;
 	while (ms->env[i])
 	{
 		tmp = ft_split(ms->env[i], '=');
 		if (!tmp)
-			return (NULL);
-		else if (!temp)
+			return ;
+		add_env_var(ms, ft_strdup(tmp[0]), ft_strdup(tmp[1])); //ne pas oublier de free cle valeur
+		free(tmp[0]);
+		free(tmp[1]);
+		free(tmp);
+		i++;
+	}
+}
+
+/*void	env_pointer(t_minishell	*ms)
+{
+	int counter;
+	t_env	*tmp;
+
+	counter = 1;
+	tmp = ms->env_dup;
+	while (tmp)
+	{
+		if (counter == 1)
 		{
-			temp = add_env_var(ms, ft_strdup(tmp[0]), ft_strdup(tmp[1]), temp);
-			free(tmp[0]);
-			free(tmp[1]);
-			free(tmp);
-			start = temp;
+			ms->env_ptr->head = tmp;
+			counter++;
 		}
 		else
-		{
-			temp = add_env_var(ms, ft_strdup(tmp[0]), ft_strdup(tmp[1]), temp);
-			free(tmp[0]);
-			free(tmp[1]);
-			free(tmp);
-			i++;
-		}
+			tmp = tmp->next;
 	}
-	temp = start;
-	return (temp);
-}
+	ms->env_ptr->tail = tmp;
+}*/
 
 void	mini_env(t_minishell *ms)
 {

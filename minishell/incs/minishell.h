@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:01:16 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/07 13:41:52 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:12:09 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 //STRUCTS
 
+char	*str;
+
 typedef struct s_env
 {
 	char			*key;
@@ -36,11 +38,14 @@ typedef struct s_env
 typedef struct s_minishell
 {
 	int		err;
+	int		err_prev;
 	int		dol;
 	int		or;
+	int		pip;
 	int		pid;
 	int		start;
 	int		end;
+	int		pipe[2];
 	int		*args_size;
 	char	quote;
 	char	*prompt;
@@ -58,7 +63,7 @@ typedef struct s_minishell
 
 int	print_err(char *msg);
 
-int        ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 
 /* builtin-cmds */
 int		is_builtin(t_minishell *ms);
@@ -71,6 +76,10 @@ void	mini_exit(t_minishell *ms);
 
 void    mini_export(t_minishell *ms);
 
+void	mini_env(t_minishell *ms);
+
+void	mini_unset(t_minishell *ms);
+
 /* parsing */
 char	**get_path(char **envp);
 
@@ -79,11 +88,9 @@ char	*get_cmd(char **paths, char *cmd);
 int		str_to_array(t_minishell *ms);
 
 /* env */
-t_env	*add_env_var(t_minishell *ms, char *key, char *value, t_env *temp);
+void	add_env_var(t_minishell *ms, char *key, char *value);
 
-t_env	*env_init(t_minishell *ms);
-
-void	mini_env(t_minishell *ms);
+void	env_init(t_minishell *ms);
 
 t_env	*env_new(char *key, char *value);
 
@@ -93,6 +100,8 @@ void	env_add_end(t_env **lst, t_env *new);
 
 int		env_size(t_env *lst);
 
+void	duplicate(t_minishell *ms);
+
 void	add_var_env(t_minishell *ms);
 
 void    free_env(t_minishell *ms);
@@ -100,6 +109,8 @@ void    free_env(t_minishell *ms);
 void    print_export(t_minishell *ms);
 
 void    sort_env(t_minishell *ms);
+
+char	*get_value(t_minishell *ms, char *str);
 
 /* signals */
 void    signal_init(void);

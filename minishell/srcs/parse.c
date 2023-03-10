@@ -6,25 +6,11 @@
 /*   By: dferreir <dferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 11:46:09 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/07 13:22:24 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/10 10:00:41 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
-
-/*void	quotes_counterhandler(t_minishell *ms)
-{
-	int	i;
-
-	i = -1;
-	while (ms->prompt[++i])
-	{
-		if (ms->prompt[i] == '\"')
-			ms->dquote++;
-		else if (ms->prompt[i] == '\'')
-			ms->squote++;
-	}
-}*/
 
 void	str_count(t_minishell *ms)
 {
@@ -33,23 +19,22 @@ void	str_count(t_minishell *ms)
 
 	i = 0;
 	j = 0;
-	ms->args_size = malloc (20 * sizeof(int));
+	ms->args_size = ft_calloc(100, sizeof(int));
 	while (ms->prompt[i] == ' ' || ms->prompt[i] == '\t')
 		i++;
 	while (ms->prompt[i] && ms->prompt[i] != '\n')
 	{
 		if (ms->prompt[i] == '\"' || ms->prompt[i] == '\'')
 		{
-			if (!ms->quote/* && (ms->prompt[i - 1] == ' ' || ms->prompt[i - 1] == '\t' || ms->prompt[i - 1] == '\0')*/)
+			if (!ms->quote)
 				ms->quote = ms->prompt[i];
-			else/* if (ms->quote)*/
+			else
 			{
-				if (ms->prompt[i] != ms->quote)
-					ms->args_size[j]++;
-				else /*if (ms->prompt[i + 1] == ' ' || ms->prompt[i + 1] == '\t'
-						|| ms->prompt[i + 1] == '\n')*/
+				if (ms->prompt[i] != ms->quote);
+				else
 					ms->quote = 0;
 			}
+			ms->args_size[j]++;
 		}
 		else if (ms->prompt[i] != ' ' && ms->prompt[i] != '\t')
 			ms->args_size[j]++;
@@ -80,30 +65,24 @@ int	str_to_array(t_minishell *ms)
 		return (0);
 	ms->quote = 0;
 	while (ms->args_size[++j]);
-	ms->args = malloc((j + 1) * sizeof(char *));
+	ms->args = ft_calloc(j + 1, sizeof(char *));
 	while (--j >= 0)
-		ms->args[j] = malloc((ms->args_size[j] + 1) * sizeof(char));
+		ms->args[j] = ft_calloc(ms->args_size[j] + 1, sizeof(char));
 	while (ms->prompt[x] == ' ' || ms->prompt[x] == '\t')
 		x++;
 	while (ms->prompt[x] && ms->prompt[x] != '\n')
 	{
 		if (ms->prompt[x] == '\"' || ms->prompt[x] == '\'')
 		{
-			if (!ms->quote/* && (ms->prompt[x - 1] == ' ' || ms->prompt[x - 1] == '\t' || ms->prompt[x - 1] == '\0')*/)
+			if (!ms->quote)
 				ms->quote = ms->prompt[x];
-			else/* if (ms->quote)*/
+			else
 			{
-				if (ms->prompt[x] != ms->quote)
-					ms->args[i][++j] = ms->prompt[x];
-				else/* if (ms->prompt[x + 1] == ' ' || ms->prompt[x + 1] == '\t')
-				{*/
+				if (ms->prompt[x] != ms->quote);
+				else
 					ms->quote = 0;
-			//		i++;
-			//		j = -1;
-			//	}
-			//	else if (ms->prompt[x + 1] == '\n')
-			//		ms->quote = 0;
 			}
+			ms->args[i][++j] = ms->prompt[x];
 		}
 		else if (ms->prompt[x] != ' ' && ms->prompt[x] != '\t')
 			ms->args[i][++j] = ms->prompt[x];

@@ -6,7 +6,7 @@
 #    By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 10:00:34 by dferreir          #+#    #+#              #
-#    Updated: 2023/03/07 14:04:21 by dferreir         ###   ########.fr        #
+#    Updated: 2023/03/09 09:48:36 by dferreir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ HEADS_DIR	= ./incs/
 HEADS		= $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SRCS_DIR	= ./srcs/
-SRCS_FILES	= main.c parse.c signals.c utils.c echo.c env.c pwd.c exit.c is_builtin.c env_utils.c export.c export_utils.c
+SRCS_FILES	= main.c parse.c signals.c utils.c echo.c env.c pwd.c exit.c is_builtin.c env_utils.c export.c export_utils.c unset.c
 SRCS		:= ${addprefix ${SRCS_DIR}, ${SRCS_FILES}}
 
 OBJS_DIR	= ./objs/
