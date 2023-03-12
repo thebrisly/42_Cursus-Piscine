@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 13:39:49 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/03/08 16:07:25 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/12 11:26:38 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,18 @@ t_env	*env_last(t_env	*lst)
 
 void	env_add_end(t_env **lst, t_env *new)
 {
-	t_env	*tmp;
+	t_env	*last;
 
+	if (!new)
+		return ;
 	if (!*lst)
 	{
 		*lst = new;
 		return ;
 	}
-	tmp = env_last(*lst);
-	tmp->next = new;
+	last = env_last(*lst);
+	last->next = new;
+	new->previous = last;
 }
 
 int	env_size(t_env *lst)

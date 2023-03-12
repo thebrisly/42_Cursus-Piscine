@@ -6,11 +6,30 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:42:47 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/03/08 14:14:44 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/12 13:23:40 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
+
+void	duplicate(t_minishell	*ms)
+{
+	t_env	*tmp;
+	t_env	*new;
+
+	tmp = ms->env_dup;
+	while(tmp)
+	{
+		if (!tmp->value)
+			new = env_new(ft_strdup(tmp->key), 0);
+		else
+			new = env_new(ft_strdup(tmp->key), ft_strdup(tmp->value));
+		if (!new)
+			return ;
+		env_add_end(&ms->env_dup2, new);
+		tmp = tmp->next;
+	}
+}
 
 char	*get_value(t_minishell *ms, char *str)
 {
@@ -26,5 +45,30 @@ char	*get_value(t_minishell *ms, char *str)
 	return (NULL);
 }
 
-//char *is
-// if "is" != 0 alors ca veut dire qu'il est dedans
+t_env	*replace_value(t_minishell *ms, char *str)
+{
+	t_env	*tmp;
+
+	tmp = ms->env_dup;
+	while (tmp)
+	{
+		if (ft_strcmp(str, tmp->key) == 0)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+void	free_export(t_minishell *ms)
+{
+	t_env *tmp;
+
+	while (ms->env_dup2)
+	{
+		tmp = ms->env_dup2->next;
+		free(ms->env_dup2->key);
+		free(ms->env_dup2->value);
+		free(ms->env_dup2);
+		ms->env_dup2 = tmp;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:01:16 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/09 11:12:09 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:12:02 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,17 +100,25 @@ void	env_add_end(t_env **lst, t_env *new);
 
 int		env_size(t_env *lst);
 
-void	duplicate(t_minishell *ms);
-
 void	add_var_env(t_minishell *ms);
 
 void    free_env(t_minishell *ms);
 
+
+/* export */
+
 void    print_export(t_minishell *ms);
 
-void    sort_env(t_minishell *ms);
+void    sort_export(t_minishell *ms);
 
 char	*get_value(t_minishell *ms, char *str);
+
+void	duplicate(t_minishell	*ms);
+
+void	free_export(t_minishell *ms);
+
+t_env	*replace_value(t_minishell *ms, char *str);
+
 
 /* signals */
 void    signal_init(void);

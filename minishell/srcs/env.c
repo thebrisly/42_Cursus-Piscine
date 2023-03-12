@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:34:38 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/09 09:58:28 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/12 12:55:52 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	add_env_var(t_minishell *ms, char *key, char *value)
 	if (!new_var)
 		return ;
 	env_add_end(&ms->env_dup, new_var);
-	// ft_printf("%s\n", ms->env_dup->key);
 }
 
 void	env_init(t_minishell *ms)
@@ -34,33 +33,13 @@ void	env_init(t_minishell *ms)
 		tmp = ft_split(ms->env[i], '=');
 		if (!tmp)
 			return ;
-		add_env_var(ms, ft_strdup(tmp[0]), ft_strdup(tmp[1])); //ne pas oublier de free cle valeur
+		add_env_var(ms, ft_strdup(tmp[0]), ft_strdup(tmp[1]));
 		free(tmp[0]);
 		free(tmp[1]);
 		free(tmp);
 		i++;
 	}
 }
-
-/*void	env_pointer(t_minishell	*ms)
-{
-	int counter;
-	t_env	*tmp;
-
-	counter = 1;
-	tmp = ms->env_dup;
-	while (tmp)
-	{
-		if (counter == 1)
-		{
-			ms->env_ptr->head = tmp;
-			counter++;
-		}
-		else
-			tmp = tmp->next;
-	}
-	ms->env_ptr->tail = tmp;
-}*/
 
 void	mini_env(t_minishell *ms)
 {

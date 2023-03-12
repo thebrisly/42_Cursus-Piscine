@@ -6,23 +6,84 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:40:00 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/10 12:24:39 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:15:25 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
+
+char	*cutter(t_minishell *ms, char *str, int i)
+{
+	char 	**tmp_array;
+	char 	*tmp;
+	char	*tmp2;
+
+	if (!str[i + 1])
+		return ("$");
+	tmp2 = ft_substr(str, i + 1, ft_strlen(str));
+	i = -1;
+	tmp_array = ft_split(tmp2, '\"');
+	tmp = ft_strdup(tmp_array[0]);
+	while (tmp_array[++i])
+		free(tmp_array[i]);
+	free(tmp_array);
+	free(tmp2);
+	tmp_array = ft_split(tmp, ' ');
+	tmp2 = ft_strdup(tmp_array[0]);
+	i = -1;
+	while (tmp_array[++i])
+		free(tmp_array[i]);
+	free(tmp_array);
+	free(tmp);
+	i = -1;
+	ms->dol = -1;
+	if (!ft_strncmp(tmp2, "?", 2))
+	{
+		tmp = ft_itoa(ms->err_prev);
+		free(tmp2);
+		return (tmp);
+	}
+	else if (!ft_strncmp(tmp2, "$$$$$$$$$$$$$$$$$$$$$$", ft_strlen(tmp2)))
+	{
+		tmp = ft_strjoin("$", tmp2);
+		free(tmp2);
+		return (tmp);
+	}
+	else
+	{
+		while (tmp2[++ms->dol] && tmp2[ms->dol] != '$');
+		if (ms->dol > 0 && tmp2[ms->dol])
+		{
+			tmp = malloc((ms->dol + 1) * sizeof(char));
+			while (++i < ms->dol)
+				tmp[i] = tmp2[i];
+			tmp[ms->dol] = 0;
+		}
+		else
+			tmp = ft_strdup(tmp2);
+		free(tmp2);
+		tmp2 = get_value(ms, tmp);
+		free(tmp);
+		if (tmp2)
+		{
+			tmp = ft_strdup(tmp2);
+			return (tmp);
+		}
+		return (tmp2);
+	}
+	return (0);
+}
 
 void	expander(t_minishell *ms, int i)
 {
 	int		j;
 	int		x;
 	char 	*res;
-	char 	*str;
-	char 	*tmp_str;
+	char 	*tmp;
 
 	j = -1;
 	x = -1;
-	res = ft_calloc(1000, sizeof(char));
+	res = ft_calloc(100, sizeof(char));
 	ms->quote = 0;
 	while (ms->args[i][++j])
 	{
@@ -40,21 +101,27 @@ void	expander(t_minishell *ms, int i)
 		}
 		else if (ms->args[i][j] == '$' && (!ms->quote || ms->quote == '\"'))
 		{
-			tmp_str = get_value(ms, ft_strtrim(ft_split(ft_split(ft_substr(ms->args[i], j + 1, ft_strlen(ms->args[i])), ' ')[0], '\"')[0], "\""));
-			if (tmp_str)
-				str = ft_strdup(tmp_str);
-			if (str)
+			tmp = cutter(ms, ms->args[i], j);
+		//	tmp = get_value(ms, ft_strtrim(ft_split(ft_split(ft_substr(ms->args[i], j + 1, ft_strlen(ms->args[i])), ' ')[0], '\"')[0], "\""));
+			if (tmp)
 			{
-				ft_strlcat(res, str, ft_strlen(str) + j + 1);
-				x += ft_strlen(str) + j + 1;
-				j += ft_strlen(str) + 1;
+				//res = ft_strjoin(res, tmp);
+				ft_strlcat(res, tmp, ft_strlen(tmp) + ft_strlen(res) + 1);
+				x += ft_strlen(tmp) - 1;
+			}
+			if (ft_strlen(ms->args[i]) != 1)
+			{
+				if (ms->dol == -1 || (size_t)ms->dol > ft_strlen(ms->args[i]))
+					j += ft_strlen(ft_strtrim(ft_split(ft_split(ft_substr(ms->args[i], j + 1, ft_strlen(ms->args[i])), ' ')[0], '\"')[0], "\""));
+				else
+					j += ms->dol;
+				free(tmp);
 			}
 		}
 		else
 			res[++x] = ms->args[i][j];
 	}
 	ms->args_tmp[i - ms->start] = ft_strdup(res);
-	free(str);
 	free(res);
 }
 
@@ -82,8 +149,8 @@ void	minishell(t_minishell *ms)
 		while (++i < ms->end - ms->start)
 			expander(ms, i + ms->start);
 		ms->args_tmp[i] = 0;
-		if (!ms->args_tmp[1])
-			str = ft_strdup(ms->args_tmp[0]);
+//		if (!ms->args_tmp[1])
+//			str = ft_strdup(ms->args_tmp[0]);
 /*		if (!ft_strncmp(ms->args[ms->end], "|", 2))
 		{
 			if (!ms->pip)
@@ -156,7 +223,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		ms.env = envp;
 		ms.env_dup = 0;
-		ms.env_dup2 = 0;
 		ms.err_prev = 0;
 		env_init(&ms);
 		ms.paths = get_path(ms.env);

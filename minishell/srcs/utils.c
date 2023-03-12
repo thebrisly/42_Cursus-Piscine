@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:40:22 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/07 13:41:21 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:13:09 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,14 @@ char	*get_cmd(char **paths, char *cmd)
 		paths++; //recommencer avec nouvelle path
 	}
 	return (0);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while ((*s1 && *s2) && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

@@ -6,56 +6,50 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 12:38:20 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/03/09 10:00:44 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/12 12:55:34 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-void	duplicate(t_minishell	*ms)
+void	free_unset(t_env *current, int number)
 {
-	t_env	*tmp;
-	t_env	*new;
-
-	tmp = ms->env_dup;
-	while(tmp)
+	if (number == 0)
+		current->previous->next = NULL;
+	else if (number == 1)
+		current->next->previous = NULL;
+	else if (number == 2)
 	{
-		new = env_new(ft_strdup(tmp->key), ft_strdup(tmp->value));
-		if (!new)
-			return ;
-		env_add_end(&ms->env_dup2, new);
-		tmp = tmp->next;
+		current->previous->next = current->next;
+		current->next->previous = current->previous;
 	}
+	free (current->key);
+	free (current->value);
+	free (current);
 }
 
-/*void	mini_unset(t_minishell *ms)
+void	mini_unset(t_minishell *ms)
 {
 	t_env	*current;
+	int		i;
 
-	current = ms->env_dup;
-	while (current)
+	i = 0;
+	while (ms->args_tmp[++i])
 	{
-		if (ms->args_tmp[1] && ft_strcmp(current->key, ms->args_tmp[1]) == 0)
+		current = ms->env_dup;
+		while (current)
 		{
-
-			// condition si a la fin
-			if (!current->next)
-
-			// condition si au debut
-			else if (!current->previous)
-
-			// au milieu:
-			else
+			if (ft_strcmp(current->key, ms->args_tmp[i]) == 0)
 			{
-				printf("%s\n", current->key);
-				current->previous->next = current->next;
-				current->next->previous = current->previous;
-				free (current->key);
-				free (current->value);
-				free (current);
-				return ;
+				if (!current->next)
+					free_unset(current, 0);
+				else if (!current->previous)
+					free_unset(current, 1);
+				else
+					free_unset(current, 2);
+				break;
 			}
+			current = current->next;
 		}
-		current = current->next;
 	}
-}*/
+}
