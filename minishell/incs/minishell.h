@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:01:16 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/12 14:12:02 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/14 11:37:54 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_minishell
 	char	quote;
 	char	*prompt;
 	char	*cmd;
+	char	*oldpwd;
 	char	**args;
 	char	**args_tmp;
 	char	**env;
@@ -79,6 +80,8 @@ void    mini_export(t_minishell *ms);
 void	mini_env(t_minishell *ms);
 
 void	mini_unset(t_minishell *ms);
+
+void	mini_cd(t_minishell *ms);
 
 /* parsing */
 char	**get_path(char **envp);

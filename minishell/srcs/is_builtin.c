@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 14:00:12 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/12 11:04:53 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/14 10:07:30 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ int	is_builtin(t_minishell *ms)
 	{
 		trigger = 1;
 		mini_unset(ms);
+	}
+	else if (!ft_strncmp("cd", ms->args_tmp[0], 2))
+	{
+		trigger = 1;
+		mini_cd(ms);
 	}
 	return (trigger);
 }
