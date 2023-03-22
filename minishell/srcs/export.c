@@ -6,71 +6,45 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:00:55 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/03/14 15:13:07 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/22 12:59:48 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minishell.h"
 
-void	sort_export(t_minishell *ms)
+/* si on veut ajouter une valeur de maniere normale ou en remplacer une normalement comme suit: export message=hello */
+void	normal_case(t_minishell *ms, int i)
 {
-	ms->export = NULL;
-	t_env *current = ms->env_dup2;
-	t_env *temp;
+	size_t	j;
 
-	while (current != NULL)
-	{
-		t_env *next = current->next;
-		if (ms->export == NULL || ft_strcmp(current->key, ms->export->key) < 0)
-		{
-			current->next = ms->export;
-			if (ms->export != NULL)
-				ms->export->previous = current;
-			ms->export = current;
-		}
-		else
-		{
-			temp = ms->export;
-			while (temp->next != NULL && ft_strcmp(current->key, temp->next->key) >= 0)
-				temp = temp->next;
-			current->next = temp->next;
-			if (temp->next != NULL)
-				temp->next->previous = current;
-			temp->next = current;
-			current->previous = temp;
-		}
-		current = next;
-    }
+	j = -1;
+	if (ft_isalpha(ms->args_tmp[i][j + 1]))
+		while (ft_isalpha(ms->args_tmp[i][++j]) || ft_isdigit(ms->args_tmp[i][j]))
+			;
+	if (j == ft_strlen(ms->args_tmp[i]))
+		add_env_var(ms, ft_strdup(ms->args_tmp[i]), 0);
+	else
+		ft_printf("export: %s not a valid identifier\n", ms->args_tmp[i]);
 }
 
-void	print_export(t_minishell *ms)
-{
-	t_env	*tmp;
+/* quand export message ou export message=
+utiliser replace_value au lieu de get_value ! */
+void	special_cases(t_minishell *ms, int i);
 
-	tmp = ms->export;
-	while (tmp)
-	{
-		if (!tmp->value)
-			printf("declare -x %s\n", tmp->key);
-		else
-			printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
-		tmp = tmp->next;
-	}
-}
 
 void	mini_export(t_minishell *ms)
 {
 	char		**kvtmp;
 	int			i;
-	size_t		j;
 
 	i = 0;
 	duplicate(ms);
-	sort_export(ms);			//chercher d'ou viennent les leaks
-	if  (!ms->args_tmp[1])
+	ms->export = NULL;
+	sort_export(ms);
+	if (!ms->args_tmp[1])
 		print_export(ms);
-    else
-    {
+	else
+	{
 		while (ms->args_tmp[++i])
 		{
 			kvtmp = ft_split(ms->args_tmp[i], '=');
@@ -81,15 +55,7 @@ void	mini_export(t_minishell *ms)
 			else if (ft_strchr(ms->args_tmp[i], '=') && ms->args_tmp[i][0] != '=')
 				add_env_var(ms, ft_strdup(kvtmp[0]), ft_strdup(kvtmp[1]));
 			else
-			{
-				j = -1;
-				if (ft_isalpha(ms->args_tmp[i][j+1]))
-					while (ft_isalpha(ms->args_tmp[i][++j]) || ft_isdigit(ms->args_tmp[i][j]));
-				if (j == ft_strlen(ms->args_tmp[i]))
-					add_env_var(ms, ft_strdup(ms->args_tmp[i]), 0);
-				else
-					ft_printf("export: %s not a valid identifier\n", ms->args_tmp[i]);
-			}
+				normal_case(ms, i);
 			free(kvtmp[0]);
 			free(kvtmp[1]);
 			free(kvtmp);

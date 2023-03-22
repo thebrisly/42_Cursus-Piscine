@@ -6,7 +6,7 @@
 /*   By: dferreir <dferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 11:46:09 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/10 10:00:41 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:47:25 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,11 @@ int	str_to_array(t_minishell *ms)
 	i = 0;
 	j = -1;
 	str_count(ms);
-	if (!ms->args_size[0] || ms->prompt[0] == '\n'/* || ms->quote*/)
+	if (!ms->args_size[0] || ms->prompt[0] == '\n' || !ms->prompt[0]/* || ms->quote*/)
+	{
+		free(ms->prompt);
 		return (0);
+	}
 	ms->quote = 0;
 	while (ms->args_size[++j]);
 	ms->args = ft_calloc(j + 1, sizeof(char *));
@@ -93,7 +96,7 @@ int	str_to_array(t_minishell *ms)
 			while (ms->prompt[x] == ' ' || ms->prompt[x] == '\t')
 				x++;
 			x--;
-			if (ms->prompt[x + 1] != '\n')
+			if (ms->prompt[x + 1] && ms->prompt[x + 1] != '\n')
 			{
 				ms->args[i][++j] = '\0';
 				i++;

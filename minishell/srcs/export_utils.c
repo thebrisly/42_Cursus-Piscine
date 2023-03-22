@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:42:47 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/03/14 10:28:53 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/22 12:56:43 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@ void	duplicate(t_minishell	*ms)
 {
 	t_env	*tmp;
 	t_env	*new;
+	char	*key;
+	char	*value;
 
 	tmp = ms->env_dup;
-	while(tmp)
+	while (tmp)
 	{
+		key = ft_strdup(tmp->key);
+		value = ft_strdup(tmp->value);
 		if (!tmp->value)
-			new = env_new(ft_strdup(tmp->key), 0);
+			new = env_new(key, 0);
 		else
-			new = env_new(ft_strdup(tmp->key), ft_strdup(tmp->value));
+			new = env_new(key, value);
 		if (!new)
 			return ;
 		env_add_end(&ms->env_dup2, new);
@@ -61,14 +65,29 @@ t_env	*replace_value(t_minishell *ms, char *str)
 
 void	free_export(t_minishell *ms)
 {
-	t_env *tmp;
+	t_env	*tmp;
 
-	while (ms->env_dup2)
+	while (ms->export)
 	{
-		tmp = ms->env_dup2->next;
-		free(ms->env_dup2->key);
-		free(ms->env_dup2->value);
-		free(ms->env_dup2);
-		ms->env_dup2 = tmp;
+		tmp = ms->export->next;
+		free(ms->export->key);
+		free(ms->export->value);
+		free(ms->export);
+		ms->export = tmp;
+	}
+}
+
+void	print_export(t_minishell *ms)
+{
+	t_env	*tmp;
+
+	tmp = ms->export;
+	while (tmp)
+	{
+		if (!tmp->value)
+			printf("declare -x %s\n", tmp->key);
+		else
+			printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
+		tmp = tmp->next;
 	}
 }

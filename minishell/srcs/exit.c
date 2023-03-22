@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:25:03 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/08 11:07:16 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:38:15 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	mini_exit(t_minishell *ms)
 	int		i;
 	char	*msg;
 
-	msg = "Thank you for using ₼ℹηℹℍΞ⅃L⁅℣.⁶⁶⁶⁆, by:\n	₦€₵℞ø₥ and ₿ℼℹ$₤¥\n";
+	msg = "exit\nThank you for using ₼ℹηℹℍΞ⅃L⁅℣.⁶⁶⁶⁆, by:\n	₦€₵℞ø₥ and ₿ℼℹ$₤¥\n";
 	i = -1;
 	while (ms->args_tmp[++i])
 		free(ms->args_tmp[i]);

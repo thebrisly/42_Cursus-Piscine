@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:33:50 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/14 15:07:28 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:59:36 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@
 
 void	mini_pwd(t_minishell *ms)
 {
-	char	*pwd;
+	char	*cwd;
 
-	pwd = get_value(ms, "PWD");
-	if (pwd)
-		printf("%s\n", pwd);
+	(void) ms;
+	cwd = malloc(PATH_MAX);
+	getcwd(cwd, PATH_MAX);
+	printf("%s\n", cwd);
 }

@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:34:38 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/12 12:55:52 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:10:34 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	env_init(t_minishell *ms)
 	i = 0;
 	while (ms->env[i])
 	{
-		tmp = ft_split(ms->env[i], '=');
+		tmp = ft_split2(ms->env[i], '=');
 		if (!tmp)
 			return ;
 		add_env_var(ms, ft_strdup(tmp[0]), ft_strdup(tmp[1]));

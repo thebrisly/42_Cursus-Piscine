@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:40:22 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/12 14:13:09 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:47:45 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*get_cmd(char **paths, char *cmd)
 	char	*command;
 
 	if (access(cmd, 0) == 0) //si arg en lui meme est deja path entiere
-		return(cmd);
+		return(ft_strdup(cmd));
 	while (*paths) //sinon, joindre path a arg et tester si correct
 	{
 		tmp = ft_strjoin(*paths, "/"); //rajouter '/' a fin de path
@@ -72,4 +72,35 @@ int	ft_strcmp(const char *s1, const char *s2)
 		s2++;
 	}
 	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}
+
+char	**ft_split2(char const *s, char c)
+{
+	char	**new_strs;
+	int		x;
+	size_t	i;
+	size_t	j;
+	int		start;
+
+	x = 0;
+	i = 0;
+	j = 0;
+	start = -42;
+	new_strs = malloc((word_counter(s, c) + 1) * sizeof(char *));
+	if (!s || !new_strs)
+		return (0);
+	while (i <= ft_strlen(s))
+	{
+		if (s[i] != c && start < 0)
+			start = i;
+		else if ((s[i] == c || !s[i]) && start >= 0 && (!x || !s[i]))
+		{
+			x++;
+			new_strs[j++] = str_maker(s, start, i);
+			start = -42;
+		}
+		i++;
+	}
+	new_strs[j] = 0;
+	return (new_strs);
 }

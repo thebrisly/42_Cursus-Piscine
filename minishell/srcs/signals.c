@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:35:17 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/03/09 11:22:18 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/03/22 13:01:23 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,25 @@
 
 void	signal_handler(int signum)
 {
-	if (signum == SIGINT && str && !ft_strncmp(str, "cat", 4))
+	if (signum == SIGINT && cat == 1)
 		ft_putstr_fd("\n", 2);
 	else if (signum == SIGINT) //ctrl+C
-		ft_putstr_fd("\b\b  \n\033[0;91m₼ℹηℹ\033[1;91mℍ\033[0;91mΞ⅃L⫸ \033[0m", 2);
-	if (signum == SIGQUIT && str && !ft_strncmp(str, "cat", 4))
+	{
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	//	ft_putstr_fd("\n\033[0;91m₼ℹηℹ\033[1;91mℍ\033[0;91mΞ⅃L⫸ \033[0m", 2);
+	}
+	if (signum == SIGQUIT && cat == 1)
 		ft_putstr_fd("Quit: 3\n", 2);
 	else if (signum == SIGQUIT)
-		ft_putstr_fd("\b\b  \b\b", 2);
-	if (str && str[0] != 6 && str[0] != 2)
-		free(str);
+	{
+		rl_on_new_line();
+		rl_redisplay();
+		write(2, "  \b\b", 4);
+	}
+	cat = 0;
 }
 
 void	signal_init(void)

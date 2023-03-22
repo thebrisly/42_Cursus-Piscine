@@ -6,7 +6,7 @@
 #    By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 10:00:34 by dferreir          #+#    #+#              #
-#    Updated: 2023/03/14 10:04:53 by lfabbian         ###   ########.fr        #
+#    Updated: 2023/03/22 13:00:30 by lfabbian         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,15 @@ HEADS_DIR	= ./incs/
 HEADS		= $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SRCS_DIR	= ./srcs/
-SRCS_FILES	= main.c parse.c signals.c utils.c echo.c env.c pwd.c exit.c is_builtin.c env_utils.c export.c export_utils.c unset.c cd.c
+SRCS_FILES	= main.c parse.c signals.c utils.c echo.c env.c pwd.c exit.c builtins.c env_utils.c export.c export_utils.c unset.c cd.c sort_export.c
 SRCS		:= ${addprefix ${SRCS_DIR}, ${SRCS_FILES}}
 
 OBJS_DIR	= ./objs/
 OBJS_FILES	:= ${SRCS_FILES:.c=.o}
 OBJS		:= ${addprefix ${OBJS_DIR}, ${OBJS_FILES}}
+
+LDFLAGS		= -lreadline -L /Users/dferreir/.brew/Cellar/readline/8.2.1/lib
+#LDFLAGS		= -lreadline -L .brew/opt/readline/lib -I .brew/opt/readline/include
 
 #COMMANDS
 CC			= gcc
@@ -51,7 +54,7 @@ all: ${NAME}
 
 #Compile normal executable
 ${NAME}: ${LIBFT} ${OBJS_DIR} ${OBJS}
-	@${CC} -g ${CFLAGS} ${LIBS} ${INCS} ${OBJS} -o ${NAME}
+	@${CC} -g ${CFLAGS} ${LIBS} ${INCS} ${OBJS} -o ${NAME} ${LDFLAGS}
 	@echo "$(GREEN)[$(BOLD)OK$(NORMAL)$(GREEN)]$(NORMAL) created and compiled object files"
 	@echo "$(GREEN)[$(BOLD)OK$(NORMAL)$(GREEN)]$(NORMAL) $(BOLD)$(NAME)$(NORMAL) is ready"
 
@@ -62,7 +65,7 @@ ${OBJS_DIR}:
 #Compile normals objects
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
 	@echo "$(RED)[$(BOLD)Compiling$(NORMAL)$(RED)]$(NORMAL) $<$(UP)$(CUT)"
-	@${CC} -g ${CFLAGS} ${INCS} -o $@ -c $<
+	@${CC} -g ${CFLAGS} ${INCS} -I/Users/dferreir/.brew/Cellar/readline/8.2.1/include -o $@ -c $<
 
 ${LIBFT}:
 	@make -C ${LIBFT_DIR}

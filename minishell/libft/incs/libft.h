@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dferreir <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:20:43 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/14 11:32:42 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:48:07 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 
 int		ft_toupper(int c);
+
+//inner//
+
+int		word_counter(const char *s, char c);
+
+char	*str_maker(const char *s, int start, int end);
 
 //bonus
 

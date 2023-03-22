@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 13:39:49 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/03/14 10:11:21 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:04:20 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ t_env	*env_last(t_env	*lst)
 		return (NULL);
 	while (lst->next)
 		lst = lst->next;
-
-	return(lst);
+	return (lst);
 }
 
 void	env_add_end(t_env **lst, t_env *new)
@@ -54,7 +53,7 @@ void	env_add_end(t_env **lst, t_env *new)
 
 int	env_size(t_env *lst)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (lst)
@@ -67,7 +66,7 @@ int	env_size(t_env *lst)
 
 void	free_env(t_minishell *ms)
 {
-	t_env *tmp;
+	t_env	*tmp;
 
 	while (ms->env_dup)
 	{

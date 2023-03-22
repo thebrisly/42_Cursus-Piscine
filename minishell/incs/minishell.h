@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:01:16 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/14 11:37:54 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/22 13:00:51 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,21 @@
 # include <stdarg.h>
 # include <limits.h>
 # include <fcntl.h>
+# include <signal.h>
+# include <termios.h>
+
+# include <stdbool.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <sys/syslimits.h>
+
+# include <readline/readline.h>
+# include <readline/history.h>
 # include "../libft/incs/libft.h"
 
 //STRUCTS
 
-char	*str;
+int	cat;
 
 typedef struct s_env
 {
@@ -37,6 +47,11 @@ typedef struct s_env
 
 typedef struct s_minishell
 {
+	int		ter_in;
+	int		ter_out;
+	int		input;
+	int		output;
+	int		out;
 	int		err;
 	int		err_prev;
 	int		dol;
@@ -62,12 +77,16 @@ typedef struct s_minishell
 
 //FUNCTIONS
 
-int	print_err(char *msg);
+int		print_err(char *msg);
 
 int		ft_strcmp(const char *s1, const char *s2);
 
+char	**ft_split2(char const *s, char c);
+
 /* builtin-cmds */
 int		is_builtin(t_minishell *ms);
+
+void	exec_builtin(t_minishell *ms);
 
 void	mini_echo(t_minishell *ms);
 
@@ -113,6 +132,8 @@ void    free_env(t_minishell *ms);
 void    print_export(t_minishell *ms);
 
 void    sort_export(t_minishell *ms);
+
+void	sort_utils(t_minishell *ms, t_env *current, t_env *temp, t_env *next);
 
 char	*get_value(t_minishell *ms, char *str);
 
