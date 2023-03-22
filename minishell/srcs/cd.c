@@ -24,6 +24,7 @@ void	set_dir(t_minishell *ms, char *dir)
 	ms->oldpwd = cwd;
 	free (cwd);
 }
+	//trouver pourquoi oldpwd change pas 1x sur 100
 
 void	mini_cd(t_minishell *ms)
 {
@@ -34,6 +35,7 @@ void	mini_cd(t_minishell *ms)
 	int		new_dir;
 
 	argument = ms->args_tmp[1];
+	// create function for this part (go_home) + pour cd -
 	if (!argument || (argument[0] == '~' && !argument[1]))
 	{
 		directory = get_value(ms, "HOME");
@@ -43,6 +45,7 @@ void	mini_cd(t_minishell *ms)
 			return ;
 		}
 	}
+	// create function 2 for this part (go_directory)
 	else
 	{
 		directory = 0;
@@ -65,6 +68,18 @@ void	mini_cd(t_minishell *ms)
 			// free (directory); ? pk ca marche meme quand je free
 		}
 	}
+	// create a function 
+	// void change_dir(t_minishell *ms, char *directory, char *argument)
+	// { 
+	// int new_dir
+	// new_dir = chdir(directory) 
+	/*if (new_dir == -1)
+	{
+		printf("cd: %s: No such file or directory\n", argument); //code d'erreur sur bash: 1
+		return ;
+	}/*
+	}
+
 	new_dir = chdir(directory);
 	if (new_dir == -1)
 	{
