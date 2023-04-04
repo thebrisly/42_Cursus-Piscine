@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:33:50 by dferreir          #+#    #+#             */
-/*   Updated: 2023/03/22 11:59:36 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/04 09:59:28 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void	mini_pwd(t_minishell *ms)
 	cwd = malloc(PATH_MAX);
 	getcwd(cwd, PATH_MAX);
 	printf("%s\n", cwd);
+	free(cwd);
 }

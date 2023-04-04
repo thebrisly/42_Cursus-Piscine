@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:59:00 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/03/22 13:04:38 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:38:21 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	sort_utils(t_minishell *ms, t_env *current, t_env *temp, t_env *next)
 {
 	(void) temp;
 	(void) next;
-
 	if (ms->export == NULL || ft_strcmp(current->key, ms->export->key) < 0)
 	{
 		current->next = ms->export;

@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:42:47 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/03/22 12:56:43 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:37:14 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,15 @@ void	duplicate(t_minishell	*ms)
 	t_env	*tmp;
 	t_env	*new;
 	char	*key;
-	char	*value;
 
 	tmp = ms->env_dup;
 	while (tmp)
 	{
 		key = ft_strdup(tmp->key);
-		value = ft_strdup(tmp->value);
 		if (!tmp->value)
 			new = env_new(key, 0);
 		else
-			new = env_new(key, value);
+			new = env_new(key, ft_strdup(tmp->value));
 		if (!new)
 			return ;
 		env_add_end(&ms->env_dup2, new);
