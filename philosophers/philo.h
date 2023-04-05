@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:50:28 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/04 20:55:19 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:01:37 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 typedef struct s_philo
 {
+	int			first_fork;
+	int			sec_fork;
+	t_data		data;
 	// mettre des trucs pour les philos ??
 } t_philo;
 

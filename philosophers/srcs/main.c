@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:54:07 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/04 21:00:52 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/05 13:37:04 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ int  main(int argc, char **argv)
 	if (!args_check(argc, argv)) //check args
 	{
 		philo_init(argc, argv, &philos); //data init
-		printf("good instructions\n");
-		while (philos.not_dead) // si egal a 0 ca veut dire qu'un philo est dead
+		while (philos.not_dead == 1) // si egal a 0 ca veut dire qu'un philo est dead
 		{
-
+			instructions(&philos);
 		}
 		// while (1);
 		// pthread_create() //pour creer un thread on ecrit ca comme ca -> il faudra stocker leur id dans philos_id :-)
