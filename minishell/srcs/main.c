@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:40:00 by dferreir          #+#    #+#             */
-/*   Updated: 2023/04/04 11:05:29 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:01:21 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	expander(t_minishell *ms, int i)
 	ms->i = i;
 	ms->j = -1;
 	ms->x = -1;
-	res = ft_calloc(100, sizeof(char));
+	res = ft_calloc(1000, sizeof(char));
 	tmp = 0;
 	ms->quote = 0;
 	expander_start(ms, res, tmp);
@@ -48,12 +48,24 @@ int	end_check(t_minishell *ms)
 {
 	int	i;
 
+	if (!ft_strncmp(ms->args[0], "||", 3)
+		|| !ft_strncmp(ms->args[0], "&&", 3)
+		|| !ft_strncmp(ms->args[0], "|", 2))
+		return (0);
+	if ((!ms->args[1] || !ms->args[2])
+		&& (!ft_strncmp(ms->args[0], "<", 2)
+			|| !ft_strncmp(ms->args[0], ">", 2)
+			|| !ft_strncmp(ms->args[0], ">>", 3)))
+		return (0);
 	i = -1;
 	while (ms->args[++i])
 		;
 	if (!ft_strncmp(ms->args[i - 1], "||", 3)
 		|| !ft_strncmp(ms->args[i - 1], "&&", 3)
-		|| !ft_strncmp(ms->args[i - 1], "|", 2))
+		|| !ft_strncmp(ms->args[i - 1], "|", 2)
+		|| !ft_strncmp(ms->args[i - 1], "<", 2)
+		|| !ft_strncmp(ms->args[i - 1], ">", 2)
+		|| !ft_strncmp(ms->args[i - 1], ">>", 3))
 		return (0);
 	return (1);
 }

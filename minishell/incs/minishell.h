@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 10:01:16 by dferreir          #+#    #+#             */
-/*   Updated: 2023/04/03 13:57:55 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:15:23 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,5 +210,21 @@ char	*cutter_end(t_minishell *ms, char *tmp, char *tmp2);
 void	expander_start(t_minishell *ms, char *res, char *tmp);
 
 void	expander_end(t_minishell *ms, char *res, int i);
+
+int		is_hd(t_minishell *ms);
+
+void	prepare_heredoc(t_minishell *ms);
+
+char	**else_exec_hd(t_minishell *ms);
+
+void	exec_heredoc(t_minishell *ms);
+
+int		is_single_cat(t_minishell *ms);
+
+void	pipe_check(t_minishell *ms);
+
+void	piper(t_minishell *ms, int i);
+
+void	quote_expander(t_minishell *ms, char *res);
 
 #endif

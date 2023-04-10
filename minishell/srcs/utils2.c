@@ -6,7 +6,7 @@
 /*   By: dferreir <dferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:38:06 by dferreir          #+#    #+#             */
-/*   Updated: 2023/04/04 10:15:01 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:07:25 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	phase_check(t_minishell *ms)
 	{
 		dup2(ms->dev_null, 1);
 		exec_builtin(ms);
-		dup2(ms->ter_out, 1);
+		if (!ms->in_out_acc)
+			dup2(ms->ter_out, 1);
+		else
+			dup2(ms->output, 1);
 	}
 	else if (is_builtin(ms) == 2)
 		exec_builtin(ms);
@@ -27,18 +30,7 @@ void	phase_check(t_minishell *ms)
 	if (!ms->cmd && !is_builtin(ms))
 		printf("command not found: %s\n", ms->args_tmp[0]);
 	if (ms->args[ms->end] && !ft_strncmp(ms->args[ms->end], "|", 2))
-	{
-		pipe(ms->pipe);
-		if (!ms->pip && ms->args[ms->end]
-			&& !ft_strncmp(ms->args[ms->end], "|", 2))
-			ms->pip = 1;
-		else if (ms->pip && (!ms->args[ms->end]
-				|| ft_strncmp(ms->args[ms->end], "|", 2)))
-		{
-			ms->pip = 2;
-			ms->f_touched = 1;
-		}
-	}
+		pipe_check(ms);
 	else
 		ms->f_touched = 1;
 }
@@ -49,8 +41,8 @@ void	phase_child(t_minishell *ms)
 	{
 		if (ms->pip == 1)
 		{
-			dup2(ms->pipe[1], 1);
-			close(ms->pipe[0]);
+			if (!ms->in_out_acc)
+				piper(ms, 1);
 		}
 		else if (ms->pip == 2)
 		{
@@ -61,13 +53,10 @@ void	phase_child(t_minishell *ms)
 			exec_builtin(ms);
 		else if (ms->cmd && is_builtin(ms) != 2)
 			execve(ms->cmd, ms->args_tmp, ms->env);
-		exit(1);
+		exit(ms->err);
 	}
 	else if (ms->pip && ms->pip != 2)
-	{
-		dup2(ms->pipe[0], 0);
-		close(ms->pipe[1]);
-	}
+		piper(ms, 0);
 }
 
 void	phase_end(t_minishell *ms)
@@ -77,10 +66,16 @@ void	phase_end(t_minishell *ms)
 		dup2(0, ms->pipe[0]);
 		ms->pip = 0;
 	}
-	wait(0);
+	waitpid(-1, &ms->err, 0);
+	if (ms->err)
+		ms->err /= 256;
 	if (!ms->cmd && !is_builtin(ms))
 		ms->err = 127;
-	free(ms->cmd);
+	if (ms->cmd)
+	{
+		free(ms->cmd);
+		ms->cmd = 0;
+	}
 	ms->err_prev = 0;
 	check_dir_file(ms);
 	if (ms->args[ms->end] && !ft_strncmp(ms->args[ms->end], "||", 3)

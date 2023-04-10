@@ -6,7 +6,7 @@
 /*   By: dferreir <dferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:50:44 by dferreir          #+#    #+#             */
-/*   Updated: 2023/04/04 14:58:18 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/04/10 12:59:51 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ void	init_vars_inloop(t_minishell *ms, int i)
 	}
 	ms->end = i;
 	i = ms->start - 1;
-	if (!ft_strncmp(ms->args[ms->start], "cat", 4)
-		&& (ms->args[ms->end - 1][0] == '-'
-		|| !ft_strncmp(ms->args[ms->end - 1], "cat", 4)))
+	if (is_single_cat(ms))
 		g_cat = 1;
 }
 
@@ -75,7 +73,7 @@ int	init_heredoc(t_minishell *ms)
 	int	i;
 
 	i = -1;
-	ms->i = -1;
+	ms->i = ms->start - 1;
 	if (heredoc_input(ms))
 	{
 		if (ms->paths)
@@ -88,6 +86,12 @@ int	init_heredoc(t_minishell *ms)
 			return (1);
 		else
 			return (2);
+	}
+	else if (ms->i == 173 && ms->paths)
+	{
+		while (ms->paths[++i])
+			free(ms->paths[i]);
+		free(ms->paths);
 	}
 	return (0);
 }

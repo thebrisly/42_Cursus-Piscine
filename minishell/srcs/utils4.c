@@ -6,7 +6,7 @@
 /*   By: dferreir <dferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:03:59 by dferreir          #+#    #+#             */
-/*   Updated: 2023/04/03 12:56:03 by dferreir         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:15:12 by dferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,7 @@ void	expander_start(t_minishell *ms, char *res, char *tmp)
 	while (ms->args[ms->i][++ms->j])
 	{
 		if (ms->args[ms->i][ms->j] == '\'' || ms->args[ms->i][ms->j] == '\"')
-		{
-			if (!ms->quote)
-				ms->quote = ms->args[ms->i][ms->j];
-			else
-			{
-				if (ms->args[ms->i][ms->j] != ms->quote)
-					res[++ms->x] = ms->args[ms->i][ms->j];
-				else
-					ms->quote = 0;
-			}
-		}
+			quote_expander(ms, res);
 		else if (ms->args[ms->i][ms->j] == '$'
 			&& (!ms->quote || ms->quote == '\"'))
 			expander_dollar(ms, res, tmp);
@@ -74,6 +64,9 @@ void	expander_start(t_minishell *ms, char *res, char *tmp)
 				|| !ft_strncmp(ms->args[ms->i], "<", 2)
 				|| !ft_strncmp(ms->args[ms->i], ">>", 3)))
 			detect_redirections(ms);
+		else if (ft_strncmp(ms->args[ms->start], "cd", 3)
+			&& (!ft_strncmp(ms->args[ms->i], ".", 2)
+				|| !ft_strncmp(ms->args[ms->i], "..", 3)));
 		else
 			res[++ms->x] = ms->args[ms->i][ms->j];
 	}
