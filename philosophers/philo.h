@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:50:28 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/13 17:40:45 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/15 11:28:00 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <unistd.h>
 
 
 /* -------------------- Structures -------------------- */
@@ -27,13 +28,12 @@ typedef struct s_data {
 	int 		time_to_sleep;
 	int			not_dead;
 	int			loop;
-	int			*forks;
 	pthread_t	*threads;
 } t_data;
 
 typedef struct s_philo
 {
-	int				fork; //chaque philo possede une fourchette
+	int				fork; //chaque philo possede une fourchette, quand elle est pris = 1 sinon 0
 	int				id;
 	int				last_meal;
 	int				ph_loop;
@@ -48,12 +48,12 @@ int	args_check(int argc, char **argv);
 int	check_eat_time();
 
 /* utils */
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 void	*ft_calloc(size_t count, size_t size);
 
 /* init */
-void	first_init(int argc, char **argv, t_data *data, t_philo *ph);
-int		philo_init(t_philo *ph, t_data *dt);
+void	first_init(int argc, char **argv, t_data *data);
+int		philo_init(t_data *dt, pthread_t *th);
 
 /* instructions.c */
 void	*routine(void *arg);

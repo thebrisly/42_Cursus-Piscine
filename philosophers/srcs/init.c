@@ -6,17 +6,14 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:37:44 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/13 15:15:20 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/15 11:19:47 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	first_init(int argc, char **argv, t_data *data, t_philo *ph)
+void	first_init(int argc, char **argv, t_data *data)
 {
-	(void) ph;
-	// int i = 0;
-
 	data->nbr_philo = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
@@ -24,39 +21,27 @@ void	first_init(int argc, char **argv, t_data *data, t_philo *ph)
 	if (argc == 6)
 		data->loop = ft_atoi(argv[5]);
 	data->not_dead = 1;
-	// while (i < data->nbr_philo)
-	// {
-	// 	printf("FORKS: %d\n", data->forks[i]);
-	// 	i++;
-	// }
 }
 
-int	philo_init(t_philo *ph, t_data *dt)
+int	philo_init(t_data *dt, pthread_t *th)
 {
 	int	i;
+	t_philo	*ph;
 
-	// i = 0;
-	// while (i < dt->nbr_philo)
-	// {
-	// 	printf("FORKS: %d\n", dt->forks[i]);
-	// 	i++;
-	// }
 	i = 0;
+	ph = malloc(sizeof(t_philo) * dt->nbr_philo);
+	if (!ph)
+		return (1);
 	while (i < dt->nbr_philo)
 	{
-		// t_args *args = malloc(sizeof(t_args));
-		ph[i].id = i;
-		ph[i].fork = 0; //if fork taken it will be 1
-		dt->forks[i] = ph[i].fork;
-		// printf("FORKS: %d\n", dt->forks[i]);
+		ph[i].id = i; //meme pas obligatoire en fait
+		ph[i].fork = 0;
 		ph[i].data = dt;
-
-		// args->ph1 = &ph[i];
+		// printf("ID: %d\n", ph[i].id);
 		// pthread_mutex_init(ph->mutex, NULL);
-		if (pthread_create(&dt->threads[i], NULL, routine, (void *) dt) != 0)
-			return (1);
+		if (pthread_create(&th[i], NULL, routine, (void *) ph) != 0)
+			return (0); //check la valeur de retour
 		i++;
 	}
-
-	return (0);
+	return (0); //check la valeur de retour
 }
