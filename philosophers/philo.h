@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:50:28 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/11 14:58:25 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:40:45 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PHILO_H
 # include <stdio.h>
 # include <pthread.h>
+# include <stdlib.h>
+# include <sys/time.h>
 
 
 /* -------------------- Structures -------------------- */
@@ -23,17 +25,20 @@ typedef struct s_data {
 	int			time_to_die;
 	int			time_to_eat;
 	int 		time_to_sleep;
-	int			eat_max;
 	int			not_dead;
-	pthread_t	threads;
+	int			loop;
+	int			*forks;
+	pthread_t	*threads;
 } t_data;
 
 typedef struct s_philo
 {
-	int			left_fork;
-	int			right_fork;
-	t_data		data;
-	// mettre des trucs pour les philos ??
+	int				fork; //chaque philo possede une fourchette
+	int				id;
+	int				last_meal;
+	int				ph_loop;
+	t_data			*data;
+	pthread_mutex_t	mutex;
 } t_philo;
 
 /* -------------------- functions -------------------- */
@@ -44,12 +49,13 @@ int	check_eat_time();
 
 /* utils */
 int	ft_atoi(const char *str);
+void	*ft_calloc(size_t count, size_t size);
 
 /* init */
-void	philo_init(int argc, char **argv, t_data *philo);
-void	thread_init(t_data *philo);
+void	first_init(int argc, char **argv, t_data *data, t_philo *ph);
+int		philo_init(t_philo *ph, t_data *dt);
 
 /* instructions.c */
-void	*routine();
+void	*routine(void *arg);
 
 #endif

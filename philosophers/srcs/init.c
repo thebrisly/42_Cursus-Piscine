@@ -6,37 +6,57 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:37:44 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/11 14:58:17 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:15:20 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	philo_init(int argc, char **argv, t_data *philo)
+void	first_init(int argc, char **argv, t_data *data, t_philo *ph)
 {
-	philo->nbr_philo = ft_atoi(argv[1]);
-	philo->time_to_die = ft_atoi(argv[2]);
-	philo->time_to_eat = ft_atoi(argv[3]);
-	philo->time_to_sleep = ft_atoi(argv[4]);
+	(void) ph;
+	// int i = 0;
+
+	data->nbr_philo = ft_atoi(argv[1]);
+	data->time_to_die = ft_atoi(argv[2]);
+	data->time_to_eat = ft_atoi(argv[3]);
+	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		philo->eat_max = ft_atoi(argv[5]);
-	philo->not_dead = 1;
-	thread_init(philo);
+		data->loop = ft_atoi(argv[5]);
+	data->not_dead = 1;
+	// while (i < data->nbr_philo)
+	// {
+	// 	printf("FORKS: %d\n", data->forks[i]);
+	// 	i++;
+	// }
 }
 
-void	thread_init(t_data *philo)
+int	philo_init(t_philo *ph, t_data *dt)
 {
-	int i;
+	int	i;
 
+	// i = 0;
+	// while (i < dt->nbr_philo)
+	// {
+	// 	printf("FORKS: %d\n", dt->forks[i]);
+	// 	i++;
+	// }
 	i = 0;
-	while (i < philo->nbr_philo)
+	while (i < dt->nbr_philo)
 	{
-		if (pthread_create(&philo->threads, NULL, routine, NULL) != 0)
-		{
-			printf("Failed to create thread\n");
-			return ;
-		}
-		pthread_join(philo->threads, NULL);
+		// t_args *args = malloc(sizeof(t_args));
+		ph[i].id = i;
+		ph[i].fork = 0; //if fork taken it will be 1
+		dt->forks[i] = ph[i].fork;
+		// printf("FORKS: %d\n", dt->forks[i]);
+		ph[i].data = dt;
+
+		// args->ph1 = &ph[i];
+		// pthread_mutex_init(ph->mutex, NULL);
+		if (pthread_create(&dt->threads[i], NULL, routine, (void *) dt) != 0)
+			return (1);
 		i++;
 	}
+
+	return (0);
 }

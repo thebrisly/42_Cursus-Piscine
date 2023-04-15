@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:40:58 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/11 14:58:23 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:51:16 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,21 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (atoi * sign);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	unsigned char	*tab;
+	unsigned long	i;
+
+	i = 0;
+	tab = malloc(count * size);
+	if (!tab)
+		return (NULL);
+	while (count * size > i)
+	{
+		tab[i] = 0;
+		i++;
+	}
+	return (tab);
 }

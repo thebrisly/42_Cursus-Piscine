@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:30:23 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/11 14:58:16 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/13 11:37:34 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,7 @@ int	check_eat_time()
 	// regarder avec la fonction  gettimeofday qui permet de calculer en ms le temps passé dessus
 	return (0);
 }
+
+// function to get the actual time
+
+//function that checks if actual time > time_to_die (if yes: dead)

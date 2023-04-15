@@ -6,7 +6,7 @@
 #    By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/04 19:59:37 by lfabbian          #+#    #+#              #
-#    Updated: 2023/04/11 14:58:24 by lfabbian         ###   ########.fr        #
+#    Updated: 2023/04/13 14:21:28 by lfabbian         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ NAME		= philo
 
 HEADS_LIST	= philo.h
 
-SRCS		= srcs/main.c srcs/checks.c srcs/utils.c srcs/init.c srcs/routine.c srcs/time.c
+SRCS		= srcs/main.c srcs/checks.c srcs/utils.c srcs/init.c srcs/routine.c
 
 OBJS	:= ${SRCS:.c=.o}
 
