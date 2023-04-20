@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:50:28 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/15 11:28:00 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:31:29 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 /* -------------------- Structures -------------------- */
 
 typedef struct s_data {
-	int			nbr_philo;
-	int			time_to_die;
-	int			time_to_eat;
-	int 		time_to_sleep;
-	int			not_dead;
-	int			loop;
-	pthread_t	*threads;
+	int				nbr_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int 			time_to_sleep;
+	int				not_dead;
+	int				loop;
+	pthread_mutex_t	*forks;
 } t_data;
 
 typedef struct s_philo
@@ -38,7 +38,6 @@ typedef struct s_philo
 	int				last_meal;
 	int				ph_loop;
 	t_data			*data;
-	pthread_mutex_t	mutex;
 } t_philo;
 
 /* -------------------- functions -------------------- */
@@ -53,7 +52,7 @@ void	*ft_calloc(size_t count, size_t size);
 
 /* init */
 void	first_init(int argc, char **argv, t_data *data);
-int		philo_init(t_data *dt, pthread_t *th);
+int		philo_init(t_data *dt, pthread_t *th, t_philo *ph);
 
 /* instructions.c */
 void	*routine(void *arg);

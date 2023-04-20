@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:37:44 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/15 11:19:47 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/20 17:10:48 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,20 @@ void	first_init(int argc, char **argv, t_data *data)
 	data->not_dead = 1;
 }
 
-int	philo_init(t_data *dt, pthread_t *th)
+int	philo_init(t_data *dt, pthread_t *th, t_philo *ph)
 {
 	int	i;
-	t_philo	*ph;
 
 	i = 0;
-	ph = malloc(sizeof(t_philo) * dt->nbr_philo);
-	if (!ph)
-		return (1);
 	while (i < dt->nbr_philo)
 	{
-		ph[i].id = i; //meme pas obligatoire en fait
+		ph[i].id = i;
 		ph[i].fork = 0;
 		ph[i].data = dt;
-		// printf("ID: %d\n", ph[i].id);
-		// pthread_mutex_init(ph->mutex, NULL);
-		if (pthread_create(&th[i], NULL, routine, (void *) ph) != 0)
-			return (0); //check la valeur de retour
+		pthread_mutex_init(&dt->forks[i], NULL);
+		if (pthread_create(&th[i], NULL, routine, (void *) &ph[i]) != 0)
+			return (0);
 		i++;
 	}
-	return (0); //check la valeur de retour
+	return (0);
 }

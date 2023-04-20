@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:24:32 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/15 11:34:04 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/04/20 17:10:49 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void    *routine(void *arg)
 
 int     main(int argc, char **argv)
 {
+
     if (argc != 2)
     {
         printf("Usage: %s number_of_philosophers\n", argv[0]);
