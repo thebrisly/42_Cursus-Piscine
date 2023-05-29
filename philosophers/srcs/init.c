@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:37:44 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/20 17:10:48 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:31:31 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	first_init(int argc, char **argv, t_data *data)
 	if (argc == 6)
 		data->loop = ft_atoi(argv[5]);
 	data->not_dead = 1;
+	data->start_time = get_time();
 }
 
 int	philo_init(t_data *dt, pthread_t *th, t_philo *ph)
@@ -39,4 +40,20 @@ int	philo_init(t_data *dt, pthread_t *th, t_philo *ph)
 		i++;
 	}
 	return (0);
+}
+
+
+/* The gettimeofday function takes a parameter of type timeval, which is a structure with the following members:
+	struct timeval {
+    time_t      tv_sec;     // Number of seconds since January 1, 1970
+    suseconds_t tv_usec;    // Number of microseconds (fractional part of seconds)
+
+	In the subject it is asked to use milliseconds, so we need to convert everything from seconds to ms before returning a value
+*/
+int	get_time(void)
+{
+	struct timeval tv;
+
+	gettimeofday(&tv, NULL);
+	return((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

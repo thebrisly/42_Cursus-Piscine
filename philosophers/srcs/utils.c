@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:40:58 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/13 14:51:16 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:35:28 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,14 @@ void	*ft_calloc(size_t count, size_t size)
 		i++;
 	}
 	return (tab);
+}
+
+void	check_forks(t_philo *ph)
+{
+	printf("SEG1\n");
+	pthread_mutex_lock(&ph->data->forks[ph->id]);
+	print_message(ph->id, get_time(), "has taken left fork", ph);
+	pthread_mutex_lock(&ph->data->forks[(ph->id + 1) % ph->data->nbr_philo]);
+	print_message(ph->id, get_time(), "has take right fork", ph);
+	printf("SEG2\n");
 }

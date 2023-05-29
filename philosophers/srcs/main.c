@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:54:07 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/04/20 14:27:45 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:45:07 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ int  main(int argc, char **argv)
 	if (!args_check(argc, argv))
 	{
 		philo = malloc(sizeof(t_philo) * data.nbr_philo);
-		if (!philo)
-			return (1);
 		threads = malloc((sizeof (pthread_t)) * data.nbr_philo);
+		data.forks = malloc(sizeof(pthread_mutex_t) * data.nbr_philo);
+		if (!philo || !threads || !data.forks) //le faire en plus clean
+			return (1);
 		first_init(argc, argv, &data); //data init
 		if (philo_init(&data, threads, philo) == 1)
 			return (1);
@@ -39,6 +40,10 @@ int  main(int argc, char **argv)
 			i++;
 		}
 	}
-	else
-		printf("Incorrect args\n");
+}
+
+void	print_message(int id, int ms, char *message, t_philo *ph)
+{
+	printf("%d || Philosopher no %d %s\n",
+		(ms - ph->data->start_time), id, message);
 }
