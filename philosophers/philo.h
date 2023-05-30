@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:50:28 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/05/29 14:35:36 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:11:41 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 # define EAT "is eating"
 # define SLEEP "is sleeping"
 # define THINK "is thinking"
-# define RFORK "has taken right fork"
-# define LFORK "has taken left fork"
+# define RTAKE "has taken right fork"
+# define LTAKE "has taken left fork"
 # define DIED "unfortunately (or not) died ☠️"
+# define PUTDOWN "has put down fork"
 
 /* -------------------- Structures -------------------- */
 
@@ -36,7 +37,8 @@ typedef struct s_data {
 	int 			time_to_sleep;
 	int				not_dead;
 	int				loop;
-	int				start_time;
+	int				start_t;
+	int				current_time;
 	pthread_mutex_t	*forks;
 } t_data;
 
