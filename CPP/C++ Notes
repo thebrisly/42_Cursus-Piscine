@@ -1,0 +1,23 @@
+This file will be my notes file. You will be able to see the process I go through to learn C++. I'm starting from scratch, with absolutely no background in this language. My only coding knowledge at the moment is C (and a bit of web)!
+
+So let's get started :)
+
+<h2> .cpp & .hpp <h2>
+
+Typically C++ source code files are given the suffix:
+
+.cpp (ex: hello.cpp) or
+.hpp (ex: hello.hpp)
+
+In the .cpp you will put your functions and in the .hpp the Class declarations.
+<h2> Compilation & Execution <h2>
+
+C++ is a compiled language. That means that to get a program to run, you must first translate it from the human-readable form to something a machine can “understand.”
+That translation is done by a program called a compiler. 
+
+To compile a c++ programme you can either use c++ or g++ (instead of gcc in C). For example:
+
+  [ g++ hello.cpp -o hello ]
+
+To execute this program you can just write: ./hello (name of the exectuable) on your terminal.
+
