@@ -23,3 +23,35 @@ To compile a c++ programme you can either use c++ or g++ (instead of gcc in C). 
 
 To execute this program you can just write: ./hello (name of the exectuable) on your terminal.
 
+
+
+<h2> Variables <h2>
+
+It's juste like in C. 
+
+int i = 0;
+float i = 10.0; etc.
+
+
+<h2> Standard input & output library <h2>
+
+In order to use some useful variables that will allow us to interact with the terminal, we need to include a library:
+#include <iostream>
+
+This will allow us to use std::cout, std::cin or even more things :) Here is an example:
+
+
+int main() {
+  
+  double tempf;
+  double tempc;
+  
+  std::cout << "What's the temp in Fahrenheit ? ";        //asking the user for the temp
+  std::cin >> tempf;                                      //will put the input in the tempf variable
+  
+  tempc = (tempf - 32) / 1.8;
+  
+  std::cout << "The temp is " << tempc << " degrees Celsius.\n";  //printing the temp in celsius in the terminal (output)
+  
+}
+
