@@ -10,6 +10,8 @@ Typically C++ source code files are given the suffix:
 .hpp (ex: hello.hpp)
 
 In the .cpp you will put your functions and in the .hpp the Class declarations.
+
+
 <h2> Compilation & Execution <h2>
 
 C++ is a compiled language. That means that to get a program to run, you must first translate it from the human-readable form to something a machine can “understand.”
