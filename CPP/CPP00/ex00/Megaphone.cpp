@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:40:34 by brisly            #+#    #+#             */
-/*   Updated: 2023/05/31 13:48:14 by brisly           ###   ########.fr       */
+/*   Updated: 2023/05/31 13:49:59 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int main(int argc, char **argv)
 {
-    (void) argc;
     int words = 1;
 
     if (argc == 1)
