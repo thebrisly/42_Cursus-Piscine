@@ -21,7 +21,7 @@ void	first_init(int argc, char **argv, t_data *data)
 	if (argc == 6)
 		data->loop = ft_atoi(argv[5]);
 	data->not_dead = 1;
-	data->start_time = get_time();
+	data->start_t = get_time();
 	data->current_time = 0;
 }
 
