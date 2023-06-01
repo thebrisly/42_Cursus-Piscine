@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:26:20 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/01 10:49:06 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/01 14:24:44 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,48 +16,53 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
+void search(PhoneBook &directory)
+{
+    std::cout << "⬇ --- Here's what's currently in the directory --- ⬇" << std::endl;
+    directory.show_directory();
+    std::cout << "\n";
+}
 
-void add(){
+void add(PhoneBook &directory){
     std::string fn, ln, nn, phone, secret;
 
-    std::cout << "What is the first name of your contact ?" << std::endl;
+    std::cout << " ⋆⸜(˙꒳​˙ ) Thank you for using the funniest PhoneBook ever. I need some information now...\n";
+    std::cout << "1. What is the first name of your contact ?" << std::endl;
     std::cin >> fn;
-    std::cout << "Its last name ?" << std::endl;
+    std::cout << "2. Its last name " << std::endl;
     std::cin >> ln;
-    std::cout << "If it has a nickname write it down. Otherwise just write "-"" << std::endl;
+    std::cout << "3. What's its nickname ?" << std::endl;
     std::cin >> nn;
-    std::cout << "What's its phone number ?" << std::endl;
+    std::cout << "4. What's its phone number ?" << std::endl;
     std::cin >> phone;
-    std::cout << "If you know it... tell me its deepest secret" << std::endl;
+    std::cout << "5. If you know it... tell me its deepest secret" << std::endl;
     std::cin >> secret;
     std::cout << "Contact added successfuly :). If you wanna search it now, just type SEARCH" << std::endl;
-    // envoyer ces informations a la classe phonebook qui elle appellera contact :)
-
+    directory.add_repertory(fn, ln, nn, phone, secret);
 }
 
 int main()
 {
     std::string action;
     
-    //PhoneBook directory;
+    PhoneBook directory(0);
 
+    std::cout << "☏  Welcome in my PhoneBook ☏" << std::endl;
     while (1)
     {
-        std::cout << "Which action do you want to take next?\n" << std::endl;
+        std::cout << "What do you wanna do ? (SEARCH, ADD or EXIT) \n" << std::endl; //voir si on le demande pas que dans certains cas
         std::cin >> action;
         if (action == "ADD")
-        {
-            std::cout << "adding new contact...\n";
-            add();
-        }
+            add(directory);
         else if (action == "SEARCH")
-            std::cout << "searching in repertory...\n";
-            //fonction pour search
+            search(directory);
         else if (action == "EXIT"){
-            std::cout << "Thank you for using the funniest PhoneBook ever (c'est faux)" << std::endl;
-            exit (0);
+            std::cout << "Thank you for using the funniest PhoneBook ever \033[95m(づ ᴗ _ᴗ)づ\033[0m" << std::endl;
+            break ;
+            //exit (0);
         }
-        else
-            std::cout << "Only these actions are possible: ADD, SEARCH or EXIT.\n";
+        //else
+        //    std::cout << "Only these actions are possible: ADD, SEARCH or EXIT.\n";
     }
+    return (0);
 }
