@@ -6,33 +6,51 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:41:19 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/01 14:15:23 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/01 22:00:03 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include <stdio.h>
 
-PhoneBook::PhoneBook(int value) : _size(value) {
+PhoneBook::PhoneBook(int value) : _size(value), _full(value) {
     std::cout << "\033[90mConstructor for PhoneBook called\033[0m" << std::endl;
 }
 
-PhoneBook::~PhoneBook(void){
+PhoneBook::~PhoneBook(void) {
     std::cout << "\033[90mDestructor for PhoneBook called\033[0m" << std::endl;
+}
+
+int PhoneBook::getsize(void) {
+    return this->_size;
+}
+
+void PhoneBook::setsize(void) {
+    if (this->getsize() == 8)
+        this->_size = 0;
+}
+
+int PhoneBook::getfull(void) {
+    return this->_full;
+}
+
+void PhoneBook::setfull(void) {
+    if (this->getfull() == 8)
+        this->_full = 7;
 }
 
 void PhoneBook::add_repertory(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string secret)
 {
-    //if (size == 8)
-    //    size == 0;
+    this->setsize();
+    this->setfull();
     this->_contacts[_size].savecontact(firstName, lastName, nickname, phoneNumber, secret);
     _size++;
+    _full++;
 }
 
 void PhoneBook::show_directory() const
 {
-    //std::cout << "⬇ --- Here's what's currently in the directory --- ⬇" << std::endl;
-    for (int i = 0; i < _size; i++)
+    for (int i = 0; i < _full; i++)
     {
         _contacts[i].showlittle();
     }
