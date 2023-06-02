@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:26:20 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/02 20:41:44 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/02 21:29:26 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,11 @@ int main()
     {
         std::cout << "\033[95m☏  Welcome in my PhoneBook ☏\033[0m" << std::endl;
         std::cout << "> What do you wanna do ? (SEARCH, ADD or EXIT) \n" << std::endl; //voir si on le demande pas que dans certains cas
-        std::cin >> action;
+        if (!std::getline(std::cin, action))
+        {
+            if (std::cin.eof())
+                break;
+        }
         std::cout << std::endl;
         if (action == "ADD")
             add(directory);
