@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 08:00:29 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/02 12:28:36 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/02 20:18:14 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ std::string Contact::tenchar(std::string test) const
 
 void Contact::showlittle(void) const
 {
-    std::cout << "| " << std::setw(10) << std::right << this->_index << "| "
+    std::cout << "| " << std::setw(10) << std::right << this->_index + 1<< "| "
           << std::setw(10) << std::right << tenchar(this->_firstName) << "| "
           << std::setw(10) << std::right << tenchar(this->_lastName) << "| "
           << std::setw(10) << std::right << tenchar(this->_nickname) << "|\n";

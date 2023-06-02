@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:26:20 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/02 12:26:37 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/02 20:41:44 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <string>
 #include <stdlib.h>
 #include <cctype>
-#include <limits.h>
+#include <limits>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
@@ -24,46 +24,28 @@
 int ask_index(PhoneBook &directory)
 {
     int index;
-    
-    if (std::cin >> index)
+
+    while (true) 
     {
-        while (index > 8 || index > directory.getsize() - 1)
+        std::cin >> index;
+        std::cin.ignore(1000, '\n');
+
+        if (std::cin.fail()) 
         {
             std::cin.clear();
             std::cin.ignore(10000, '\n');
-            std::cout << "It seems that no contact exists at this index... Try again" << std::endl;
-            std::cin >> index;
+            std::cout << "\033[31m(ভ_ ভ) ރ Give me a valid integer, please!\033[0m" << std::endl;
         }
-    }
-    else
-    {
-        std::cin.clear();
-        std::cin.ignore(10000, '\n');
-        std::cout << "\033[31m(ভ_ ভ) ރ Give me an integer and not a string !\033[0m" << std::endl;
-        std::cin >> index;
-    }
-    return (index);
-}
-
-/*int ask_index(void) //voir si je peux faire une meilleure fonction pour la verification d'index
-{
-    std::string input;
-    int         index;
-
-    std::cin >> input;
-    if (!std::isdigit(input))
-    {
-        if (input == "EXIT")
+        else if (index == 0)
             return (-1);
-        else {
-            std::cout << "\033[31m(ভ_ ভ) ރ Give me a valid input !\033[0m" << std::endl;
-            std::cin >> index;
-        }
+        else if (index <= 0 || index > 8 || index > directory.getfull()) 
+            std::cout << "It seems that no contact exists at this index... Try again" << std::endl;
+        else
+            break;
     }
-    else
-        index = std::atoi(input);
-    return (index);
-}*/
+
+    return (index - 1);
+}
 
 void search(PhoneBook &directory)
 {
@@ -81,7 +63,7 @@ void search(PhoneBook &directory)
     }
     std::cout << "-------------------------------------------------" << std::endl;
     std::cout << "\n";
-    std::cout << "> You can now select a contact by its index" << std::endl; // a voir pour le exit
+    std::cout << "> You can now select a contact by its index or quit by clcking on 0" << std::endl; // a voir pour le exit
     index = ask_index(directory);
     if (index >= 0)
         directory.show_contact(index);
@@ -124,12 +106,11 @@ int main()
             add(directory);
         else if (action == "SEARCH")
             search(directory);
-        else if (action == "EXIT"){
+        else if (action == "EXIT")
+        {
             std::cout << "> Thank you for using the funniest PhoneBook ever \033[95m(づ ᴗ _ᴗ)づ\033[0m" << std::endl;
             break;
         }
-        else
-            std::cout << "Only these actions are possible: ADD, SEARCH or EXIT.\n";
     }
     return (0);
 }
