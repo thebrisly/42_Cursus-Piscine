@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:41:19 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/01 22:00:03 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/02 08:05:46 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void PhoneBook::add_repertory(std::string firstName, std::string lastName, std::
 {
     this->setsize();
     this->setfull();
-    this->_contacts[_size].savecontact(firstName, lastName, nickname, phoneNumber, secret);
+    this->_contacts[_size].savecontact(firstName, lastName, nickname, phoneNumber, secret, getsize());
     _size++;
     _full++;
 }

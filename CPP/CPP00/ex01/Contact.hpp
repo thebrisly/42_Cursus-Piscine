@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:26:17 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/01 13:36:41 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/02 08:46:34 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CONTACT_HPP
 
 #include <iostream>
+#include <string>
+#include <iomanip>
 //In the .hpp file I always need to declare my classes and the functions' prototype. in the .cpp we write their functions
 
 class Contact {
@@ -31,8 +33,9 @@ class Contact {
         Contact();
         ~Contact();
 
-        void savecontact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string secret);
+        void savecontact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string secret, int index);
         void showlittle(void) const;
+        std::string tenchar(std::string test) const;
 };
 
 #endif
