@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:41:19 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/02 08:05:46 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/02 12:10:12 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,8 @@ void PhoneBook::show_directory() const
     {
         _contacts[i].showlittle();
     }
+}
+
+void PhoneBook::show_contact(int index) const{
+    _contacts[index].showall();
 }

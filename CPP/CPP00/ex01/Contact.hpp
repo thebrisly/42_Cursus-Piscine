@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:26:17 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/02 08:46:34 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/02 12:05:09 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class Contact {
 
         void savecontact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string secret, int index);
         void showlittle(void) const;
+        void showall(void) const;
         std::string tenchar(std::string test) const;
 };
 

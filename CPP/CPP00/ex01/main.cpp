@@ -6,13 +6,14 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:26:20 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/02 08:54:10 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/02 12:26:37 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <cctype>
 #include <limits.h>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
@@ -20,13 +21,20 @@
 // https://stackoverflow.com/questions/5131647/why-would-we-call-cin-clear-and-cin-ignore-after-reading-input 
 // EXPLICATIONS pour .clear & .ignore
 
-int ask_index(void)
+int ask_index(PhoneBook &directory)
 {
     int index;
     
-    std::cout << "> You can now select a contact by its index" << std::endl;
     if (std::cin >> index)
-        return (index);
+    {
+        while (index > 8 || index > directory.getsize() - 1)
+        {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            std::cout << "It seems that no contact exists at this index... Try again" << std::endl;
+            std::cin >> index;
+        }
+    }
     else
     {
         std::cin.clear();
@@ -37,36 +45,64 @@ int ask_index(void)
     return (index);
 }
 
+/*int ask_index(void) //voir si je peux faire une meilleure fonction pour la verification d'index
+{
+    std::string input;
+    int         index;
+
+    std::cin >> input;
+    if (!std::isdigit(input))
+    {
+        if (input == "EXIT")
+            return (-1);
+        else {
+            std::cout << "\033[31m(ভ_ ভ) ރ Give me a valid input !\033[0m" << std::endl;
+            std::cin >> index;
+        }
+    }
+    else
+        index = std::atoi(input);
+    return (index);
+}*/
+
 void search(PhoneBook &directory)
 {
     int index;
     
-    (void) index;
+    (void) index; //pas oublier d'enlever ensuite
     std::cout << "⬇ -- Here's what's currently in the directory -- ⬇" << std::endl;
     std::cout << "-------------------------------------------------" << std::endl;
     std::cout << "|   Index   | First Name | Last Name| Nick Name |" << std::endl;
     std::cout << "-------------------------------------------------" << std::endl;
     directory.show_directory();
+    if (directory.getsize() == 0) {
+        std::cout << "\033[31mHO HO... Directory seems empty ! ADD someone in the PhoneBook.\033[0m\n\n";
+        return ;
+    }
     std::cout << "-------------------------------------------------" << std::endl;
     std::cout << "\n";
-    index = ask_index();
+    std::cout << "> You can now select a contact by its index" << std::endl; // a voir pour le exit
+    index = ask_index(directory);
+    if (index >= 0)
+        directory.show_contact(index);
 }
 
 void add(PhoneBook &directory)
 {
     std::string fn, ln, nn, phone, secret;
 
-    std::cout << " \033[95m⋆⸜(˙꒳​˙ )\033[0m Hello my dear ~ I need some information now...\n";
+    std::cout << " \033[95m(◡◕⏖◕)ᑐ🝐 \033[0m Hello my dear ~ I need some information now \033[95m⠁⭒*.✩.*⭒⠁\033[0m" << std::endl;
     std::cout << "> What is the first name of your contact ?" << std::endl;
-    std::cin >> fn;
+    std::cin >> std::ws;
+    std::getline(std::cin, fn);
     std::cout << "> Its last name ?" << std::endl;
-    std::cin >> ln;
+    std::getline(std::cin, ln);
     std::cout << "> What's its nickname ?" << std::endl;
-    std::cin >> nn;
+    std::getline(std::cin, nn);
     std::cout << "> What's its phone number ?" << std::endl;
-    std::cin >> phone;
+    std::getline(std::cin, phone);
     std::cout << "> If you know it... tell me its deepest secret" << std::endl;
-    std::cin >> secret;
+    std::getline(std::cin, secret);
     std::cout << "> Contact added successfuly :). If you wanna search it now, just type SEARCH\n" << std::endl;
     directory.add_repertory(fn, ln, nn, phone, secret);
 }

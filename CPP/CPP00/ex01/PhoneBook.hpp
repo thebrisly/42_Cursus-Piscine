@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:25:45 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/01 22:00:37 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/02 12:10:22 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class PhoneBook
 
         void add_repertory(std::string firstName, std::string lastName, std::string nickname, std::string secret, std::string phoneNumber);
         void show_directory(void) const;
+        void show_contact(int index) const;
         int getsize(void);
         void setsize(void);
         int getfull(void);

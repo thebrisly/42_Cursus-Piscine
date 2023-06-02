@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 08:00:29 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/02 08:47:26 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/02 12:28:36 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,15 @@ void Contact::showlittle(void) const
           << std::setw(10) << std::right << tenchar(this->_firstName) << "| "
           << std::setw(10) << std::right << tenchar(this->_lastName) << "| "
           << std::setw(10) << std::right << tenchar(this->_nickname) << "|\n";
+}
+
+void Contact::showall(void) const 
+{
+    std::cout << "\n ‧͙⁺˚*･༓☾   ☽༓･*˚⁺‧͙ \n" << std::endl;
+    std::cout << "- First Name:         " << this->_firstName << std::endl;
+    std::cout << "- Last Name:          " << this->_lastName << std::endl;
+    std::cout << "- Nick Name:          " << this->_nickname << std::endl;
+    std::cout << "- Phone Number:       " << this->_phoneNumber << std::endl;
+    std::cout << "- Darkest secret :    " << this->_secret << std::endl;
+    std::cout << "\n ‧͙⁺˚*･༓☾   ☽༓･*˚⁺‧͙ \n" << std::endl;
 }
