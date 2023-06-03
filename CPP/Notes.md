@@ -72,3 +72,21 @@ Here are some useful things that i learned about classes:
 - You can access class members using the dot operator (object.class_member).
 - Attributes, also known as member data, consist of information about an instance of the class.
 - Methods, also known as member functions, are functions that you can use with an instance of the class.
+
+<h2> Pointers & References </h2>
+
+- A pointer is a variable that holds the memory address of another variable. It allows indirect access to the value stored in that memory address. Pointers are declared using the (*) symbol.
+
+Example:
+
+      int x = 5;
+      int* ptr = &x;
+
+- Pointer by reference is a mechanism in C++ that allows passing a pointer to a function by reference. It is used when you want to modify the pointer itself inside a function, rather than just the value it points to. A reference can be thought of as an alias or an alternative name for an existing variable. When you declare a reference variable, it becomes an alternative name for an existing object or variable in your code. It's declarder using the & symbol.
+
+Example:
+
+      int x = 5;
+      int &ref = x;
+
+      ref = 10; -- will also modify x !
