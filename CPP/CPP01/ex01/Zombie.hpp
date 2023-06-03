@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 21:08:23 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/02 21:59:00 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/03 08:11:56 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ class Zombie {
         std::string _name;
 
     public:
-        Zombie(std::string name);
+        Zombie();
         ~Zombie();
         
         void announce(void);
+        std::string getName(void);
+        void setName(std::string new_name);
 };
