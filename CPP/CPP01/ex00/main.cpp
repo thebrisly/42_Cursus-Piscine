@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 21:36:10 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/02 22:40:16 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/03 21:12:18 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,8 @@
 #include <iostream>
 #include <string>
 
-Zombie *newZombie(std::string name)
-{
-    return(new Zombie(name));
-}
-
-void randomChump(std::string name)
-{
-    Zombie *new_zombie;
-    
-    new_zombie = new Zombie(name);
-    new_zombie->announce();
-    delete(new_zombie);
-}
+Zombie *newZombie(std::string name);
+void randomChump(std::string name);
 
 int main()
 {

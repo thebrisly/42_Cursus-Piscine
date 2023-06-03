@@ -1,7 +1,7 @@
 NAME = zombie
 
 OBJ_DIR = objs/
-SRC = Zombie.cpp main.cpp
+SRC = Zombie.cpp main.cpp newZombie.cpp randomChump.cpp
 OBJS = $(addprefix $(OBJ_DIR), $(OBJ))
 OBJ := $(SRC:%.cpp=%.o)
 COMPILE = c++
