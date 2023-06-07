@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 08:58:29 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/07 10:05:14 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/07 10:12:21 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ Fixed::Fixed() : _fixedNumber(0) {
     std::cout << "\033[90mConstructor for Fixed called\033[0m" << std::endl;
 }
 
-Fixed::Fixed(int number) : _fixedNumber(number) {
+//Did it here but I just saw that we will do it in the next exercise lol
+/*Fixed::Fixed(int number) : _fixedNumber(number) {
     std::cout << "\033[90mConstructor 2 for Fixed called\033[0m" << std::endl;
-}
+}*/
 
 Fixed::Fixed (Fixed &constructor) {
     std::cout << "\033[90mCopy constructor for Fixed called\033[0m" << std::endl;

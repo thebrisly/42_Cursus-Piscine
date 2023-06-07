@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 08:55:14 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/07 09:59:53 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/07 10:11:43 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ int main( void )
     std::cout << b.getRawBits() << std::endl;
     std::cout << c.getRawBits() << std::endl;
 
-    std::cout << "\n --- Just another test to better understand ad hoc polymorphism :" << std::endl;
+    /*std::cout << "\n --- Just another test to better understand ad hoc polymorphism :" << std::endl;
     Fixed d (42);
     std::cout << d.getRawBits() << std::endl;
+    //Did it here but I just saw that we will do it in the next exercise lol
+    */
     
     return 0;
 }
