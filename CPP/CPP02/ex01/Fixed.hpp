@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 08:58:37 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/07 10:17:36 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/07 14:32:03 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ class Fixed { //a canonic class contains:
         Fixed(); //default constructor
         Fixed(int const number); //default int constructor
         Fixed(float const number); //default float constructor
-        Fixed (Fixed &src); //copy constructor
+        Fixed(const Fixed &src); //copy constructor
 
         // https://www.youtube.com/watch?v=ZcmQ5y7QyTc Great video to understand overloading operator
         //In this exercise this is useless because we don't use it at all. It's just to learn how to do canonic classes
         Fixed& operator=(Fixed const &src); //overloading operator for =
-        Fixed& operator<<(Fixed const &src); //overloading operator for <<
         
         ~Fixed(); //default destructor
 
@@ -38,5 +37,7 @@ class Fixed { //a canonic class contains:
         int _fixedNumber;
         static int const _bits = 8;
 };
+
+std::ostream & operator<<(std::ostream &os, const Fixed &src); //overloading operator for <<
 
 #endif
