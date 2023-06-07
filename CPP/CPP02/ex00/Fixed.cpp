@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 08:58:29 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/07 09:57:04 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/07 10:05:14 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ Fixed::Fixed (Fixed &constructor) {
     *this = constructor;
 }
 
+//In this exercise this is useless because we don't use it at all. It's just to learn how to do canonic classes
 Fixed & Fixed::operator=(Fixed const &src){
     std::cout << "\033[90mAssignment operator called\033[0m" << std::endl;
 
