@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 08:55:14 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/07 11:07:17 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/09 07:59:21 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 int main( void ) {
     Fixed a;
-    Fixed const b( 10 );
-    Fixed const c( 42.42f );
-    Fixed const d( b );
+    Fixed const b( 10 ); //Caling the default constructor with int
+    Fixed const c( 42.42f ); //calling the default constructor with float
+    Fixed const d( b ); // calling the copy constructor
 
-    a = Fixed( 1234.4321f );
+    a = Fixed( 1234.4321f ); //calling the overloaded assignment operator (=)
     
+    // here we will always call the overloaded assignment operator (<<)
     std::cout << "a is " << a << std::endl;
     std::cout << "b is " << b << std::endl;
     std::cout << "c is " << c << std::endl;
