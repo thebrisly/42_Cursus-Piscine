@@ -6,18 +6,18 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:27:36 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/09 21:31:37 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/09 21:55:59 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-#include "ScravTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
     ClapTrap    First("Ben");
     ClapTrap    Second("John");
-    ScravTrap   Third("Laura");
+    ScavTrap   Third("Laura");
 
     std::cout << "\n(ง •_•)ง The Fight can start (ง •_•)ง\n" << std::endl;
 

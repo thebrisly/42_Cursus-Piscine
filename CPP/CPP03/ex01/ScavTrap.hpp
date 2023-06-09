@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScravTrap.hpp                                      :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCRAVTRAP_HPP
-# define SCRAVTRAP_HPP
+#ifndef ScavTRAP_HPP
+# define ScavTRAP_HPP
 # include <string>
 # include <iostream>
 # include "ClapTrap.hpp"
 
-class ScravTrap : public ClapTrap
+class ScavTrap : public ClapTrap
 {
     public:
-        ScravTrap(std::string name);
-        ScravTrap(ScravTrap const &source);
-        ScravTrap& operator=(ScravTrap const &src);
-        ~ScravTrap();
+        ScavTrap(std::string name);
+        ScavTrap(ScavTrap const &source);
+        ScavTrap& operator=(ScavTrap const &src);
+        ~ScavTrap();
 
         void attack(const std::string &target);
 
