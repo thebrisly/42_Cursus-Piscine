@@ -6,22 +6,24 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:27:36 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/09 14:32:38 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/09 21:19:44 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ScravTrap.hpp"
 
 int main()
 {
     ClapTrap    First("Ben");
     ClapTrap    Second("John");
-    ClapTrap    Third(First);
+    ScravTrap   Third("Laura");
 
     std::cout << "\n(ง •_•)ง The Fight can start (ง •_•)ง\n" << std::endl;
 
     First.status();
     Second.status();
+    Third.status();
     
     First.attack(Second.getName());
     Second.takeDamage(First.getDamage());
@@ -32,11 +34,14 @@ int main()
     Second.attack(First.getName());
     First.takeDamage(Second.getDamage());
     std::cout << "\n";
-    std::cout << "It's such a shame for the best fighter (aka " << First.getName() << ") to have taken a blow. He will take a little break." << std::endl;
     First.beRepaired(5);
+    Third.attack(First.getName());
+    First.takeDamage(Third.getDamage());
+    First.attack(Third.getName());
 
     First.status();
     Second.status();
+    Third.status();
 
     std::cout << "\nᴛʜᴇ fight ᴇɴᴅᴇᴅ\n" << std::endl;
 }

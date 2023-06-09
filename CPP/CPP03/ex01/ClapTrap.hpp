@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:27:52 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/09 15:16:26 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/09 20:47:10 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <iostream>
 
 class ClapTrap {
-    private:
+    protected:
         std::string     _name;
         int             _hitPoints;
         int             _energyPoints;
@@ -35,9 +35,8 @@ class ClapTrap {
 
         std::string getName (void);
         int getDamage (void);
-        int getHit(void);
-        int getEnergy(void);
 
+        
 };
 
 #endif
