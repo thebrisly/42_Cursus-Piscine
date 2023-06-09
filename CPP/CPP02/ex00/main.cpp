@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 08:55:14 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/07 10:11:43 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/09 07:56:15 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 int main( void ) 
 {
-    Fixed a;
-    Fixed b(a); //constructeur par parametre
-    Fixed c; //constructeur par copie (pcq apres c = b)
+    Fixed a; //here we call the default constructor
+    Fixed b(a); //here we call the copy constructor
+    Fixed c; 
 
-    c = b;
+    c = b; //here we call the overloaded assignment operator !
 
     std::cout << a.getRawBits() << std::endl;
     std::cout << b.getRawBits() << std::endl;
