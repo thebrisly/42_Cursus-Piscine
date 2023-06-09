@@ -1,7 +1,7 @@
 NAME = test
 
 OBJ_DIR = objs/
-SRC = main.cpp Fixed.cpp
+SRC = main.cpp ClapTrap.cpp
 OBJS = $(addprefix $(OBJ_DIR), $(OBJ))
 OBJ := $(SRC:%.cpp=%.o)
 COMPILE = c++

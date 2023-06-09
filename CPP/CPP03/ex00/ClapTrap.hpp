@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:27:52 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/08 21:38:41 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/09 08:38:37 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ class ClapTrap {
         int             _attackDamage;
 
     public:
-        ClapTrap(std::string name);
-        ~ClapTrap();
-        ClapTrap(const ClapTrap &src);
+        ClapTrap(std::string name);                 // default constructor
+        ~ClapTrap();                                // default destructor
+        ClapTrap(ClapTrap const &src);              // copy constructor
+        ClapTrap& operator=(ClapTrap const &src);   // overloading operator for =
 
         void attack(const std::string &target);
         void takeDamage(unsigned int amount);
-        void beRepaired(unsigned int amount);
+        std::string getName (void);
+        //void beRepaired(unsigned int amount);
 };
 
 #endif
