@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:27:36 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/09 21:19:44 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/09 21:31:37 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,15 @@ int main()
     First.takeDamage(Second.getDamage());
     std::cout << "\n";
     First.beRepaired(5);
+    std::cout << "\n";
     Third.attack(First.getName());
     First.takeDamage(Third.getDamage());
+    std::cout << "\n";
     First.attack(Third.getName());
+    std::cout << "\n";
+    Third.guardGate();
+    // First.guardGate();   if you want to test this to see that it doesn't work.
+    std::cout << "\n";
 
     First.status();
     Second.status();

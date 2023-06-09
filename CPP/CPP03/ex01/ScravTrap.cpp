@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:08:12 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/09 21:09:34 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/09 21:29:27 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,9 @@ ScravTrap& ScravTrap::operator=(ScravTrap const &src) {
     this->_attackDamage = src._attackDamage;
 
     return (*this);
+}
+
+void ScravTrap::guardGate()
+{
+    std::cout << "WARNING ! The big ScravTrap " << this->_name << " is now garding the gate... be careful" << std::endl;
 }
