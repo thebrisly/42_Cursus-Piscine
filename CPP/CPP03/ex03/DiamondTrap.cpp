@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 09:38:13 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/10 10:25:56 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/10 10:32:45 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ DiamondTrap::DiamondTrap(std::string name) {
     this->_energyPoints = ScavTrap::_energyPoints;
     this->_attackDamage = FragTrap::_attackDamage;
 }
-
+                                           
 DiamondTrap::DiamondTrap(DiamondTrap const &src){
     std::cout << "Copy constructor for DiamondTrap " << this->_name << " called" << std::endl;
     this->_name = src.ClapTrap::_name;
