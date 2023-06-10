@@ -6,13 +6,14 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:27:36 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/09 21:56:26 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/10 10:10:30 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
@@ -20,6 +21,7 @@ int main()
     ClapTrap    Second("John");
     ScavTrap   Third("Laura");
     FragTrap    Fourth("Ann");
+    DiamondTrap Fifth("JD");
 
 
     std::cout << "\n(ง •_•)ง The Fight can start (ง •_•)ง\n" << std::endl;
