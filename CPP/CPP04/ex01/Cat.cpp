@@ -15,10 +15,12 @@
 Cat::Cat() {
     std::cout << "\033[90mConstructor for a Cat called\033[0m" << std::endl;
     this->type = "Cat";
+    this->_brain = new Brain();
 }
 
 Cat::~Cat() {
     std::cout << "\033[90mDestructor for a Cat called\033[0m" << std::endl;
+    delete this->_brain;
 }
 
 Cat::Cat(const Cat &src) : Animal(src) {
@@ -28,9 +30,14 @@ Cat::Cat(const Cat &src) : Animal(src) {
 
 Cat &Cat::operator=(const Cat &src) {
     this->type = src.type;
+    this->_brain = new Brain(*(src._brain));
     return (*this);
 }
 
 void Cat::makeSound() const {
     std::cout << "MIAOUUUUUUU" << std::endl;
+}
+
+void Cat::setType(std::string newType) {
+    this->type = newType;
 }

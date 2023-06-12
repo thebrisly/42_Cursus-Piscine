@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 08:06:50 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/12 09:10:17 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/12 14:10:26 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "Animal.hpp"
 # include <string>
 # include <iostream>
+# include "Brain.hpp"
 
 class Cat : public Animal {
     public:
@@ -24,6 +25,10 @@ class Cat : public Animal {
         virtual ~Cat(); //bc animal is a polymorph object
 
         void makeSound(void) const;
+        void setType(std::string newType);
+        
+    private:
+        Brain* _brain;
 
 };
 

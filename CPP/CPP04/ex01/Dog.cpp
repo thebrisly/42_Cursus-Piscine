@@ -15,10 +15,12 @@
 Dog::Dog() {
     std::cout << "\033[90mConstructor for a Dog called\033[0m" << std::endl;
     this->type = "Dog";
+    this->_brain = new Brain();
 }
 
 Dog::~Dog() {
     std::cout << "\033[90mDestructor for a Dog called\033[0m" << std::endl;
+    delete this->_brain;
 }
 
 Dog::Dog(const Dog &src) : Animal(src) {
@@ -28,9 +30,14 @@ Dog::Dog(const Dog &src) : Animal(src) {
 
 Dog &Dog::operator=(const Dog &src) {
     this->type = src.type;
+    this->_brain = new Brain;
     return (*this);
 }
 
 void Dog::makeSound() const {
     std::cout << "WOOF WOOF" << std::endl;
+}
+
+void Dog::setType(std::string newType) {
+    this->type = newType;
 }
