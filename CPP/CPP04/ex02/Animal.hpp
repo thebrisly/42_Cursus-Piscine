@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 08:06:50 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/12 14:44:21 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/12 20:54:14 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define ANIMAL_HPP
 # include <string>
 # include <iostream>
+
+// a class is abstract if it contains at least one abstract method; 
+// it cannot be instantiated, but its non-abstract subclasses can.
 
 class Animal {
     public:

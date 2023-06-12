@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 08:06:39 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/12 09:01:59 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/12 21:02:36 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ Animal::Animal(const Animal &src) {
 Animal &Animal::operator=(const Animal &src) {
     this->type = src.type;
     return (*this);
-}
-
-void Animal::makeSound() const {
-    std::cout << "An animal can make a lot of different sounds... I don't know which one to choose." << std::endl;
 }
 
 std::string Animal::getType() const {
