@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:30:23 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/05/30 13:20:19 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/06/14 13:52:20 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,37 @@ int	args_check(int argc, char **argv)
 	return (1);
 }
 
-int	check_eat_time()
+int check_death(t_philo *ph)
 {
-	return (0);
+	return (ph->data->dead);
 }
 
-//function that checks if actual time > time_to_die (if yes: dead)
 
-//check if time to eat is respected
-
-void	check_forks(t_philo *ph)
+void check_forks(t_philo *ph)
 {
-	if (ph[ph->id].fork == 0 && ph[ph->id + 1].fork == 0)
-	{
-		pthread_mutex_lock(&ph->data->forks[ph->id]);
-		ph[ph->id].fork = 1;
-		print_message(ph->id, ph->data->current_time+= 10, LTAKE, ph); //need to find a time to put here
-		pthread_mutex_lock(&ph->data->forks[(ph->id + 1)]);
-		ph[ph->id + 1].fork = 1;
+    int left_fork = ph->id;
+    int right_fork = (ph->id + 1) % ph->data->nbr_philo;
+
+    if (ph[left_fork].fork == 0 && ph[right_fork].fork == 0 && (ph->id != ph->data->nbr_philo -1)) 
+    {
+       	pthread_mutex_lock(&ph->data->forks[left_fork]);
+		ph[left_fork].fork = 1;
+		ph->data->current_time = get_time() - ph->data->start_time;
+		print_message(ph->id, ph->data->current_time, LTAKE, ph);
+		pthread_mutex_lock(&ph->data->forks[right_fork]);
+		ph[right_fork].fork = 1;
+		ph->data->current_time = get_time() - ph->data->start_time;
 		print_message(ph->id, ph->data->current_time, RTAKE, ph);
-		pthread_mutex_unlock(&ph->data->forks[ph->id]);
-		ph[ph->id].fork = 0;
-		print_message(ph->id, ph->data->current_time, PUTDOWN, ph);
-		pthread_mutex_unlock(&ph->data->forks[(ph->id + 1)]);
-		ph[ph->id + 1].fork = 0;
-		print_message(ph->id, ph->data->current_time, PUTDOWN, ph);
+    }
+	else
+	{
+		pthread_mutex_lock(&ph->data->forks[right_fork]);
+		ph[right_fork].fork = 1;
+		ph->data->current_time = get_time() - ph->data->start_time;
+		print_message(ph->id, ph->data->current_time, RTAKE, ph);
+		pthread_mutex_lock(&ph->data->forks[left_fork]);
+		ph[left_fork].fork = 1;
+		ph->data->current_time = get_time() - ph->data->start_time;
+		print_message(ph->id, ph->data->current_time, LTAKE, ph);
 	}
 }
