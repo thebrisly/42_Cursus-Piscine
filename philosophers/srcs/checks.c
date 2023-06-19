@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:30:23 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/06/14 13:52:20 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/19 21:44:32 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,37 +37,58 @@ int	args_check(int argc, char **argv)
 	return (1);
 }
 
-int check_death(t_philo *ph)
+void	check_thread(t_data *dt, t_philo *ph)
 {
-	return (ph->data->dead);
+	int	i;
+
+	while (!dt->ready)
+		continue ;
+	while (!dt->over)
+	{
+		i = -1;
+		while (++i < dt->nbr_philo)
+			if (check_death(&ph[i]) || check_meals(ph[i], i))
+				dt->over = 1;
+	}
+	if (dt->check_meal && ph[dt->nbr_philo- 1].ph_loop == dt->loop)
+	{
+		ft_usleep(5 * dt->nbr_philo);
+		printf("  All philosophers have eaten %d times\n", dt->loop);
+		printf("No one died today");
+	}
+	printf("Oops.");
 }
 
-
-void check_forks(t_philo *ph)
+int	check_death(t_philo *ph)
 {
-    int left_fork = ph->id;
-    int right_fork = (ph->id + 1) % ph->data->nbr_philo;
+	long int	now;
 
-    if (ph[left_fork].fork == 0 && ph[right_fork].fork == 0 && (ph->id != ph->data->nbr_philo -1)) 
-    {
-       	pthread_mutex_lock(&ph->data->forks[left_fork]);
-		ph[left_fork].fork = 1;
-		ph->data->current_time = get_time() - ph->data->start_time;
-		print_message(ph->id, ph->data->current_time, LTAKE, ph);
-		pthread_mutex_lock(&ph->data->forks[right_fork]);
-		ph[right_fork].fork = 1;
-		ph->data->current_time = get_time() - ph->data->start_time;
-		print_message(ph->id, ph->data->current_time, RTAKE, ph);
-    }
-	else
+	pthread_mutex_lock(ph->data->death);
+	now = get_time() - ph->last_meal;
+	if (now >= ph->data->time_to_die)
 	{
-		pthread_mutex_lock(&ph->data->forks[right_fork]);
-		ph[right_fork].fork = 1;
-		ph->data->current_time = get_time() - ph->data->start_time;
-		print_message(ph->id, ph->data->current_time, RTAKE, ph);
-		pthread_mutex_lock(&ph->data->forks[left_fork]);
-		ph[left_fork].fork = 1;
-		ph->data->current_time = get_time() - ph->data->start_time;
-		print_message(ph->id, ph->data->current_time, LTAKE, ph);
+		pthread_mutex_unlock(ph->data->death);
+		return (someone_died(ph));
 	}
+	pthread_mutex_unlock(ph->data->death);
+	return (0);
+}
+
+int	check_meals(t_philo ph, int last)
+{
+	if (ph.data->check_meal
+		&& last == ph.data->nbr_philo - 1
+		&& ph.ph_loop == ph.data->loop)
+		return (ft_usleep(300));
+	return (0);
+}
+
+int	someone_died(t_philo *ph)
+{
+	print_routine(ph, DIE);
+	ph->data->over = 1;
+	ph->dead = 1;
+	pthread_mutex_unlock(ph->left_fork);
+	pthread_mutex_unlock(ph->right_fork);
+	return (1);
 }

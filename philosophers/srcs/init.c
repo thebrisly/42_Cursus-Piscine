@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:37:44 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/06/14 14:14:57 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/19 21:53:43 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,93 @@ void	first_init(int argc, char **argv, t_data *data)
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
+	data->loop = -2;
+	data->check_meal = 0;
+	data->start_time = 0;
+	data->ready = 0;
 	if (argc == 6)
+	{
+		data->check_meal = 1;
 		data->loop = ft_atoi(argv[5]);
-	data->dead = 0;
-	data->start_time = get_time();
-	data->current_time = get_time() - data->start_time;
+	}
+	data->over = 0;
 }
 
-int	philo_init(t_data *dt, pthread_t *th, t_philo *ph)
+void	second_init(t_data *dt)
+{
+	int i;
+
+	i = -1;
+	//dt->death = 0;
+	//dt->forks = 0;
+	dt->death = malloc(sizeof(pthread_mutex_t));
+	if (!dt->death)
+		error_msg("Mutex death: malloc failed", dt, 0, 1);
+	dt->forks = malloc(sizeof(pthread_mutex_t) * dt->nbr_philo);
+	if (!dt->forks)
+		error_msg("Error\nMutex fork: malloc failed\n", dt, 0, 1);
+	if (pthread_mutex_init(dt->death, NULL) == -1)
+		error_msg("Mutex init failed", dt, 0, 1);
+	while (++i < dt->nbr_philo)
+		if (pthread_mutex_init(&dt->forks[i], NULL) == -1)
+			error_msg("Mutex init failed", dt, 0, 1);
+}
+
+void third_init(t_data *dt, t_philo *ph)
 {
 	int	i;
 
-	i = 0;
-	while (i < dt->nbr_philo)
+	i = -1;
+	while (++i < dt->nbr_philo)
 	{
 		ph[i].id = i;
-		ph[i].fork = 0;
+		ph[i].dead = 0;
+		ph[i].ph_loop = 0;
+		ph[i].thread_start = 0;
+		ph[i].last_meal = 0;
 		ph[i].data = dt;
-		pthread_mutex_init(&dt->forks[i], NULL);
-		if (pthread_create(&th[i], NULL, routine, (void *) &ph[i]) != 0)
-			return (0);
-		i++;
-		usleep(1000);
+		ph[i].left_fork = &dt->forks[i];
+		ph[i].right_fork = 0;
 	}
+}
+
+int	thread_init(t_data *dt, t_philo *ph)
+{
+	int	i;
+
+	i = -1;
+	while (++i < dt->nbr_philo)
+	{
+		ph[i].right_fork = ph[(i + 1) % dt->nbr_philo].left_fork;
+		if (pthread_create(&ph[i].life_tid, NULL,
+				&routine, &ph[i]) == -1)
+			error_msg("Failed to create thread", dt, ph, 1);
+	}
+	i = -1;
+	dt->start_time = get_time();
+	while (++i < dt->nbr_philo)
+	{
+		ph[i].thread_start = dt->start_time;
+		ph[i].last_meal = dt->start_time;
+	}
+	dt->ready = 1;
 	return (0);
 }
 
-
-/* The gettimeofday function takes a parameter of type timeval, which is a structure with the following members:
-	struct timeval {
-    time_t      tv_sec;     // Number of seconds since January 1, 1970
-    suseconds_t tv_usec;    // Number of microseconds (fractional part of seconds)
-
-	In the subject it is asked to use milliseconds, so we need to convert everything from seconds to ms before returning a value
-*/
-int	get_time(void)
+int	philo_init(t_data *dt)
 {
-	struct timeval tv;
+	t_philo *ph;
 
-	gettimeofday(&tv, NULL);
-	return((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	ph = malloc(sizeof(t_philo) * dt->nbr_philo);
+	if (!ph)
+	{
+		error_msg("Mutex death: malloc failed", dt, ph, 1);
+		return (1);
+	}
+	third_init(dt, ph);
+	thread_init(dt, ph);
+	check_thread(dt, ph);
+	end_thread(dt, ph);
+	return (0);
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:40:58 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/05/30 12:48:45 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/06/19 21:44:55 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,29 @@ void	*ft_calloc(size_t count, size_t size)
 		i++;
 	}
 	return (tab);
+}
+
+/* The gettimeofday function takes a parameter of type timeval, which is a structure with the following members:
+	struct timeval {
+    time_t      tv_sec;     // Number of seconds since January 1, 1970
+    suseconds_t tv_usec;    // Number of microseconds (fractional part of seconds)
+
+	In the subject it is asked to use milliseconds, so we need to convert everything from seconds to ms before returning a value
+*/
+long int	get_time(void)
+{
+	struct timeval tv;
+
+	gettimeofday(&tv, NULL);
+	return((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+int	ft_usleep(long int time)
+{
+	long int	start_time;
+
+	start_time = get_time();
+	while ((get_time() - start_time) < time)
+		usleep(150);
+	return (1);
 }
