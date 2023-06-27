@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 21:32:06 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/04 21:21:22 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/27 14:06:46 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ int main()
         jim.attack();
         club.setType("some other type of club");
         jim.attack();
+    }
+    {
+        Weapon club = Weapon("crude spiked club");
+        
+        HumanB bjorg("Bjorg");
+        bjorg.attack();
+        bjorg.setWeapon(club);
+        bjorg.attack();
     }
     return 0;
 }

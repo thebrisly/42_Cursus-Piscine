@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 21:37:38 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/04 21:22:07 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/27 14:03:54 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 HumanB::HumanB(std::string name) : _name(name) {
     std::cout << "\033[90mConstructor for HumanB called\033[0m" << std::endl;
+    this->_weapon = 0;
 };
 
 HumanB::~HumanB(){
