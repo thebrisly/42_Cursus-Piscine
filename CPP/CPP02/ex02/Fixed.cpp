@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 08:58:29 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/07 15:00:00 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/28 13:29:41 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,12 @@ Fixed::Fixed() : _fixedNumber(0) {
 
 Fixed::Fixed(int const number) {
     std::cout << "\033[90mInt Constructor for Fixed called\033[0m" << std::endl;
-    
-    int result = number;
-    int i = this->_bits;
-
-    while (i > 0){
-        result *=2;
-        i--;
-    }
-    this->_fixedNumber = result;
+	this->_fixedNumber = (number << this->_bits);
 }
 
 Fixed::Fixed(float const number) {
     std::cout << "\033[90mFloat Constructor for Fixed called\033[0m" << std::endl;
-    
-    float result = number;
-    int i = this->_bits;
-
-    while (i > 0){
-        result *=2;
-        i--;
-    }
-    this->_fixedNumber = result;
+	this->_fixedNumber = static_cast<int>(roundf(number*(1 << this->_bits)));
 }
 
 // Copy constructor
@@ -58,7 +42,6 @@ Fixed & Fixed::operator=(Fixed const &src){
 
     if (this != &src)
         _fixedNumber = src.getRawBits();
-
     return *this;
 }
 
@@ -67,7 +50,6 @@ Fixed::~Fixed(){
 }
 
 int Fixed::getRawBits (void) const {
-    std::cout << "getRawBits member function called" << std::endl;
     return (this->_fixedNumber);
 }
 
@@ -76,13 +58,117 @@ void Fixed::setRawBits (int const raw) {
 }
 
 float Fixed::toFloat (void) const {
-     return (static_cast<float>(this->_fixedNumber) / (1 << this->_bits));
+     return (static_cast<float>(this->_fixedNumber)) / (1 << this->_bits); //comme si on divise par 256
 }
 
 int Fixed::toInt (void) const {
-    return (static_cast<int>(this->_fixedNumber) >> this->_bits);
+    return (static_cast<int>((this->_fixedNumber) >> this->_bits));
 }
 
+/* Comparison operators */
+bool    Fixed::operator>(const Fixed &fixed) const
+{
+	return (this->toFloat() > fixed.toFloat());
+}
+
+bool    Fixed::operator<(const Fixed &fixed) const {
+	return (this->toFloat() < fixed.toFloat());
+}
+
+bool    Fixed::operator>=(const Fixed &fixed) const{
+	return (this->toFloat() >= fixed.toFloat());
+}
+
+bool    Fixed::operator<=(const Fixed &fixed) const{
+	return (this->toFloat() <= fixed.toFloat());
+}
+
+bool    Fixed::operator==(const Fixed &fixed) const{
+	return (this->toFloat()== fixed.toFloat());
+}
+
+bool    Fixed::operator!=(const Fixed &fixed) const{
+	return (this->toFloat() != fixed.toFloat());
+}
+
+/* Arithmetic operators */
+Fixed   Fixed::operator+(const Fixed &fixed) const{
+	return (this->toFloat() + fixed.toFloat());
+}
+
+Fixed   Fixed::operator-(const Fixed &fixed) const{
+	return (this->toFloat() - fixed.toFloat());
+}
+
+Fixed   Fixed::operator*(const Fixed &fixed) const{
+	return (this->toFloat() * fixed.toFloat());
+}
+
+Fixed   Fixed::operator/(const Fixed &fixed) const{
+	return (this->toFloat() / fixed.toFloat());
+}
+
+
+/* Incrementation operators */
+Fixed&  Fixed::operator++(void) // Prefix increment operator -> saw that on google
+{
+	this->_fixedNumber++;
+	return (*this);
+}
+
+Fixed   Fixed::operator++(int) //Postfix increment operator -> saw that on google
+{
+	Fixed	temp(*this);
+
+	_fixedNumber++;
+	return (temp);
+}
+
+Fixed&  Fixed::operator--(void) // Prefix increment operator -> saw that on google
+{
+	this->_fixedNumber--;
+	return (*this);
+}
+
+Fixed   Fixed::operator--(int) //Postfix increment operator -> saw that on google
+{
+	Fixed	temp(*this);
+
+	_fixedNumber++;
+	return (temp);
+}
+
+
+/* MIN & MAX */
+Fixed &Fixed::min(Fixed &fixed1, Fixed &fixed2){
+	if (fixed1 > fixed2)
+		return (fixed2);
+	else
+		return (fixed1);
+}
+
+const Fixed &Fixed::min(const Fixed &fixed1, const Fixed &fixed2){
+	if (fixed1 > fixed2)
+		return (fixed2);
+	else
+		return (fixed1);
+}
+
+Fixed &Fixed::max(Fixed &fixed1, Fixed &fixed2){
+	if (fixed1 > fixed2)
+		return (fixed1);
+	else
+		return (fixed2);
+}
+
+const Fixed &Fixed::max(const Fixed &fixed1, const Fixed &fixed2){
+	if (fixed1 > fixed2)
+		return (fixed1);
+	else
+		return (fixed2);
+}
+
+/* << for */
 std::ostream & operator<<(std::ostream &os, const Fixed &src) {
     std::cout << "\033[90mAssignment << operator called \033[0m";
 

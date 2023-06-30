@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 08:58:37 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/07 14:32:03 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/28 11:21:44 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
 # include <string>
+# include <iostream>
+# include <cmath>
 
 class Fixed { //a canonic class contains:
     public:
@@ -20,19 +22,36 @@ class Fixed { //a canonic class contains:
         Fixed(int const number); //default int constructor
         Fixed(float const number); //default float constructor
         Fixed(const Fixed &src); //copy constructor
-
-        // https://www.youtube.com/watch?v=ZcmQ5y7QyTc Great video to understand overloading operator
-        //In this exercise this is useless because we don't use it at all. It's just to learn how to do canonic classes
         Fixed& operator=(Fixed const &src); //overloading operator for =
-        
         ~Fixed(); //default destructor
+
+        bool    operator>(const Fixed &fixed) const;
+        bool    operator<(const Fixed &fixed) const;
+        bool    operator>=(const Fixed &fixed) const;
+        bool    operator<=(const Fixed &fixed) const;
+        bool    operator==(const Fixed &fixed) const;
+        bool    operator!=(const Fixed &fixed) const;
+
+        Fixed   operator+(const Fixed &fixed) const;
+        Fixed   operator-(const Fixed &fixed) const;
+        Fixed   operator*(const Fixed &fixed) const;
+        Fixed   operator/(const Fixed &fixed) const;
+
+        Fixed&  operator++(void); // Prefix increment operator -> saw that on google
+        Fixed   operator++(int); //Postfix increment operator -> saw that on google
+        Fixed&  operator--(void); // Prefix increment operator -> saw that on google
+        Fixed   operator--(int); //Postfix increment operator -> saw that on google
+
+        static Fixed &min(Fixed &fixed1, Fixed &fixed2);
+        static const Fixed &min(const Fixed &fixed1, const Fixed &fixed2);
+        static Fixed &max(Fixed &fixed1, Fixed &fixed2);
+        static const Fixed &max(const Fixed &fixed1, const Fixed &fixed2);
 
         int getRawBits (void) const;
         void setRawBits (int const raw);
-
         float toFloat (void) const;
         int toInt (void) const;
-        
+
     private:
         int _fixedNumber;
         static int const _bits = 8;

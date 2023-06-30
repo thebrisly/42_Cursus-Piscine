@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 08:58:29 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/09 07:57:49 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/28 13:29:38 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,14 @@ Fixed::Fixed() : _fixedNumber(0) {
 //NEW IN THIS EXERCISE
 Fixed::Fixed(int const number) {
     std::cout << "\033[90mInt Constructor for Fixed called\033[0m" << std::endl;
-    
-    int result = number;
-    int i = this->_bits;
-
-    while (i > 0){
-        result *=2;
-        i--;
-    }
-    this->_fixedNumber = result;
+	this->_fixedNumber = (number << this->_bits);
 }
 
 
 //NEW IN THIS EXERCISE
 Fixed::Fixed(float const number) {
     std::cout << "\033[90mFloat Constructor for Fixed called\033[0m" << std::endl;
-    
-    float result = number;
-    int i = this->_bits;
-
-    while (i > 0){
-        result *=2;
-        i--;
-    }
-    this->_fixedNumber = result;
+	this->_fixedNumber = static_cast<int>(roundf(number*(1 << this->_bits)));
 }
 /* ------------------------------------------- */
 
