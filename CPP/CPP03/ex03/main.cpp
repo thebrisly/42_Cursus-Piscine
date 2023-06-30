@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:27:36 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/10 10:10:30 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/30 11:04:42 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main()
     Second.status();
     Third.status();
     Fourth.status();
-    
+
     std::cout << "\n";
     First.attack(Second.getName());
     Second.takeDamage(First.getDamage());
@@ -56,6 +56,8 @@ int main()
     std::cout << "\n";
     Fourth.highFivesGuys();
     //Third.highFivesGuys(); will not work
+
+    Fifth.whoAmI();
 
     First.status();
     Second.status();

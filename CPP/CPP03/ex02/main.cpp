@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:27:36 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/09 21:56:26 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/30 09:37:52 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main()
     Second.status();
     Third.status();
     Fourth.status();
-    
+
     std::cout << "\n";
     First.attack(Second.getName());
     Second.takeDamage(First.getDamage());

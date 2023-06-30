@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:32:26 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/09 21:56:21 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/30 11:04:04 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 
-ClapTrap::ClapTrap(std::string name) : _name (name), _hitPoints (5), _energyPoints (10), _attackDamage (0) {
+ClapTrap::ClapTrap(std::string name) : _name (name), _hitPoints (10), _energyPoints (10), _attackDamage (0) {
     std::cout << "\033[90mConstructor for ClapTrap " << this->_name << " called\033[0m" << std::endl;
 }
 
 ClapTrap::~ClapTrap() {
     std::cout << "\033[90mDestructor for ClapTrap " << this->_name << " called\033[0m" << std::endl;
-} 
+}
 
 ClapTrap::ClapTrap(const ClapTrap &source) {
     std::cout << "\033[90mCopy constructor ClapTrap called\033[0m" << std::endl;
@@ -61,7 +61,7 @@ void ClapTrap::attack(const std::string &target){
         std::cout << "\033[31mClapTrap " << this->_name << " will do no damage, since the damage inflicted by attacking is 0!\033[0m" << std::endl;
     else
     {
-        std::cout << "\033[34m Claptrap " << this->_name << " attacks " << target << " causing " << this->_attackDamage << " points of damage !  ( ◞•̀д•́)◞⚔◟(•̀д•́◟ )\033[m" << std::endl; 
+        std::cout << "\033[34m Claptrap " << this->_name << " attacks " << target << " causing " << this->_attackDamage << " points of damage !  ( ◞•̀д•́)◞⚔◟(•̀д•́◟ )\033[m" << std::endl;
         this->_energyPoints -= 1;
         std::cout << "\033[36m                  Remaining energy points for " << this->_name << " : " << this->_energyPoints << "\033[0m" << std::endl;
     }

@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 09:38:13 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/10 10:32:45 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/30 11:03:13 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(std::string name) {
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name) {
     std::cout << "Default constructor for DiamondTrap " << this->_name << " called" << std::endl;
-    ClapTrap::_name = name + "_clap_name";
     this->_name = name;
     this->_hitPoints = FragTrap::_hitPoints;
     this->_energyPoints = ScavTrap::_energyPoints;
     this->_attackDamage = FragTrap::_attackDamage;
 }
-                                           
-DiamondTrap::DiamondTrap(DiamondTrap const &src){
+
+DiamondTrap::DiamondTrap(DiamondTrap const &src) : ClapTrap(src), ScavTrap(src), FragTrap(src) {
     std::cout << "Copy constructor for DiamondTrap " << this->_name << " called" << std::endl;
+    this->_name = src._name;
     this->_name = src.ClapTrap::_name;
     this->_hitPoints = src.FragTrap::_hitPoints;
     this->_energyPoints = src.ScavTrap::_energyPoints;
@@ -30,6 +30,7 @@ DiamondTrap::DiamondTrap(DiamondTrap const &src){
 }
 
 DiamondTrap& DiamondTrap::operator=(DiamondTrap const &src) {
+    this->_name = src._name;
     this->_name = src.ClapTrap::_name;
     this->_hitPoints = src.FragTrap::_hitPoints;
     this->_energyPoints = src.ScavTrap::_energyPoints;
@@ -41,7 +42,7 @@ DiamondTrap::~DiamondTrap(){
     std::cout << "Default destructor for DiamondTrap " << this->_name << " called" << std::endl;
 }
 
-void DiamondTrap::attack(const std::string &target) const
+void DiamondTrap::attack(const std::string &target)
 {
 	ScavTrap::attack(target);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:27:36 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/09 21:55:59 by brisly           ###   ########.fr       */
+/*   Updated: 2023/06/30 09:34:27 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main()
     First.status();
     Second.status();
     Third.status();
-    
+
     First.attack(Second.getName());
     Second.takeDamage(First.getDamage());
     std::cout << "\n";
@@ -42,7 +42,7 @@ int main()
     First.attack(Third.getName());
     std::cout << "\n";
     Third.guardGate();
-    // First.guardGate();   if you want to test this to see that it doesn't work.
+    // First.guardGate();   //if you want to test this to see that it doesn't work.
     std::cout << "\n";
 
     First.status();

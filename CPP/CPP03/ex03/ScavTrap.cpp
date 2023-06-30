@@ -21,7 +21,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 
 ScavTrap::~ScavTrap() {
     std::cout << "\033[90mDestructor for ScavTrap " << this->_name << " called\033[0m" << std::endl;
-} 
+}
 
 ScavTrap::ScavTrap(const ScavTrap &source) : ClapTrap(source) {
     std::cout << "\033[90mCopy constructor ScavTrap called\033[0m" << std::endl;
@@ -30,7 +30,7 @@ ScavTrap::ScavTrap(const ScavTrap &source) : ClapTrap(source) {
 
 ScavTrap& ScavTrap::operator=(ScavTrap const &src) {
     std::cout << "\033[90mAssignment operator called\033[0m" << std::endl;
-    
+
     ClapTrap::operator=(src);
 
     this->_name = src._name;
@@ -56,7 +56,7 @@ void ScavTrap::attack(const std::string &target) {
         std::cout << "\033[31mScavTrap " << this->_name << " will do no damage, since the damage inflicted by attacking is 0!\033[0m" << std::endl;
     else
     {
-        std::cout << "\033[34m The big and only ScavTrap " << this->_name << " attacks " << target << " causing " << this->_attackDamage << " points of damage !  ( ◞•̀д•́)◞⚔◟(•̀д•́◟ )\033[m" << std::endl; 
+        std::cout << "\033[34m The big and only ScavTrap " << this->_name << " attacks " << target << " causing " << this->_attackDamage << " points of damage !  ( ◞•̀д•́)◞⚔◟(•̀д•́◟ )\033[m" << std::endl;
         this->_energyPoints -= 1;
         std::cout << "\033[36m                  Remaining energy points for " << this->_name << " : " << this->_energyPoints << "\033[0m" << std::endl;
     }
