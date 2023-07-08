@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:00:59 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/05 10:03:06 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/06 15:32:00 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		file_parsing(argv[1], rt);
+		free (rt);
+		free (rt->sc);
 	}
 	else
 		print_error("2 args needed");

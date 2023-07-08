@@ -26,7 +26,7 @@ $(OBJDIR)/%.o: %.c
 
 ${NAME}:	${OBJS}
 		@$(MAKE) -C libft
-		${CC} $^ -Llibft -lft -o ${NAME}
+		${CC} ${CFLAGS} $^ -Llibft -lft -o ${NAME}
 		@echo "$(GREEN)[$(BOLD)OK$(NORMAL)$(GREEN)]$(NORMAL) $(BOLD)$(NAME)$(NORMAL) is ready"
 
 libft:

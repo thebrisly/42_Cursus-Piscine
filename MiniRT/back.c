@@ -24,9 +24,6 @@ void	file_parsing(char *file, t_rt *rt)
 	line = get_next_line(fd);
 	if (!line)
 		print_error("Empty file");
-	rt->sc = malloc(sizeof(rt->sc));
-	if (!rt->sc)
-		print_error("Malloc error for scene");
 	line_parsing(fd, line, rt);
 	if (close (fd) == -1)
 		print_error("Error while closing file");
@@ -40,9 +37,8 @@ void	line_parsing(int fd, char *line, t_rt *rt)
 	ft_memset(count, 0, sizeof(count));
 	while (line)
 	{
-		t = ft_split(line, ' ');
-		printf("first param is: %s\n", t[0]);
 		free (line);
+		t = ft_split(line, ' ');
 		if (!t[0])
 			continue ;
 		else if (!cmp(t[0], "A"))
@@ -69,4 +65,60 @@ void	check_filename(char *file)
 	len = ft_strlen(file) - 1;
 	if (!(file[len - 2] == '.' && file[len - 1] == 'r' && file[len] == 't'))
 		print_error("Wrong scene format");
+}
+
+
+#include "../incs/minirt.h"
+
+/* pl 	0,0,0		0,1.0,0		255,0,225 */
+void	plane_parsing(char *line, t_rt *rt)
+{
+	(void) rt;
+	(void) line;
+}
+
+/* sp 	0,0,20		20 			255,0,0 */
+void	sphere_parsing(char *line, t_rt *rt)
+{
+	(void) rt;
+	(void) line;
+}
+
+/* cy 	50.0,0.0,20.6	0,0,1.0	14.2	21.42	10,0,255 */
+void	cylinder_parsing(char *line, t_rt *rt)
+{
+	(void) rt;
+	(void) line;
+}
+
+void	objects_parsing(char *line, t_rt *rt)
+{
+	(void) rt;
+	(void) line;
+}
+
+#include "../incs/minirt.h"
+
+/* A 	0.2			255,255,255*/
+int	ambiance_parsing(char *line, t_rt *rt)
+{
+	(void) line;
+	(void) rt;
+	return (1);
+}
+
+/* L 	-40,0,30	0.7 */
+int	light_parsing(char *line, t_rt *rt)
+{
+	(void) line;
+	(void) rt;
+	return (1);
+}
+
+/* C 	-50,0,20	0,0,0 70 */
+int	camera_parsing(char *line, t_rt *rt)
+{
+	(void) line;
+	(void) rt;
+	return (1);
 }
