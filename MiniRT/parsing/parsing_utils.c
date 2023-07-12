@@ -1,5 +1,15 @@
 #include "../incs/minirt.h"
 
+int count_elements(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}
+
 int	cmp(const char *s1, const char *s2)
 {
 	while ((*s1 && *s2) && (*s1 == *s2))

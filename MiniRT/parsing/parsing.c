@@ -12,8 +12,6 @@ void	plane_parsing(char *line, t_rt *rt);
 void	sphere_parsing(char *line, t_rt *rt);
 void	cylinder_parsing(char *line, t_rt *rt);
 
-char	*clean_line(char *line);
-
 void	file_parsing(char *file, t_rt *rt)
 {
 	int		fd;
@@ -26,7 +24,7 @@ void	file_parsing(char *file, t_rt *rt)
 	line = get_next_line(fd);
 	if (!line)
 		print_error("Empty file");
-	rt->sc = malloc(sizeof(t_scene));h
+	rt->sc = malloc(sizeof(t_scene));
 	if (!rt->sc)
 		print_error("Malloc error for scene");	
 	line = clean_line(line);
