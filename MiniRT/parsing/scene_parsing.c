@@ -3,24 +3,26 @@
 /* A 	0.2			255,255,255*/
 void	ambiance_parsing(char *line, t_rt *rt)
 {
-	//int			i;
+	int			i;
 	char		**tab;
 	t_ambiant	amb;
 
-	//i = 0;
+	i = 0;
 	if (rt->sc->amb.id)
 		print_error("Too many ambiance lights - 1 or 0 needed");
-	tab = ft_split(line, ' ');
-	if (!tab)
-		//mettre condition pour les malloc error
+	tab = ft_split(line, ' '); 						//proteger malloc s'il me reste de la place mdr
 	ft_bzero(&amb, sizeof(t_ambiant));
 	amb.id = "A";
 	if (count_elements(tab) > 3)
 		print_error("too many params");
-	/*while (tab[i] && count_elements(tab) == 3)
+	while (tab[++i])
 	{
+		if (i == 2)
+			//
+		if (i == 3)
+
 		i++;
-	}*/
+	}
 	rt->sc->amb = amb;
 }
 

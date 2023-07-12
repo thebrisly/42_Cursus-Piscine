@@ -10,6 +10,8 @@ void    file_parsing(char *file, t_rt *rt);
 char	*clean_line(char *line);
 int     count_elements(char **tab);
 
+int	is_float(char *str);
+
 /* MAKE WINDOW */
 void	make_window(t_rt *rt);
 void	my_mlx_pixel_put(t_img img, int x, int y, int color);
