@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:00:59 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/06 15:32:00 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/12 13:16:59 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_rt	*rt;
 
 	(void) argv;
-	rt = malloc(sizeof(t_rt));
+	rt = ft_calloc(sizeof(t_rt), 1);
 	if (argc == 2)
 	{
 		file_parsing(argv[1], rt);

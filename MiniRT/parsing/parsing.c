@@ -3,14 +3,16 @@
 void	check_filename(char *file);
 void	line_parsing(int fd, char *line, t_rt *rt);
 
-int		ambiance_parsing(char *line, t_rt *rt);
-int		light_parsing(char *line, t_rt *rt);
-int		camera_parsing(char *line, t_rt *rt);
+void	ambiance_parsing(char *line, t_rt *rt);
+void	light_parsing(char *line, t_rt *rt);
+void	camera_parsing(char *line, t_rt *rt);
 
 void	objects_parsing(char *line, t_rt *rt);
 void	plane_parsing(char *line, t_rt *rt);
 void	sphere_parsing(char *line, t_rt *rt);
 void	cylinder_parsing(char *line, t_rt *rt);
+
+char	*clean_line(char *line);
 
 void	file_parsing(char *file, t_rt *rt)
 {
@@ -24,9 +26,10 @@ void	file_parsing(char *file, t_rt *rt)
 	line = get_next_line(fd);
 	if (!line)
 		print_error("Empty file");
-	rt->sc = malloc(sizeof(rt->sc));
+	rt->sc = malloc(sizeof(t_scene));h
 	if (!rt->sc)
-		print_error("Malloc error for scene");
+		print_error("Malloc error for scene");	
+	line = clean_line(line);
 	line_parsing(fd, line, rt);
 	if (close (fd) == -1)
 		print_error("Error while closing file");
@@ -34,32 +37,29 @@ void	file_parsing(char *file, t_rt *rt)
 
 void	line_parsing(int fd, char *line, t_rt *rt)
 {
-	char	**t;
-	int		count[3];
-
-	ft_memset(count, 0, sizeof(count));
 	while (line)
 	{
-		t = ft_split(line, ' ');
-		printf("first param is: %s\n", t[0]);
-		free (line);
-		if (!t[0])
-			continue ;
-		else if (!cmp(t[0], "A"))
-			count[0] = ambiance_parsing(line, rt);
-		else if (!cmp(t[0], "C"))
-			count[1] += camera_parsing(line, rt);
-		else if (!cmp(t[0], "L"))
-			count[2] += light_parsing(line, rt);
-		else if ((!cmp(t[0], "pl")) || (!cmp(t[0], "sp")) || (!cmp(t[0], "cy")))
-			objects_parsing(line, rt);
+		printf("type = %s\n", ft_substr(line, 0, 2));	
+		if (!ft_strncmp(line, "A ", 2))
+			ambiance_parsing(line, rt);
+		else if (!ft_strncmp(line, "C ", 2))
+			camera_parsing(line, rt);
+		else if (!ft_strncmp(line, "L ", 2))
+			light_parsing(line, rt);
+		else if (!ft_strncmp(line, "pl ", 3))
+			plane_parsing(line, rt);
+		else if (!ft_strncmp(line, "sp ", 3))
+			sphere_parsing(line, rt);
+		else if (!ft_strncmp(line, "cy ", 3))
+			cylinder_parsing(line, rt);
 		else
-			print_error("Something is not well defined");
-		if (count[0] > 1 || count[1] > 1 || count[2] > 1)
-			print_error("Too many cameras, lights or ambient lights");
-		free(t);
+			print_error("A type is not well defined");
+		free (line);
 		line = get_next_line(fd);
+		if (line)
+			line = clean_line(line);
 	}
+	free (line);
 }
 
 void	check_filename(char *file)

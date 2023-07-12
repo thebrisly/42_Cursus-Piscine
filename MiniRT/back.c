@@ -67,58 +67,19 @@ void	check_filename(char *file)
 		print_error("Wrong scene format");
 }
 
-
-#include "../incs/minirt.h"
-
-/* pl 	0,0,0		0,1.0,0		255,0,225 */
-void	plane_parsing(char *line, t_rt *rt)
+char	*clean_line(char *line)
 {
-	(void) rt;
-	(void) line;
-}
+	char	*new_line;
+	int i;
 
-/* sp 	0,0,20		20 			255,0,0 */
-void	sphere_parsing(char *line, t_rt *rt)
-{
-	(void) rt;
-	(void) line;
-}
-
-/* cy 	50.0,0.0,20.6	0,0,1.0	14.2	21.42	10,0,255 */
-void	cylinder_parsing(char *line, t_rt *rt)
-{
-	(void) rt;
-	(void) line;
-}
-
-void	objects_parsing(char *line, t_rt *rt)
-{
-	(void) rt;
-	(void) line;
-}
-
-#include "../incs/minirt.h"
-
-/* A 	0.2			255,255,255*/
-int	ambiance_parsing(char *line, t_rt *rt)
-{
-	(void) line;
-	(void) rt;
-	return (1);
-}
-
-/* L 	-40,0,30	0.7 */
-int	light_parsing(char *line, t_rt *rt)
-{
-	(void) line;
-	(void) rt;
-	return (1);
-}
-
-/* C 	-50,0,20	0,0,0 70 */
-int	camera_parsing(char *line, t_rt *rt)
-{
-	(void) line;
-	(void) rt;
-	return (1);
+	i = 0;
+	new_line = line;
+	while (tmp[i])
+	{
+		if ((tmp[i] == "\t") || (tmp[i] == " "))
+			i++;
+		new_line = 
+		i++;
+	}
+	return (new_line)
 }
