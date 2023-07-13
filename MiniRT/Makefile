@@ -6,7 +6,7 @@ NORMAL		= \033[0m
 UP 			= \033[A
 CUT 		= \033[K
 
-SRCS = $(wildcard parsing/*.c) main.c errors.c
+SRCS = $(wildcard parsing/*.c) main.c errors.c free.c
 
 OBJDIR	:= objs
 OBJS	:= $(addprefix $(OBJDIR)/, ${SRCS:.c=.o})

@@ -37,7 +37,6 @@ void	line_parsing(int fd, char *line, t_rt *rt)
 {
 	while (line)
 	{
-		printf("type = %s\n", ft_substr(line, 0, 2));	
 		if (!ft_strncmp(line, "A ", 2))
 			ambiance_parsing(line, rt);
 		else if (!ft_strncmp(line, "C ", 2))

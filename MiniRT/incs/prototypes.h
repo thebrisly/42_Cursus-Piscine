@@ -11,6 +11,8 @@ char	*clean_line(char *line);
 int     count_elements(char **tab);
 
 int	is_float(char *str);
+float	s_to_f(char *str);
+float   parse_ratio(char *str, float ratio);
 
 /* MAKE WINDOW */
 void	make_window(t_rt *rt);
@@ -26,5 +28,9 @@ t_v3d	normalize(t_v3d	*a);
 
 /* UTILS 	*/
 int		cmp(const char *s1, const char *s2);
+
+/* FREE */
+void    free_structures(t_rt *rt);
+void    free_tab(char **tab);
 
 #endif
