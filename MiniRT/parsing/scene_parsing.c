@@ -13,8 +13,8 @@ void	ambiance_parsing(char *line, t_rt *rt)
 	tab = ft_split(line, ' '); 						//proteger malloc s'il me reste de la place mdr
 	ft_bzero(&amb, sizeof(t_ambiant));
 	amb.id = "A";
-	if (count_elements(tab) > 3)
-		print_error("too many params");
+	if (count_elements(tab) != 3)
+		print_error("wrong number of elements for ambiance");
 	while (tab[++i])
 	{
 		if (i == 1)
@@ -30,26 +30,38 @@ void	ambiance_parsing(char *line, t_rt *rt)
 void	light_parsing(char *line, t_rt *rt)
 {
 	t_light	light;
+	//int	i;
+	char **tab;
 
+	//i = 0;
 	if (rt->sc->light.id)
 		print_error("Too many lights - 1 or 0 needed");
+	tab = ft_split(line, ' ');
 	ft_bzero(&light, sizeof(t_light));
 	light.id = "L";
-
+	if (count_elements(tab) != 3)
+		print_error("wrong number of elements for the light");
+	//boucle while
 	rt->sc->light = light;
-	(void) line;
+	free_tab(tab);
 }
 
 /* C 	-50,0,20	0,0,0 70 */
 void	camera_parsing(char *line, t_rt *rt)
 {
 	t_camera	cam;
+	char	**tab;
+	//int	i;
 
+	//i = 0;
 	if (rt->sc->cam.id)
 		print_error("Too many cameras - 1 or 0 needed");
+	tab = ft_split(line, ' ');
 	ft_bzero(&cam, sizeof(t_camera));
 	cam.id = "C";
-
+	if (count_elements(tab) != 4)
+		print_error("wrong number of elements for the camera");
+	//boucle while
 	rt->sc->cam = cam;
-	(void) line;
+	free_tab(tab);
 }
