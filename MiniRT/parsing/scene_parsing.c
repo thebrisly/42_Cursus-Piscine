@@ -15,12 +15,13 @@ void	ambiance_parsing(char *line, t_rt *rt)
 	amb.id = "A";
 	if (count_elements(tab) > 3)
 		print_error("too many params");
-	while (tab[i++])
+	while (tab[++i])
 	{
+		printf("i = %d\n", i);
 		if (i == 1)
 			amb.ratio = parse_ratio(tab[i], amb.ratio);
-		/*if (i == 2)
-			amb.color = parse_color(tab[i], amb.color);*/
+		else if (i == 2)
+			amb.color = parse_color(tab[i], amb.color);
 	}
 	rt->sc->amb = amb;
 	free_tab(tab);

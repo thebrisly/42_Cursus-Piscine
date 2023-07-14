@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:20 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/13 11:57:51 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/14 09:19:06 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,25 @@ int	is_float(char *str)
         i++;
     }
     return (first && second);
+}
+
+int is_color(char   *str)
+{
+    int i;
+    int color;
+
+
+    while (str[i])
+    {
+        if (!ft_isdigit(str[i]))
+            return (-1);
+        i++;
+    }
+    color = ft_atoi(str);
+    if (color >= 0 && color <= 255)
+        return (color);
+    else
+        return (-1);
 }
 
 float	s_to_f(char *str)
