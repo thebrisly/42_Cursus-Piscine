@@ -17,7 +17,6 @@ void	ambiance_parsing(char *line, t_rt *rt)
 		print_error("too many params");
 	while (tab[++i])
 	{
-		printf("i = %d\n", i);
 		if (i == 1)
 			amb.ratio = parse_ratio(tab[i], amb.ratio);
 		else if (i == 2)

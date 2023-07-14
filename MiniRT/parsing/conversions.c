@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:20 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/14 09:19:06 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/14 12:16:36 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,29 @@
 int	is_float(char *str)
 {
     bool    first;
-    bool    second;
     int i;
 
     i = 0;
     first = false;
-    second = false;
     if (str[0] == '+' || str[0] == '-')
         i++;
     while (str[i])
     {
         if (str[i] >= '0' && str[i] <= '9' && !first)
-            i = i;
-        else if (str[i] == '.')
+            i++;
+        else if (str[i] == '.' && str[i + 1])
         {
             if (first)
                 return (0);
             first = true;
+            i++;
         }
         else if (str[i] >= '0' && str[i] <= '9' && first)
-            second = true;
+            i++;
         else
             return (0);
-        i++;
     }
-    return (first && second);
+    return (1);
 }
 
 int is_color(char   *str)

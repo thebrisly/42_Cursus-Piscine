@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:35:52 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/14 09:21:46 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/14 12:19:47 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ float   parse_ratio(char *str, float ratio)
     if (!is_float(str))
         return (0.0);
     ratio = s_to_f(str);
-    return (ratio);
+    if (ratio >= 0 && ratio <= 1)
+        return (ratio);
+    else
+    {
+        print_error("wrong ratio");
+        return (0);
+    }
 }
 
 t_color parse_color(char *line, t_color colors)
