@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:35:52 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/15 09:46:37 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/15 09:57:21 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ float   parse_ratio(char *str, float ratio)
         return (0);
     }
 }
-
-// parse vectors
 
 t_color parse_color(char *line, t_color colors)
 {
@@ -76,6 +74,35 @@ t_v3d   parse_coord(char *line, t_v3d points)
             points.z = s_to_f(point[i]);
         else
             print_error("somethin in coordinates failed");
+        i++;
+    }
+    free_tab(point);
+    return (points);
+}
+
+t_v3d   parse_vector(char *line, t_v3d points)
+{
+    char    **point;
+    int     i;
+    float   tmp;
+
+    i = 0;
+    point = ft_split(line, ',');
+    if (!point)
+        print_error("malloc on parse_coord failed");
+    if (count_elements(point) != 3)
+        print_error("element needs 3 3d orientation (axis x,y,z)");
+    while (point[i] && is_float(point[i]))
+    {
+        tmp = s_to_f(point[i]);
+        if (i == 0 && is_range(tmp))
+            points.x = tmp;
+        else if (i == 1 && is_range(tmp))
+            points.y = tmp;
+        else if (i == 2 && is_range(tmp))
+            points.z = tmp;
+        else
+            print_error("somethin in vecotr failed");
         i++;
     }
     free_tab(point);

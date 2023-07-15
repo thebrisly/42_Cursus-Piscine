@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:00:59 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/15 09:37:06 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/15 09:56:39 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 		printf("MAIN: %s coord: %f, %f & %f\n", rt->sc->light.id, rt->sc->light.coord.x, rt->sc->light.coord.y, rt->sc->light.coord.z);
 		printf("MAIN: %s ratio: %f\n",rt->sc->light.id, rt->sc->light.ratio);
 		printf("MAIN: %s coord: %f, %f, %f\n", rt->sc->cam.id, rt->sc->cam.coord.x, rt->sc->cam.coord.y, rt->sc->cam.coord.z);
+		printf("MAIN: %s coord: %f, %f, %f\n", rt->sc->cam.id, rt->sc->cam.ori.x, rt->sc->cam.ori.y, rt->sc->cam.ori.z);
 		free_structures(rt);
 	}
 	else

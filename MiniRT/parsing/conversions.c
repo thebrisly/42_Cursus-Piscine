@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:20 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/15 09:46:14 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/15 09:53:56 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ int is_positive(char *str)
         return (0);
     else
         return (1);
+}
+
+int is_range(float number)
+{
+    if (number >= -1 && number <= 1)
+        return (1);
+    else
+        return (0);
 }
 
 int is_color(char   *str)
