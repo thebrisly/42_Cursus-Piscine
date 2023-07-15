@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:35:52 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/15 09:57:21 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/15 22:47:40 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,11 @@ t_v3d   parse_vector(char *line, t_v3d points)
     }
     free_tab(point);
     return (points);
+}
+
+float   parse_other(char *line, float element)
+{
+    //ONE FOR THe fov
+
+    //one fort he diameter & hieght :) 
 }
