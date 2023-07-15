@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:35:52 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/14 12:19:47 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/15 09:46:37 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ float   parse_ratio(char *str, float ratio)
         return (0);
     }
 }
+
+// parse vectors
 
 t_color parse_color(char *line, t_color colors)
 {
@@ -51,4 +53,31 @@ t_color parse_color(char *line, t_color colors)
     }
     free_tab(color);
     return (colors);
+}
+
+t_v3d   parse_coord(char *line, t_v3d points)
+{
+    char    **point;
+    int     i;
+
+    i = 0;
+    point = ft_split(line, ',');
+    if (!point)
+        print_error("malloc on parse_coord failed");
+    if (count_elements(point) != 3)
+        print_error("element needs 3 coordinates (x,y,z)");
+    while (point[i])
+    {
+        if (i == 0 && is_float(point[i]))
+            points.x = s_to_f(point[i]);
+        else if (i == 1 && is_float(point[i]))
+            points.y = s_to_f(point[i]);
+        else if (i == 2 && is_float(point[i]))
+            points.z = s_to_f(point[i]);
+        else
+            print_error("somethin in coordinates failed");
+        i++;
+    }
+    free_tab(point);
+    return (points);
 }

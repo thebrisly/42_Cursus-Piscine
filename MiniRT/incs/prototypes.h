@@ -12,10 +12,12 @@ int     count_elements(char **tab);
 
 int	is_float(char *str);
 int is_color(char   *str);
+int is_positive(char *str);
 
 float	s_to_f(char *str);
 float   parse_ratio(char *str, float ratio);
 t_color parse_color(char *line, t_color colors);
+t_v3d   parse_coord(char *line, t_v3d points);
 
 /* MAKE WINDOW */
 void	make_window(t_rt *rt);

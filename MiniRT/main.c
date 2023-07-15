@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 10:00:59 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/14 12:20:52 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/15 09:37:06 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		file_parsing(argv[1], rt);
-		//printf("MAIN: voici le ratio de ambiant: %f\n", rt->sc->amb.ratio);
-		//printf("MAIN: voici les couleurs de ambiant: %d, %d, %d\n", rt->sc->amb.color.r, rt->sc->amb.color.g, rt->sc->amb.color.b);
+		printf("MAIN: %s ratio: %f\n", rt->sc->amb.id, rt->sc->amb.ratio);
+		printf("MAIN: %s colors: %d, %d, %d\n",rt->sc->amb.id, rt->sc->amb.color.r, rt->sc->amb.color.g, rt->sc->amb.color.b);
+		printf("MAIN: %s coord: %f, %f & %f\n", rt->sc->light.id, rt->sc->light.coord.x, rt->sc->light.coord.y, rt->sc->light.coord.z);
+		printf("MAIN: %s ratio: %f\n",rt->sc->light.id, rt->sc->light.ratio);
+		printf("MAIN: %s coord: %f, %f, %f\n", rt->sc->cam.id, rt->sc->cam.coord.x, rt->sc->cam.coord.y, rt->sc->cam.coord.z);
 		free_structures(rt);
 	}
 	else

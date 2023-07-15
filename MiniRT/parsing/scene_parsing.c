@@ -30,18 +30,24 @@ void	ambiance_parsing(char *line, t_rt *rt)
 void	light_parsing(char *line, t_rt *rt)
 {
 	t_light	light;
-	//int	i;
+	int	i;
 	char **tab;
 
-	//i = 0;
+	i = 0;
 	if (rt->sc->light.id)
 		print_error("Too many lights - 1 or 0 needed");
-	tab = ft_split(line, ' ');
+	tab = ft_split(line, ' ');	//proteger malloc s'il me reste de la place mdr
 	ft_bzero(&light, sizeof(t_light));
 	light.id = "L";
 	if (count_elements(tab) != 3)
 		print_error("wrong number of elements for the light");
-	//boucle while
+	while (tab[++i])
+	{
+		if (i == 1)
+			light.coord = parse_coord(tab[i], light.coord);
+		else if (i == 2)
+			light.ratio = parse_ratio(tab[i], light.ratio);
+	}
 	rt->sc->light = light;
 	free_tab(tab);
 }
@@ -51,17 +57,25 @@ void	camera_parsing(char *line, t_rt *rt)
 {
 	t_camera	cam;
 	char	**tab;
-	//int	i;
+	int	i;
 
-	//i = 0;
+	i = 0;
 	if (rt->sc->cam.id)
 		print_error("Too many cameras - 1 or 0 needed");
-	tab = ft_split(line, ' ');
+	tab = ft_split(line, ' ');	//proteger malloc s'il me reste de la place mdr
 	ft_bzero(&cam, sizeof(t_camera));
 	cam.id = "C";
 	if (count_elements(tab) != 4)
 		print_error("wrong number of elements for the camera");
-	//boucle while
+	while (tab[++i])
+	{
+		if (i == 1)
+			cam.coord = parse_coord(tab[i], cam.coord);
+		//else if (i == 2)
+			//cam.ori = parse_vector(tab[i], cam.ori);
+		//else if (i == 3)
+		//	cam.fov = parse_fov(tab[i], cam.fov);
+	}
 	rt->sc->cam = cam;
 	free_tab(tab);
 }
