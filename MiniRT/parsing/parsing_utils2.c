@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:35:52 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/15 22:47:40 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/16 18:43:11 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,26 @@ t_v3d   parse_vector(char *line, t_v3d points)
     return (points);
 }
 
-float   parse_other(char *line, float element)
+float   parse_other(char *line, float element, int i)
 {
-    //ONE FOR THe fov
+    char **tab;
 
-    //one fort he diameter & hieght :) 
+    tab = ft_split(line, ',');
+    if (count_elements(tab) != 1)
+        print_error("wrong number of elements for parse_other");
+    free_tab(tab);
+    if (!is_float(line))
+        print_error("number is not well written somewhere");
+    element = s_to_f(line);
+    if (i == 1 && is_float(line)) //fov
+    {    
+        if (!(element >= 0 && element <= 180))
+            print_error("FOV needs to be between 0 & 180");
+    }
+    else if (i == 2 && is_float(line))
+    {
+        if (element < 0)
+            print_error("diameter or height must be bigger than 0");
+    }
+    return (element);
 }

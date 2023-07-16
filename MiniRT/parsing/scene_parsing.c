@@ -73,8 +73,8 @@ void	camera_parsing(char *line, t_rt *rt)
 			cam.coord = parse_coord(tab[i], cam.coord);
 		else if (i == 2)
 			cam.ori = parse_vector(tab[i], cam.ori);
-		//else if (i == 3)
-		//	cam.fov = parse_fov(tab[i], cam.fov);
+		else if (i == 3)
+			cam.fov = parse_other(tab[i], cam.fov, 1);
 	}
 	rt->sc->cam = cam;
 	free_tab(tab);
