@@ -1,17 +1,5 @@
 #include "../incs/minirt.h"
 
-void	check_filename(char *file);
-void	line_parsing(int fd, char *line, t_rt *rt);
-
-void	ambiance_parsing(char *line, t_rt *rt);
-void	light_parsing(char *line, t_rt *rt);
-void	camera_parsing(char *line, t_rt *rt);
-
-void	objects_parsing(char *line, t_rt *rt);
-void	plane_parsing(char *line, t_rt *rt);
-void	sphere_parsing(char *line, t_rt *rt);
-void	cylinder_parsing(char *line, t_rt *rt);
-
 void	file_parsing(char *file, t_rt *rt)
 {
 	int		fd;
@@ -44,11 +32,11 @@ void	line_parsing(int fd, char *line, t_rt *rt)
 		else if (!ft_strncmp(line, "L ", 2))
 			light_parsing(line, rt);
 		else if (!ft_strncmp(line, "pl ", 3))
-			plane_parsing(line, rt);
+			objects_parsing(line, rt);
 		else if (!ft_strncmp(line, "sp ", 3))
-			sphere_parsing(line, rt);
+			objects_parsing(line, rt);
 		else if (!ft_strncmp(line, "cy ", 3))
-			cylinder_parsing(line, rt);
+			objects_parsing(line, rt);
 		else
 			print_error("A type is not well defined");
 		free (line);

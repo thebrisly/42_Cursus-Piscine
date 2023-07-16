@@ -1,6 +1,5 @@
 #include "../incs/minirt.h"
 
-/* A 	0.2			255,255,255*/
 void	ambiance_parsing(char *line, t_rt *rt)
 {
 	int			i;
@@ -26,7 +25,6 @@ void	ambiance_parsing(char *line, t_rt *rt)
 	free_tab(tab);
 }
 
-/* L 	-40,0,30	0.7 */
 void	light_parsing(char *line, t_rt *rt)
 {
 	t_light	light;
@@ -52,7 +50,6 @@ void	light_parsing(char *line, t_rt *rt)
 	free_tab(tab);
 }
 
-/* C 	-50,0,20	0,0,0 70 */
 void	camera_parsing(char *line, t_rt *rt)
 {
 	t_camera	cam;

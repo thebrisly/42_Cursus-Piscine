@@ -10,8 +10,22 @@ void    file_parsing(char *file, t_rt *rt);
 char	*clean_line(char *line);
 int     count_elements(char **tab);
 
+void	check_filename(char *file);
+void	line_parsing(int fd, char *line, t_rt *rt);
+
+void	ambiance_parsing(char *line, t_rt *rt);
+void	light_parsing(char *line, t_rt *rt);
+void	camera_parsing(char *line, t_rt *rt);
+
+void	objects_parsing(char *line, t_rt *rt);
+t_plane	plane_parsing(char *line, t_rt *rt);
+
+t_objects	*last_object(t_objects	*lst);
+void	object_add_end(t_objects **lst, t_objects *new);
+int	number_objects(t_objects *lst);
+
 int	is_float(char *str);
-int is_color(char   *str);
+bool is_color(char *str);
 int is_positive(char *str);
 int is_range(float number);
 
@@ -20,6 +34,7 @@ float   parse_ratio(char *str, float ratio);
 t_color parse_color(char *line, t_color colors);
 t_v3d   parse_coord(char *line, t_v3d points);
 t_v3d   parse_vector(char *line, t_v3d points);
+float   parse_other(char *line, float element, int i);
 
 /* MAKE WINDOW */
 void	make_window(t_rt *rt);

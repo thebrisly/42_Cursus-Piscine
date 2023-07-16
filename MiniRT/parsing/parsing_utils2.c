@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:35:52 by brisly            #+#    #+#             */
-/*   Updated: 2023/07/16 18:43:11 by brisly           ###   ########.fr       */
+/*   Updated: 2023/07/16 21:22:23 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ t_color parse_color(char *line, t_color colors)
         print_error("element needs 3 colors (r,g,b)");
     while (color[i])
     {
-        if (i == 0 && is_color(color[i]) >= 0)
-            colors.r = is_color(color[i]);
-        else if (i == 1 && is_color(color[i]) >= 0)
-            colors.g = is_color(color[i]);
-        else if (i == 2 && is_color(color[i]) >= 0)
-            colors.b = is_color(color[i]);
+        if (i == 0 && is_color(color[i]))
+            colors.r = ft_atoi(color[i]);
+        else if (i == 1 && is_color(color[i]))
+            colors.g = ft_atoi(color[i]);
+        else if (i == 2 && is_color(color[i]))
+            colors.b = ft_atoi(color[i]);
         else
             print_error("somethin in colors failed");
         i++;

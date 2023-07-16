@@ -47,7 +47,7 @@ typedef struct s_cylinder
 	t_v3d	coord;
 	t_v3d	norm_vec;
 	double	d;
-	double	hs;
+	double	h;
 	t_color	color;
 
 } t_cylinder;
