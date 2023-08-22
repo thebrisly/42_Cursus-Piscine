@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 20:09:39 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/20 21:39:42 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/22 22:15:28 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ Bureaucrat::~Bureaucrat() {
     std::cout << "\033[90mDestructor for a Bureaucrat called\033[0m" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src) {
+Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src._name) {
     std::cout << "\033[90mCopy constructor Bureaucrat called\033[0m" << std::endl;
-    *this = src;
+    this->_grade = src._grade;
+    return ;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src)
