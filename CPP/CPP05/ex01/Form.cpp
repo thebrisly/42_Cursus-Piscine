@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:07:32 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/22 21:59:29 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/23 14:24:11 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 //Constructors and destructor
 Form::Form(void) : _name("Bob"), _signed(false), _sgrade(100), _egrade(3) {
-    std::cout << "\033[90mDefault constructor for a Bureaucrat called\033[0m" << std::endl;
+    std::cout << "\033[90mDefault constructor for a Form called\033[0m" << std::endl;
 }
 
 Form::Form(std::string name, int sGrade, int eGrade) : _name(name), _signed(false), _sgrade(sGrade), _egrade(eGrade) {
-    std::cout << "\033[90mPersonalized constructor for a Bureaucrat called\033[0m" << std::endl;
+    std::cout << "\033[90mPersonalized constructor for a Form called\033[0m" << std::endl;
     if (this->_sgrade > 150 || this->_egrade > 150)
         throw (Form::GradeTooLowException());
     if (this->_sgrade < 1 || this->_sgrade < 1)
@@ -30,7 +30,7 @@ Form::~Form() {
 }
 
 Form::Form(const Form &src) {
-    std::cout << "\033[90mCopy constructor Bureaucrat called\033[0m" << std::endl;
+    std::cout << "\033[90mCopy constructor Form called\033[0m" << std::endl;
     *this = src;
 }
 
