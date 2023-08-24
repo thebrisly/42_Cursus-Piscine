@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 14:13:33 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/24 09:41:40 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/24 12:07:52 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ AForm::AForm(void) : _name("Bob"), _signed(false), _sgrade(100), _egrade(3) {
 }
 
 AForm::AForm(std::string name, int sGrade, int eGrade) : _name(name), _signed(false), _sgrade(sGrade), _egrade(eGrade) {
-    std::cout << "\033[90mPersonalized constructor for AForm called\033[0m" << std::endl;
+    std::cout << "\033[90mConstructor for AForm called\033[0m" << std::endl;
     if (this->_sgrade > 150 || this->_egrade > 150)
         throw (AForm::GradeTooLowException());
     if (this->_sgrade < 1 || this->_sgrade < 1)

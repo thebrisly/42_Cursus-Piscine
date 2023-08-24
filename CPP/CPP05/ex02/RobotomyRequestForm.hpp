@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 09:04:16 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/24 09:07:02 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/24 12:06:38 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class RobotomyRequestForm : public AForm
 
     private :
 
-        const std::string     _target;
+        std::string     _target;
 };
 
 #endif
