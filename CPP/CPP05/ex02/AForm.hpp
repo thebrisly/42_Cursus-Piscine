@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 14:14:24 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/24 10:17:48 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/24 21:45:58 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ class AForm {
 
                 virtual const char* what() const throw()
                 {
-                    return ("The grade you set is too high");
+                    return ("The grade you set is too high.");
                 }
         };
 
@@ -56,7 +56,7 @@ class AForm {
 
                 virtual const char * what() const throw()
                 {
-                    return ("The grade you set is too low");
+                    return ("The grade you set is too low.");
                 }
         };
 
@@ -66,7 +66,7 @@ class AForm {
 
                 virtual const char * what() const throw()
                 {
-                    return ("The Form is not signed so it cannot be executed.");
+                    return ("The Form is not signed.");
                 }
         };
 
