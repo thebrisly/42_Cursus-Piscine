@@ -6,11 +6,13 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 12:02:08 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/24 12:07:16 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/24 22:06:09 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
+#include <iostream>
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target) 
 {
@@ -40,9 +42,18 @@ const std::string   ShrubberyCreationForm::getTarget() const
     return (this->_target);
 }
 
+
+// J'ai mis c_str() pcq le constructeur de std::ofstream ne reconnaît pas la conversion 
+//d'une std::string en un const char* attendu pour le nom de fichier. Donc je le "caste"
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-    (void) executor;
-    std::cout << "just a test for shrubbery" << std::endl;
-    // need to do this.
+    if (this->get_Signed() == 0)
+        throw (AForm::NotSignedException());
+    if (executor.getGrade() > this->get_eGrade())
+        throw (AForm::GradeTooLowException());
+    std::string file_name = this->getTarget() + "_shrubbery";
+    std::ofstream File(file_name.c_str());
+    File << TREE << std::endl;
+    File.close();
+    
 }

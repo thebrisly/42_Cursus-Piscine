@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 09:05:08 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/24 12:06:43 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/24 22:13:28 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "AForm.hpp"
 # include "Bureaucrat.hpp"
+
+# define TREE "      ^   \n     / \\  \n    /___\\ \n   /^   ^\\\n  / ^   ^ \\\n /__^___^__\\  ฅ^•ﻌ•^ฅ"
+
+
 
 class ShrubberyCreationForm : public AForm
 {
