@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 14:13:33 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/23 14:27:02 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/24 09:41:40 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ bool AForm::get_Signed() const
 
 // ****************************************************** //
 // Functions
+
+void	AForm::setSigned(bool sign)
+{
+	this->_signed = sign;
+	return ;
+}
 
 void AForm::beSigned(Bureaucrat &src)
 {

@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 14:10:14 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/23 14:21:58 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/24 10:10:51 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class Bureaucrat {
         void incrementGrade(int q);
 
         void signForm(AForm &src);
+        void executeForm(AForm const & form);
 
 
         // ****************************************************** //

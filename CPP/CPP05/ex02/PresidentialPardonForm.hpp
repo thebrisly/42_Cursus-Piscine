@@ -6,12 +6,15 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:31:54 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/23 15:37:04 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/24 09:44:06 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
+
+# include "AForm.hpp"
+# include "Bureaucrat.hpp"
 
 class PresidentialPardonForm : public AForm
 {
@@ -28,7 +31,7 @@ class PresidentialPardonForm : public AForm
 
     private :
 
-        const std::string     _target;
+        std::string     _target;
 };
 
 #endif

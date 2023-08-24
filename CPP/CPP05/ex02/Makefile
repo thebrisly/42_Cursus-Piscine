@@ -1,7 +1,7 @@
 NAME = test
 
 OBJ_DIR = objs/
-SRC = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+SRC = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp #RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 OBJS = $(addprefix $(OBJ_DIR), $(OBJ))
 OBJ := $(SRC:%.cpp=%.o)
 COMPILE = c++
