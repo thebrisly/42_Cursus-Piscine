@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 20:09:39 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/22 22:15:28 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/25 12:37:54 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Bureaucrat::Bureaucrat(const std::string name) : _name(name), _grade(150) {
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade) {
     std::cout << "\033[90mConstructor for a Bureaucrat called\033[0m" << std::endl;
-    
+
     if (this->_grade > 150)
         throw (Bureaucrat::GradeTooLowException());
     else if (this->_grade < 1)
@@ -47,7 +47,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src)
     return (*this);
 }
 
-//operator overload for << 
+//operator overload for <<
 std::ostream &	operator<<(std::ostream & ostr, Bureaucrat const & src)
 {
 	ostr << src.getName() << ", Bureaucrat grade " << src.getGrade();
@@ -57,12 +57,12 @@ std::ostream &	operator<<(std::ostream & ostr, Bureaucrat const & src)
 
 // ****************************************************** //
 // Accessors
-const std::string Bureaucrat::getName() const 
+const std::string Bureaucrat::getName() const
 {
     return (this->_name);
 }
 
-int Bureaucrat::getGrade() const 
+int Bureaucrat::getGrade() const
 {
     return (this->_grade);
 }
@@ -70,16 +70,16 @@ int Bureaucrat::getGrade() const
 
 // ****************************************************** //
 // Functions to decrement and increment
-void Bureaucrat::decrementGrade(int q) 
+void Bureaucrat::decrementGrade()
 {
-    this->_grade += q;
+    this->_grade += 1;
     if (this->_grade > 150 )
         throw (Bureaucrat::GradeTooLowException());
 }
 
-void Bureaucrat::incrementGrade(int q) 
+void Bureaucrat::incrementGrade()
 {
-    this->_grade -= q;
+    this->_grade -= 1;
     if (this->_grade < 1 )
         throw (Bureaucrat::GradeTooHighException());
 }
