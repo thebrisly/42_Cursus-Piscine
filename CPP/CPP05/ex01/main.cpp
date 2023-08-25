@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 20:09:33 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/25 13:26:33 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/08/25 13:29:45 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,22 @@ int main()
             f2 = f1;
             std::cout << f2 << std::endl;
             std::cout << "\n";
+        }
+        catch(const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+        }
+        std::cout << "\n";
+    }
+
+    std::cout << " \033[94m ------------------------------------- \n\033[0m";
+    {
+        std::cout << "\033[94m//trying to sign a form already signed \033[0m" << std::endl;
+        try {
+            Bureaucrat	brc1 = Bureaucrat("Camille Honnête", 123);
+            Form        f1 = Form("Form1", 130, 140);
+            brc1.signForm(f1);
+            std::cout << f1 << std::endl;
+            brc1.signForm(f1);
         }
         catch(const std::exception& e) {
             std::cerr << e.what() << std::endl;
