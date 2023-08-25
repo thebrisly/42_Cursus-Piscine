@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 10:43:23 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/12 14:35:04 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/16 12:47:21 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main()
         animals_tab[i] = new Cat();
         i++;
     }
-    
+
     std::cout << std::endl;
     i = 0;
     while (i < number_animals)
@@ -59,16 +59,21 @@ int main()
     modified both in A and B since they both point to the same location in memory.
     This is not desirable. If any variables were allocated on the heap -> deep copy!
 
-    Deep copy: Despite having the same values, each object has its 
+    Deep copy: Despite having the same values, each object has its
     own allocated memory for its member variables. */
 
-    /*
+
     std::cout << "Creating one normal dog and one normal cat: " << std::endl;
     Dog dog;
     Cat cat;
 
     Dog & dog_address = dog;
     Cat & cat_address = cat;
+    std::cout << std::endl;
+
+    std::cout << "Creating the brain of the originals" << std::endl;
+    dog_address.getBrain()->setIdea(0, "ORIGINAL IDEA DOG");
+    cat_address.getBrain()->setIdea(0, "ORIGINAL IDEA CAT");
     std::cout << std::endl;
 
     std::cout << "Creating a copy of the normal dog and a copy of the normal cat: " << std::endl;
@@ -79,14 +84,25 @@ int main()
     Cat & cat_copy_address = cat_copy;
     std::cout << std::endl;
 
-    std::cout << "Modifying the type of the copies" << std::endl;
-    dog_copy_address.setType("FAKE !");
-    cat_copy_address.setType("FAKE !");
+
+    std::cout << "Modifying the brain of the copies" << std::endl;
+    dog_copy_address.getBrain()->setIdea(0, "FAKE IDEA DOG");
+    cat_copy_address.getBrain()->setIdea(0, "FAKE IDEA CAT");
     std::cout << std::endl;
 
-    std::cout << "Check if original dogs and cats have been modified" << std::endl;
-    std::cout << "Original dog: " << dog.getType() << std::endl;
-    std::cout << "Original cat: " << cat.getType() << std::endl;
+
+    std::cout << "Check if original brains have been modified" << std::endl;
+    std::cout << "Original dog's brain idea: " << dog.getBrain()->getIdea(0) << std::endl;
+    std::cout << "Original cat's brain idea: " << cat.getBrain()->getIdea(0) << std::endl;
     std::cout << std::endl;
-    */
+
+    Cat foo;
+    Cat bar;
+
+    Dog a;
+    Dog b;
+
+    a = b;
+
+    foo = bar;
 }

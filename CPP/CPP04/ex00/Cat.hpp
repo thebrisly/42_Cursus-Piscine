@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 08:06:50 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/12 09:10:17 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/14 13:19:40 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Cat : public Animal {
         Cat& operator=(Cat const &src);
         virtual ~Cat(); //bc animal is a polymorph object
 
-        void makeSound(void) const;
+        virtual void makeSound(void) const;
 
 };
 

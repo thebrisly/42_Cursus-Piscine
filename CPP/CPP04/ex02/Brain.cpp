@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 11:46:37 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/12 12:49:52 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/14 13:30:12 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ Brain::Brain(const Brain &src) {
 
     while (i < 100)
     {
-        this->ideas[i] == src.ideas[i];
+        this->ideas[i] = src.ideas[i];
         i++;
     }
 }
 
 Brain &Brain::operator=(const Brain &src) {
     int i = 0;
-    
+
     while (i < 100)
     {
-        this->ideas[i] == src.ideas[i];
+        this->ideas[i] = src.ideas[i];
         i++;
     }
     return (*this);

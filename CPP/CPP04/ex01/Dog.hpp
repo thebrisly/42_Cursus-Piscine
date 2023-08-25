@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 08:06:50 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/12 14:10:44 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/16 12:41:59 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ class Dog : public Animal {
         Dog& operator=(Dog const &src);
         virtual ~Dog();
 
-        void makeSound(void) const;
+        virtual void makeSound(void) const;
         void setType(std::string newType);
+        Brain* getBrain() const;
 
     private:
         Brain* _brain;

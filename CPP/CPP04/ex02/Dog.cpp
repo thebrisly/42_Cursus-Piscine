@@ -12,7 +12,7 @@
 
 #include "Dog.hpp"
 
-Dog::Dog() {
+Dog::Dog() : Animal() {
     std::cout << "\033[90mConstructor for a Dog called\033[0m" << std::endl;
     this->type = "Dog";
     this->_brain = new Brain();
@@ -25,12 +25,15 @@ Dog::~Dog() {
 
 Dog::Dog(const Dog &src) : Animal(src) {
     std::cout << "\033[90mCopy constructor Dog called\033[0m" << std::endl;
-    *this = src;
+    this->_brain = new Brain(*(src._brain)); // Copy the Brain
 }
 
 Dog &Dog::operator=(const Dog &src) {
-    this->type = src.type;
-    this->_brain = new Brain;
+    if (this != &src) {
+        Animal::operator=(src); // Call the base class's operator=
+        delete _brain; // Release existing brain resources
+        _brain = new Brain(*(src._brain)); // Copy the Brain
+    }
     return (*this);
 }
 
@@ -41,3 +44,7 @@ void Dog::makeSound() const {
 void Dog::setType(std::string newType) {
     this->type = newType;
 }
+
+Brain* Dog::getBrain() const {
+        return _brain;
+    }

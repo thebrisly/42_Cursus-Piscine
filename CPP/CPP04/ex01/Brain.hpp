@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 11:43:42 by brisly            #+#    #+#             */
-/*   Updated: 2023/06/12 12:30:48 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/14 13:23:40 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 # include <string>
 # include <iostream>
 
-class Brain {
-    public:
-        Brain();
-        Brain(Brain const &src);
-        Brain& operator=(Brain const &src);
-        ~Brain();
+class Brain
+{
+	private:
+		std::string _ideas[100];
 
-    protected:
-        std::string ideas[100];
+	public:
+		Brain();
+		Brain& operator=(Brain const &src);
+		Brain(Brain const &rhs);
+		~Brain();
+
+		std::string	getIdea(int index) const;
+		void		setIdea(int index, std::string const &idea);
 };
 
 #endif

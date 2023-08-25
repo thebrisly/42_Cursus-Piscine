@@ -12,7 +12,7 @@
 
 #include "Cat.hpp"
 
-Cat::Cat() {
+Cat::Cat() : Animal() {
     std::cout << "\033[90mConstructor for a Cat called\033[0m" << std::endl;
     this->type = "Cat";
     this->_brain = new Brain();
@@ -25,13 +25,16 @@ Cat::~Cat() {
 
 Cat::Cat(const Cat &src) : Animal(src) {
     std::cout << "\033[90mCopy constructor Cat called\033[0m" << std::endl;
-    *this = src;
+    this->_brain = new Brain(*(src._brain)); // Copy the Brain
 }
 
 Cat &Cat::operator=(const Cat &src) {
-    this->type = src.type;
-    this->_brain = new Brain(*(src._brain));
-    return (*this);
+    if (this != &src) {
+        Animal::operator=(src); // Call the base class's operator=
+        delete _brain; // Release existing brain resources
+        _brain = new Brain(*(src._brain)); // Copy the Brain
+    }
+    return *this;
 }
 
 void Cat::makeSound() const {
@@ -41,3 +44,7 @@ void Cat::makeSound() const {
 void Cat::setType(std::string newType) {
     this->type = newType;
 }
+
+Brain* Cat::getBrain() const {
+        return _brain;
+    }
