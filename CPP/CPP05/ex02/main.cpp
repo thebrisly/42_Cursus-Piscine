@@ -32,4 +32,61 @@ int main()
     brc1.signForm(srf);
     brc1.executeForm(srf);
 
+	{
+        std::cout << "\033[94m//PresidentialPardonForm tests \033[0m" << std::endl;
+        try {
+
+			Bureaucrat						brc("Donaldo Trumpu", 20, 1);
+            PresidentialPardonForm        ppf("random_target");
+			std::cout << brc << std::endl;
+            std::cout << ppf << std::endl;
+			brc.signForm(ppf);
+			brc.executeForm(ppf);
+            std::cout << "\n";
+        }
+        catch(const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+        }
+        std::cout << "\n";
+    }
+
+    std::cout << " \033[94m ------------------------------------- \n\033[0m";
+
+	{
+        std::cout << "\033[94m//RobotomyRequestForm tests \033[0m" << std::endl;
+        try {
+
+			Bureaucrat						brc("Goldorak", 75, 69);
+            RobotomyRequestForm        	rrf("random_target");
+			std::cout << brc << std::endl;
+            std::cout << rrf << std::endl;
+			brc.signForm(rrf);
+			brc.executeForm(rrf);
+            std::cout << "\n";
+        }
+        catch(const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+        }
+        std::cout << "\n";
+    }
+
+	std::cout << " \033[94m ------------------------------------- \n\033[0m";
+
+	{
+        std::cout << "\033[94m//ShrubberyCreationForm tests \033[0m" << std::endl;
+        try {
+
+			Bureaucrat						brc("Goldorak", 34, 20);
+            ShrubberyCreationForm        	scf("random_target");
+			std::cout << brc << std::endl;
+            std::cout << scf << std::endl;
+			brc.signForm(scf);
+			brc.executeForm(scf);
+            std::cout << "\n";
+        }
+        catch(const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+        }
+        std::cout << "\n";
+    }
 }
