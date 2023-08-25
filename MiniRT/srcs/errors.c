@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/15 18:51:28 by fabien            #+#    #+#             */
-/*   Updated: 2023/08/16 09:55:02 by lfabbian         ###   ########.fr       */
+/*   Created: 2023/08/15 18:41:44 by fabien            #+#    #+#             */
+/*   Updated: 2023/08/16 10:00:41 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "../incs/minirt.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <math.h>
-# include <stdbool.h>
-# include "../mlx/mlx.h"
-# include "../libft/libft.h"
-# include "structures.h"
-# include "prototypes.h"
-
-# define WIN_W 1200
-# define WIN_H 800
-# define E 1e-4
-
-#endif
+int	print_error(char *error_message)
+{
+	ft_printf("\033[31mError\n%s\033[30m\n", error_message);
+	exit (EXIT_FAILURE);
+}

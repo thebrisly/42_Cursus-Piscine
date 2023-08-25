@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   malloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/15 18:51:28 by fabien            #+#    #+#             */
-/*   Updated: 2023/08/16 09:55:02 by lfabbian         ###   ########.fr       */
+/*   Created: 2023/08/16 09:32:38 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/08/16 09:43:17 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "../../incs/minirt.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <math.h>
-# include <stdbool.h>
-# include "../mlx/mlx.h"
-# include "../libft/libft.h"
-# include "structures.h"
-# include "prototypes.h"
+t_inter	*calloc_utils(void)
+{
+	t_inter	*new;
 
-# define WIN_W 1200
-# define WIN_H 800
-# define E 1e-4
-
-#endif
+	new = ft_calloc(sizeof(t_inter), 1);
+	if (!new)
+		print_error("There is an error of malloc \n");
+	return (new);
+}

@@ -3,39 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:14:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/10 14:08:26 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:04:00 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 20
 # endif
-
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <fcntl.h>
-
-typedef struct t_Node{
-	char			*buffer;
-	struct t_Node	*next;
-}	t_Node;
+# include <stdio.h>
 
 char	*get_next_line(int fd);
-void	stash_make(t_Node **head);
-void	ft_changed_bzero(void *s, int n);
-char	*return_error(t_Node **head, int flag, char *line);
-
-int		list_add(t_Node **head, int fd);
-int		list_len(t_Node **head);
-void	list_get(t_Node **head, char *line);
-char	*list_free(t_Node **head, int flag);
-int		enter(t_Node **head);
+char	*stash_filling(int fd, char *stash, char *buffer);
+char	*extract_line(char *stash, char *line);
+char	*extract_new_stash(char *stash);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *s, int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strdup(const char *s1);
+size_t	ft_strlen(const char *s);
 
 #endif

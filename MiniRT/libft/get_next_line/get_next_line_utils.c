@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/12/10 18:43:01 by fabien           ###   ########.fr       */
+/*   Updated: 2023/08/15 19:04:36 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,125 +14,95 @@
 
 /* reads BUFFER_SIZE elements and adds them to a buffer
 returns the value of read() or -1 if issue */
-int	list_add(t_Node **head, int fd)
+size_t	ft_strlen(const char *s)
 {
-	t_Node	*new_node;
-	t_Node	*current;
-	int		reading;
+	int	i;
 
-	new_node = malloc(sizeof(t_Node));
-	new_node->buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!new_node || !new_node->buffer)
-		return (-1);
-	current = *head;
-	new_node->next = NULL;
-	reading = read(fd, new_node->buffer, BUFFER_SIZE);
-	if ((*head == NULL && reading == 0) || reading == -1)
-	{
-		free(new_node->buffer);
-		free(new_node);
-		return (-1);
-	}
-	new_node->buffer[reading] = '\0';
-	while (current && current->next)
-		current = current->next;
-	if (*head == NULL)
-		*head = new_node;
-	else
-		current->next = new_node;
-	return (reading);
+	i = 0;
+	if (s[i] == '\0')
+		return (0);
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
-/* returns the length of all the buffers in the linked list */
-int	list_len(t_Node **head)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_Node	*current;
-	int		len;
-	int		i;
-
-	len = 0;
-	current = *head;
-	while (current)
-	{
-		i = 0;
-		while (current->buffer[i])
-		{
-			if (current->buffer[i] == '\n')
-			{
-				len++;
-				break ;
-			}
-			len++;
-			i++;
-		}
-		current = current->next;
-	}
-	return (len);
-}
-
-/* fills res with contents of buffer in the linked lists until the \n */
-void	list_get(t_Node **head, char *line)
-{
-	t_Node	*current;
 	int		i;
 	int		j;
+	char	*tab;
 
-	if (*head == NULL)
-		return ;
+	i = 0;
 	j = 0;
-	current = *head;
-	while (current != NULL)
-	{
-		i = 0;
-		while (current->buffer[i] != '\0')
-		{
-			line[j] = current->buffer[i];
-			if (current->buffer[i] == '\n')
-				return ;
-			i++;
-			j++;
-		}
-		current = current->next;
-	}
+	tab = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!tab)
+		return (NULL);
+	while (s1[i])
+		tab[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		tab[j++] = s2[i++];
+	tab[j] = 0;
+	free ((void *)(s1));
+	return (tab);
 }
 
-/* frees the linked list entirely */
-char	*list_free(t_Node **head, int flag)
+char	*ft_strchr(const char *s, int c)
 {
-	t_Node	*current;
-	t_Node	*stock;
+	unsigned int	i;
 
-	stock = *head;
-	while (stock != NULL)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		current = stock;
-		stock = stock->next;
-		free(current->buffer);
-		free(current);
+		if (s[i] == (char) c)
+			return ((char *) &s[i]);
+		i++;
 	}
-	*head = NULL;
-	if (flag == 1)
-		return (NULL);
+	if (s[i] == (char) c)
+		return ((char *) &s[i]);
 	return (NULL);
 }
 
-/* returns 1 if \n in buffer, 0 otherwise */
-int	enter(t_Node **head)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	t_Node	*current;
-	int		i;
+	unsigned int	i;
+	char			*tab;
 
 	i = 0;
-	current = *head;
-	if (current == NULL)
-		return (0);
-	while (current->next)
-		current = current->next;
-	while (current->buffer[i])
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
+		return (malloc(1));
+	if (len >= ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	tab = malloc(sizeof(char) * (len) + 1);
+	if (!tab)
+		return (NULL);
+	while (len > 0)
 	{
-		if (current->buffer[i] == '\n')
-			return (1);
+		tab[i++] = s[start++];
+		len--;
+	}
+	tab[i] = '\0';
+	return (tab);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*tab;
+	int		i;
+	int		len;
+
+	len = ft_strlen(s1);
+	i = 0;
+	tab = malloc(sizeof(char) * len + 1);
+	if (!tab)
+		return (NULL);
+	while (s1[i])
+	{
+		tab[i] = s1[i];
 		i++;
 	}
-	return (0);
+	tab[i] = '\0';
+	return (tab);
 }

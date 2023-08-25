@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/10 14:08:20 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:03:18 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,86 +14,105 @@
 
 char	*get_next_line(int fd)
 {
-	static t_Node	*head;
-	char			*line;
-	int				reading;
+	static char	*stash;
+	char		*line;
+	char		*buffer;
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, &line, 0) < 0)
-		return (return_error(&head, 1, line));
-	reading = 1;
-	while (!enter(&head) && reading != 0)
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
-		reading = list_add(&head, fd);
-		if (reading == -1)
-			return (list_free(&head, 1));
-	}
-	line = malloc(sizeof(char) * (list_len(&head) + 1));
-	if (!line)
+		free(stash);
+		free(buffer);
+		stash = NULL;
+		buffer = NULL;
 		return (NULL);
-	ft_changed_bzero(line, list_len(&head) + 1);
-	list_get(&head, line);
-	stash_make(&head);
-	if (line[0] == '\0')
-		return (return_error(&head, 2, line));
+	}
+	if (!buffer)
+		return (NULL);
+	stash = stash_filling(fd, stash, buffer);
+	if (*stash == 0)
+	{
+		free (stash);
+		return (stash = 0);
+	}
+	line = extract_line(stash, line);
+	stash = extract_new_stash(stash);
 	return (line);
 }
 
-/* makes a new node of what is after the \n
- and deletes the previous nodes */
-void	stash_make(t_Node **head)
+char	*stash_filling(int fd, char *stash, char *buffer)
 {
-	t_Node	*current;
-	t_Node	*stash;
-	int		i;
-	int		j;
+	ssize_t	nbytes;
 
-	current = *head;
-	stash = malloc(sizeof(t_Node));
-	i = 0;
-	j = 0;
-	while (current->next != NULL)
-		current = current->next;
-	while (current->buffer[i] && current->buffer[i] != '\n')
-		i++;
-	if (current->buffer[i] && current->buffer[i] == '\n')
-		i++;
-	stash->buffer = malloc(sizeof(char) * (BUFFER_SIZE - i) + 1);
-	if (!stash || !stash->buffer || current == NULL)
-		return (free(stash));
-	while (current->buffer[i])
-		stash->buffer[j++] = current->buffer[i++];
-	stash->buffer[j] = '\0';
-	stash->next = NULL;
-	list_free(head, 0);
-	*head = stash;
+	nbytes = 1;
+	if (!stash)
+		stash = ft_strdup("");
+	while (nbytes > 0)
+	{
+		nbytes = read(fd, buffer, BUFFER_SIZE);
+		if (nbytes == -1)
+		{
+			free (buffer);
+			return (NULL);
+		}
+		buffer[nbytes] = 0;
+		stash = ft_strjoin (stash, buffer);
+		if ((ft_strchr(buffer, '\n')))
+			break ;
+	}
+	free (buffer);
+	return (stash);
 }
 
-/* basically bzero but made by hand */
-void	ft_changed_bzero(void *s, int n)
+char	*extract_new_stash(char	*stash)
 {
+	int		len;
+	int		i;
+	char	*new_stash;
+
+	len = 0;
+	i = 0;
+	if (stash == NULL)
+		return (NULL);
+	while (stash[len] != '\n' && stash[len])
+		len++;
+	if (stash[len] == '\n')
+		len++;
+	new_stash = malloc((ft_strlen(stash) - len + 1) * sizeof(char));
+	if (!new_stash)
+		return (NULL);
+	while (stash[len + i])
+	{
+		new_stash[i] = stash[len + i];
+		i++;
+	}
+	free (stash);
+	new_stash[i] = 0;
+	return (new_stash);
+}
+
+char	*extract_line(char *stash, char *line)
+{
+	int	len;
 	int	i;
 
+	len = 0;
 	i = 0;
-	while (i < n)
+	if (stash == NULL)
+		return (NULL);
+	while (stash[len] != '\n' && stash[len])
+		len++;
+	if (stash[len] == '\n')
+		len++;
+	line = malloc((len + 1) * sizeof(char));
+	if (!line)
+		return (NULL);
+	while (i < len)
 	{
-		*(char *)(s + i) = '\0';
+		line[i] = stash[i];
 		i++;
 	}
-}
-
-char	*return_error(t_Node **head, int flag, char *line)
-{
-	if (flag == 1)
-	{
-		line = list_free(head, 1);
-		head = NULL;
-		return (NULL);
-	}
-	else if (flag == 2)
-	{
-		free(line);
-		return (list_free(head, 1));
-	}
-	return (NULL);
+	line[i] = 0;
+	return (line);
 }
