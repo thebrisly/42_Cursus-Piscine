@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 20:55:06 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/22 21:47:02 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/25 13:06:40 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,23 @@ class Form {
             }
     };
 
-    private : 
+    class FormAlreadySignedException : public std::exception
+    {
+        public :
+
+            virtual const char * what() const throw()
+            {
+                return ("The grade you set is too low");
+            }
+    };
+
+
+    private :
 
         const std::string   _name;
         bool                _signed;
-        int                 _sgrade;
-        int                 _egrade;
+        const int           _sgrade;
+        const int           _egrade;
 
 };
 

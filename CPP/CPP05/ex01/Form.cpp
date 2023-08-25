@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:07:32 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/23 14:24:11 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/25 13:26:54 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Form::Form(std::string name, int sGrade, int eGrade) : _name(name), _signed(fals
     std::cout << "\033[90mPersonalized constructor for a Form called\033[0m" << std::endl;
     if (this->_sgrade > 150 || this->_egrade > 150)
         throw (Form::GradeTooLowException());
-    if (this->_sgrade < 1 || this->_sgrade < 1)
+    if (this->_sgrade < 1 || this->_egrade < 1)
         throw (Form::GradeTooHighException());
 }
 
@@ -29,7 +29,7 @@ Form::~Form() {
     std::cout << "\033[90mDestructor for Form called\033[0m" << std::endl;
 }
 
-Form::Form(const Form &src) {
+Form::Form(const Form &src) : _sgrade(src._sgrade), _egrade(src._egrade) {
     std::cout << "\033[90mCopy constructor Form called\033[0m" << std::endl;
     *this = src;
 }
@@ -53,22 +53,22 @@ std::ostream &	operator<<(std::ostream & ostr, Form const & src)
 // ****************************************************** //
 // Accessors
 
-const std::string Form::getName() const 
+const std::string Form::getName() const
 {
     return (this->_name);
 }
 
-int Form::get_sGrade() const 
+int Form::get_sGrade() const
 {
     return (this->_sgrade);
 }
 
-int Form::get_eGrade() const 
+int Form::get_eGrade() const
 {
     return (this->_egrade);
 }
 
-bool Form::get_Signed() const 
+bool Form::get_Signed() const
 {
     return (this->_signed);
 }
@@ -78,8 +78,10 @@ bool Form::get_Signed() const
 
 void Form::beSigned(Bureaucrat &src)
 {
-    if (src.getGrade() <= this->_sgrade)
+    if (src.getGrade() <= this->_sgrade && this->get_Signed() == 0)
         this->_signed = true;
+    else if (src.getGrade() <= this->_sgrade && this->get_Signed() == 1)
+        throw (Form::FormAlreadySignedException());
     else
         throw (Form::GradeTooLowException());
 }
