@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 14:13:33 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/24 12:07:52 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/26 21:53:03 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ AForm::~AForm() {
     std::cout << "\033[90mDestructor for AForm called\033[0m" << std::endl;
 }
 
-AForm::AForm(const AForm &src) {
+AForm::AForm(const AForm &src) : _sgrade(src._sgrade), _egrade(src._egrade) {
     std::cout << "\033[90mCopy constructor for AForm called\033[0m" << std::endl;
     *this = src;
 }
@@ -84,8 +84,10 @@ void	AForm::setSigned(bool sign)
 
 void AForm::beSigned(Bureaucrat &src)
 {
-    if (src.getGrade() <= this->_sgrade)
+    if (src.getGrade() <= this->_sgrade && this->get_Signed() == 0)
         this->_signed = true;
+    else if (src.getGrade() <= this->_sgrade && this->get_Signed() == 1)
+        throw (AForm::FormAlreadySignedException());
     else
         throw (AForm::GradeTooLowException());
 }

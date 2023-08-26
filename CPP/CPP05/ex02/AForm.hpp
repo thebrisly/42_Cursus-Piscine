@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 14:14:24 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/24 21:45:58 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/26 21:52:31 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,23 @@ class AForm {
                 }
         };
 
+        class FormAlreadySignedException : public std::exception
+        {
+            public :
+
+                virtual const char * what() const throw()
+                {
+                    return ("the form is already signed :)");
+                }
+        };
+
+
     private : 
 
         const std::string   _name;
         bool                _signed;
-        int                 _sgrade;
-        int                 _egrade;
+        const int           _sgrade;
+        const int           _egrade;
 
 };
 
