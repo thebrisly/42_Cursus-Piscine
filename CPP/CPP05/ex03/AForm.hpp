@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 14:14:24 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/26 21:52:31 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/27 17:54:18 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class AForm {
         AForm(void);
         AForm(std::string name, int sGrade, int eGrade);
         AForm(const AForm &src);
-        ~AForm();
+        virtual ~AForm();
         AForm &operator=(const AForm &src);
 
         const std::string   getName() const;
