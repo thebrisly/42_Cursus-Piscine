@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 09:04:16 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/24 12:06:38 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/27 18:04:31 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class RobotomyRequestForm : public AForm
 
         RobotomyRequestForm(std::string target);
         RobotomyRequestForm(const RobotomyRequestForm &src);
-        ~RobotomyRequestForm();
+        virtual ~RobotomyRequestForm();
         RobotomyRequestForm &operator=(const RobotomyRequestForm &src);
         
         const std::string   getTarget() const;

@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:31:54 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/24 09:44:06 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/27 18:04:25 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class PresidentialPardonForm : public AForm
 
         PresidentialPardonForm(std::string target);
         PresidentialPardonForm(const PresidentialPardonForm &src);
-        ~PresidentialPardonForm();
+        virtual ~PresidentialPardonForm();
         PresidentialPardonForm &operator=(const PresidentialPardonForm &src);
         
         const std::string   getTarget() const;

@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 09:05:08 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/24 22:13:28 by brisly           ###   ########.fr       */
+/*   Updated: 2023/08/27 18:04:35 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class ShrubberyCreationForm : public AForm
 
         ShrubberyCreationForm(std::string target);
         ShrubberyCreationForm(const ShrubberyCreationForm &src);
-        ~ShrubberyCreationForm();
+        virtual ~ShrubberyCreationForm();
         ShrubberyCreationForm &operator=(const ShrubberyCreationForm &src);
         
         const std::string   getTarget() const;
