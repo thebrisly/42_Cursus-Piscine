@@ -13,21 +13,22 @@
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
 
-#include <iostream>
-#include <cmath>
-#include <string>
-#include <limits.h>
-#include <cfloat>
-#include <ostream>
-#include <stdlib.h>
+# include <iostream>
+# include <cmath>
+# include <string>
+# include <cstring>
+# include <limits.h>
+# include <cfloat>
+# include <ostream>
+# include <stdlib.h>
 
-static class ScalarConverter 
+class ScalarConverter 
 {
 
     public :        
         static void convert(std::string string);
 
-        class UnknowTypeException : public std::exception
+        /*class UnknowTypeException : public std::exception
         {
             public :
 
@@ -35,7 +36,7 @@ static class ScalarConverter
                 {
                     return ("The type you gave seems incorrect. Make sure that it's a double, float, char or int.");
                 }
-        };
+        };*/
 
     private :
         ScalarConverter();
@@ -43,12 +44,16 @@ static class ScalarConverter
         ScalarConverter(const ScalarConverter &src);
         ScalarConverter &operator=(const ScalarConverter &src);
 
-        static int isInt(std::string string) const;
-        static int isFloat(std::string string) const;
-        static int isChar(std::string string) const;
-        static int isDouble(std::string string) const;
+        static std::string get_type(std::string string)  ;
+        static int isInt(std::string string)  ;
+        static int isFloat(std::string string)  ;
+        static int isChar(std::string string)  ;
+        static int isDouble(std::string string)  ;
         
-        
+        static void printChar(std::string string)  ;
+        static void printInt(std::string string)  ;
+        static void printDouble(std::string string)  ;
+        static void printFloat(std::string string)  ;
 };
 
 #endif

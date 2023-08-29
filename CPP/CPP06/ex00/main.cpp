@@ -12,6 +12,9 @@
 
 #include "ScalarConverter.hpp"
 
+/* A member function declared as static can be called without having to instantiate the class.
+It can only use static member variables and functions, i.e. those which exist outside any instance.*/
+
 int main(int argc, char **argv)
 {
     if (argc == 2)
@@ -20,5 +23,5 @@ int main(int argc, char **argv)
         ScalarConverter::convert(arg);
     }
     else
-        std::cerr << "2 args only needed : ./convert and a char, float, int or double"
+        std::cerr << "2 args only needed : ./convert and a char, float, int or double" << std::endl; 
 }
