@@ -14,7 +14,6 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream>
-# include <cmath>
 # include <string>
 # include <cstring>
 # include <limits.h>

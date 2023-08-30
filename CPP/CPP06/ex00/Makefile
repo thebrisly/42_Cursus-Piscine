@@ -1,4 +1,4 @@
-NAME = test
+NAME = convert
 
 OBJ_DIR = objs/
 SRC = main.cpp ScalarConverter.cpp
