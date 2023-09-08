@@ -19,9 +19,9 @@ int main(int argc, char **argv)
 {
     if (argc == 2)
     {
-        std::string arg = argv[1];
+        std::string *arg = argv[1];
         ScalarConverter::convert(arg);
     }
     else
-        std::cerr << "2 args only needed : ./convert and a char, float, int or double" << std::endl; 
+        std::cerr << "\033[31m2 args only needed : ./convert and a char, float, int or double\033[0m" << std::endl; 
 }

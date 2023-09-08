@@ -25,16 +25,25 @@ void ScalarConverter::convert(std::string string)
     //std::string types[] = {"int", "float", "char", "double"};
     std::string type = get_type(string);
 
-    if (type == "char")
-        printChar(string);
+    if (type == "unknown")
+        std::cerr << "\033[31mInvalid entry. Try again.\033[0m" << std::endl;
+    else {
+        printChar(string, type);
+        printInt(string, type);
+        printDouble(string, type);
+        printFloat(string, type);
+    }
+
+    /*if (type == "char")
+        printChar(string, type);
     else if (type == "int")
-        printInt(string);
+        printInt(string, type);
     else if (type == "double")
-        printDouble(string);
+        printDouble(string, type);
     else if (type == "float")
-        printFloat(string);
+        printFloat(string, type);
     else
-        std::cerr << "Invalid entry. Try again." << std::endl; //or smthg else
+        std::cerr << "\033[31mInvalid entry. Try again.\033[0m" << std::endl;*/
 }
 
 std::string ScalarConverter::get_type(std::string string)  
@@ -107,28 +116,64 @@ int ScalarConverter::isFloat(std::string string)
     return (f_count == 1 && p_count == 1);
 }
 
-void ScalarConverter::printChar(std::string string)  
+void ScalarConverter::printChar(std::string string, std::string type)  
 {
+    //char to_display = reinterpret_cast<char>(string);
 
-    (void) string;
-    std::cout << "it'as a char :)" << std::endl;
+    char			res;
+	bool			possible = false;
+
+	std::cout << "char: ";
+	if (type == "char")
+	{
+		possible = true;
+		res = *reinterpret_cast<char *>(&string);
+	}
+	else if (type == "int")
+	{
+		int	i = reinterpret_cast<int>(string);
+		possible = true;
+		res = static_cast<char>(i);
+	}
+	else if (type == "float")
+	{
+		float	*f = reinterpret_cast<float *>(&string); 
+		possible = true;
+		res = static_cast<char>(*f);
+	}
+	else if (type == "double")
+	{
+		double	*d = reinterpret_cast<double *>(&string);
+		possible = true;
+		res = static_cast<char>(*d);
+	}
+	if (!possible)
+		std::cout << "impossible";
+	else if (std::isprint(res))
+		std::cout << res;
+	else
+		std::cout << "Non displayable";
+	std::cout << std::endl;
 }
 
-void ScalarConverter::printInt(std::string string)  
+void ScalarConverter::printInt(std::string string, std::string type)  
 {
     (void) string;
+    (void) type;
     std::cout << "it'as an int :)" << std::endl;
 }
 
-void ScalarConverter::printDouble(std::string string)  
+void ScalarConverter::printDouble(std::string string, std::string type)  
 {
     (void) string;
+    (void) type;
     std::cout << "it'as a double :)" << std::endl;
 }
 
-void ScalarConverter::printFloat(std::string string)  
+void ScalarConverter::printFloat(std::string string, std::string type)  
 {
     (void) string;
+    (void) type;
     std::cout << "it'as a float :)" << std::endl;
 }
 

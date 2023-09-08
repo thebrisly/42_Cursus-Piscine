@@ -43,16 +43,16 @@ class ScalarConverter
         ScalarConverter(const ScalarConverter &src);
         ScalarConverter &operator=(const ScalarConverter &src);
 
-        static std::string get_type(std::string string)  ;
-        static int isInt(std::string string)  ;
-        static int isFloat(std::string string)  ;
-        static int isChar(std::string string)  ;
-        static int isDouble(std::string string)  ;
+        static std::string get_type(std::string string);
+        static int isInt(std::string string);
+        static int isFloat(std::string string);
+        static int isChar(std::string string);
+        static int isDouble(std::string string);
         
-        static void printChar(std::string string)  ;
-        static void printInt(std::string string)  ;
-        static void printDouble(std::string string)  ;
-        static void printFloat(std::string string)  ;
+        static void printChar(std::string string, std::string type);
+        static void printInt(std::string string, std::string type);
+        static void printDouble(std::string string, std::string type);
+        static void printFloat(std::string string, std::string type);
 };
 
 #endif
