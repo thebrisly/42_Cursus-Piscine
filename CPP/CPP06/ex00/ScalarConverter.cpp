@@ -6,18 +6,20 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 19:32:32 by brisly            #+#    #+#             */
-/*   Updated: 2023/09/11 11:34:49 by brisly           ###   ########.fr       */
+/*   Updated: 2023/09/11 12:04:25 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include <cerrno>
 #include <cmath> 
+#include <iomanip>
 
 // Constructors & Destructors
 ScalarConverter::ScalarConverter() {}
 ScalarConverter::~ScalarConverter() {}
 ScalarConverter::ScalarConverter(const ScalarConverter &src) { (void) src; }
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &src) { return (*this);(void) src; };
 
 // ----------------------------------------------------- //
 // Other methods
@@ -131,32 +133,14 @@ void ScalarConverter::printInt(std::string string, std::string type)
     std::cout << "\033[35m// ORIGINAL TYPE: " << type << std::endl;
     checkChar(i, c);
     std::cout << "int : " << i << std::endl;
-    std::cout << "float: " << f << ".0f" << std::endl;
-	std::cout << "double: " << d << ".0" <<std::endl;
-}
-
-void ScalarConverter::printDouble(std::string string, std::string type)  
-{
-    double d = std::atof(string.c_str());
-    std::cout << std::fixed;
-    std::cout.precision(1);
-    
-    // explicit conversions
-    char    c = static_cast<char>(d);
-	float	f = static_cast<float>(d);
-	int	    i = static_cast<int>(d);
-    std::cout << "\033[35m// ORIGINAL TYPE: " << type << std::endl;
-    checkChar(i, c);
-    checkInt(i);   
+    std::cout << std::fixed << std::setprecision(1);
     std::cout << "float: " << f << "f" << std::endl;
-    std::cout << "double: " << d << std::endl;
+	std::cout << "double: " << d << std::endl;
 }
 
 void ScalarConverter::printFloat(std::string string, std::string type)  
 {
     float   f = std::atof(string.c_str());
-    std::cout << std::fixed;
-    std::cout.precision(1);
     // explicit conversions
     char    c = static_cast<char>(f);
 	double	d = static_cast<double>(f);
@@ -164,6 +148,22 @@ void ScalarConverter::printFloat(std::string string, std::string type)
     std::cout << "\033[35m// ORIGINAL TYPE: " << type << std::endl;
     checkChar(i, c);
     checkInt(i);  
+    std::cout << std::fixed << std::setprecision(2);
+    std::cout << "float: " << f << "f" << std::endl;
+    std::cout << "double: " << d << std::endl;
+}
+
+void ScalarConverter::printDouble(std::string string, std::string type)  
+{
+    double d = std::atof(string.c_str());
+    // explicit conversions
+    char    c = static_cast<char>(d);
+	double	f = static_cast<double>(d);
+	int	    i = static_cast<int>(d);
+    std::cout << "\033[35m// ORIGINAL TYPE: " << type << std::endl;
+    checkChar(i, c);
+    checkInt(i);   
+    std::cout << std::fixed << std::setprecision(2);
     std::cout << "float: " << f << "f" << std::endl;
     std::cout << "double: " << d << std::endl;
 }
