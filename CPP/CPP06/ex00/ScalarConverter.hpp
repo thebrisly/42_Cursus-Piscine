@@ -6,7 +6,7 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 19:32:49 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/27 21:26:17 by brisly           ###   ########.fr       */
+/*   Updated: 2023/09/11 10:32:19 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ class ScalarConverter
         static void printInt(std::string string, std::string type);
         static void printDouble(std::string string, std::string type);
         static void printFloat(std::string string, std::string type);
+
+        static void checkChar(int i, char c);
+        static void checkInt(int i);
 };
 
 #endif

@@ -6,12 +6,13 @@
 /*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 19:32:32 by brisly            #+#    #+#             */
-/*   Updated: 2023/08/27 21:41:26 by brisly           ###   ########.fr       */
+/*   Updated: 2023/09/11 11:34:49 by brisly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include <cerrno>
+#include <cmath> 
 
 // Constructors & Destructors
 ScalarConverter::ScalarConverter() {}
@@ -58,23 +59,22 @@ int ScalarConverter::isChar(std::string string)
         return 1;
 }
 
-int ScalarConverter::isDouble(std::string string)
-{
+int ScalarConverter::isDouble(std::string string) {
     char* end_ptr;
     int pointCount = 0;
-    std::strtod(string.c_str(), &end_ptr);
-
-    if (*end_ptr != '\0' || string[0] == '.' || string[string.length() - 1] == '.')
+    double result = std::strtod(string.c_str(), &end_ptr);
+    if (*end_ptr != '\0' || end_ptr == string.c_str() || (string[0] == '.' && string.size() == 1)) {
         return 0;
-    for (size_t i = 0; i < string.length(); ++i)
-    {
+    }
+    for (size_t i = 0; i < string.length(); ++i) {
         if (string[i] == '.')
             pointCount++;
-        if (pointCount > 1)
-            return 0;
     }
+    if ((pointCount > 1 || pointCount == 0) && (!(std::isnan(result) || std::isinf(result))))
+        return 0;
     return 1;
 }
+
 
 int ScalarConverter::isInt(std::string string) {
     char* end_ptr;
@@ -92,9 +92,7 @@ int ScalarConverter::isFloat(std::string string)
     int p_count = 0;
     int f_count = 0;
     char* end_ptr;
-    strtod(string.c_str(), &end_ptr);
-    if (string == "+inff" || string == "-inff")
-        return 1;
+    std::strtod(string.c_str(), &end_ptr);
     if (*end_ptr != 'f')
         return 0;
     for (size_t i = 0; i < string.length(); ++i) {
@@ -103,6 +101,8 @@ int ScalarConverter::isFloat(std::string string)
         if (string[i] == '.')
             p_count++;
     }
+    if (std::isnan(std::atof(string.c_str())) || std::isinf(std::atof(string.c_str())))
+        return 1;
     return (f_count == 1 && p_count == 1);
 }
 
@@ -129,29 +129,60 @@ void ScalarConverter::printInt(std::string string, std::string type)
 	float	f = static_cast<float>(i);
 	double	d = static_cast<double>(i);
     std::cout << "\033[35m// ORIGINAL TYPE: " << type << std::endl;
+    checkChar(i, c);
+    std::cout << "int : " << i << std::endl;
+    std::cout << "float: " << f << ".0f" << std::endl;
+	std::cout << "double: " << d << ".0" <<std::endl;
+}
+
+void ScalarConverter::printDouble(std::string string, std::string type)  
+{
+    double d = std::atof(string.c_str());
+    std::cout << std::fixed;
+    std::cout.precision(1);
+    
+    // explicit conversions
+    char    c = static_cast<char>(d);
+	float	f = static_cast<float>(d);
+	int	    i = static_cast<int>(d);
+    std::cout << "\033[35m// ORIGINAL TYPE: " << type << std::endl;
+    checkChar(i, c);
+    checkInt(i);   
+    std::cout << "float: " << f << "f" << std::endl;
+    std::cout << "double: " << d << std::endl;
+}
+
+void ScalarConverter::printFloat(std::string string, std::string type)  
+{
+    float   f = std::atof(string.c_str());
+    std::cout << std::fixed;
+    std::cout.precision(1);
+    // explicit conversions
+    char    c = static_cast<char>(f);
+	double	d = static_cast<double>(f);
+	int	    i = static_cast<int>(f);
+    std::cout << "\033[35m// ORIGINAL TYPE: " << type << std::endl;
+    checkChar(i, c);
+    checkInt(i);  
+    std::cout << "float: " << f << "f" << std::endl;
+    std::cout << "double: " << d << std::endl;
+}
+
+void ScalarConverter::checkChar(int i, char c)
+{
     std::cout << "\033[0mchar : ";
     if (!std::isprint(c) && i < 128 && i >= 0)
         std::cout << "non displayable" << std::endl;
     else if (i < 0 || i > 127)
         std::cout << "impossible" << std::endl;
     else
-        std::cout << c << std::endl;
-    std::cout << "int : " << i << std::endl;
-    std::cout << "float: " << f << ".0f" << std::endl;
-	std::cout << "double: " << d << ".0" << std::endl;
+        std::cout << "'" << c << "'"<< std::endl;
 }
 
-void ScalarConverter::printDouble(std::string string, std::string type)  
+void ScalarConverter::checkInt(int i)
 {
-    (void) string;
-    (void) type;
-    std::cout << "it'as a double :)" << std::endl;
+    if (i >= INT_MAX || i <= INT_MIN)
+        std::cout << "int : impossible" << std::endl;
+    else
+        std::cout << "int : " << i << std::endl;
 }
-
-void ScalarConverter::printFloat(std::string string, std::string type)  
-{
-    (void) string;
-    (void) type;
-    std::cout << "it'as a float :)" << std::endl;
-}
-
