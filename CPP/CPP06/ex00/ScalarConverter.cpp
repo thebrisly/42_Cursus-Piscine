@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <cerrno>
 
 // Constructors & Destructors
 ScalarConverter::ScalarConverter() {}
@@ -22,19 +23,8 @@ ScalarConverter::ScalarConverter(const ScalarConverter &src) { (void) src; }
 
 void ScalarConverter::convert(std::string string)
 {
-    //std::string types[] = {"int", "float", "char", "double"};
     std::string type = get_type(string);
-
-    if (type == "unknown")
-        std::cerr << "\033[31mInvalid entry. Try again.\033[0m" << std::endl;
-    else {
-        printChar(string, type);
-        printInt(string, type);
-        printDouble(string, type);
-        printFloat(string, type);
-    }
-
-    /*if (type == "char")
+    if (type == "char")
         printChar(string, type);
     else if (type == "int")
         printInt(string, type);
@@ -43,7 +33,7 @@ void ScalarConverter::convert(std::string string)
     else if (type == "float")
         printFloat(string, type);
     else
-        std::cerr << "\033[31mInvalid entry. Try again.\033[0m" << std::endl;*/
+        std::cerr << "\033[31mInvalid entry. Try again.\033[0m" << std::endl;
 }
 
 std::string ScalarConverter::get_type(std::string string)  
@@ -86,14 +76,14 @@ int ScalarConverter::isDouble(std::string string)
     return 1;
 }
 
-
-int ScalarConverter::isInt(std::string string)  
-{
+int ScalarConverter::isInt(std::string string) {
     char* end_ptr;
+    errno = 0;
     long int converted = std::strtol(string.c_str(), &end_ptr, 0);
 
-    if (*end_ptr == '\0' && converted <= INT_MAX  && INT_MIN < converted)
+    if (errno == 0 && *end_ptr == '\0' && converted >= INT_MIN && converted <= INT_MAX) {
         return 1;
+    }
     return 0;
 }
 
@@ -118,49 +108,37 @@ int ScalarConverter::isFloat(std::string string)
 
 void ScalarConverter::printChar(std::string string, std::string type)  
 {
-    //char to_display = reinterpret_cast<char>(string);
+    char    c = string[0];
+    // explicit conversions
+    int		i = static_cast<int>(c);
+	float	f = static_cast<float>(c);
+	double	d = static_cast<double>(c);
 
-    char			res;
-	bool			possible = false;
-
-	std::cout << "char: ";
-	if (type == "char")
-	{
-		possible = true;
-		res = *reinterpret_cast<char *>(&string);
-	}
-	else if (type == "int")
-	{
-		int	i = reinterpret_cast<int>(string);
-		possible = true;
-		res = static_cast<char>(i);
-	}
-	else if (type == "float")
-	{
-		float	*f = reinterpret_cast<float *>(&string); 
-		possible = true;
-		res = static_cast<char>(*f);
-	}
-	else if (type == "double")
-	{
-		double	*d = reinterpret_cast<double *>(&string);
-		possible = true;
-		res = static_cast<char>(*d);
-	}
-	if (!possible)
-		std::cout << "impossible";
-	else if (std::isprint(res))
-		std::cout << res;
-	else
-		std::cout << "Non displayable";
-	std::cout << std::endl;
+    std::cout << "\033[35m// ORIGINAL TYPE: " << type << std::endl;
+    std::cout << "\033[0mchar : " << c << std::endl;
+    std::cout << "int : " << i << std::endl;
+    std::cout << "float: " << f << ".0f" << std::endl;
+	std::cout << "double: " << d << ".0" << std::endl;
 }
 
 void ScalarConverter::printInt(std::string string, std::string type)  
 {
-    (void) string;
-    (void) type;
-    std::cout << "it'as an int :)" << std::endl;
+    int i = std::atoi(string.c_str());
+    // explicit conversions
+    char    c = static_cast<char>(i);
+	float	f = static_cast<float>(i);
+	double	d = static_cast<double>(i);
+    std::cout << "\033[35m// ORIGINAL TYPE: " << type << std::endl;
+    std::cout << "\033[0mchar : ";
+    if (!std::isprint(c) && i < 128 && i >= 0)
+        std::cout << "non displayable" << std::endl;
+    else if (i < 0 || i > 127)
+        std::cout << "impossible" << std::endl;
+    else
+        std::cout << c << std::endl;
+    std::cout << "int : " << i << std::endl;
+    std::cout << "float: " << f << ".0f" << std::endl;
+	std::cout << "double: " << d << ".0" << std::endl;
 }
 
 void ScalarConverter::printDouble(std::string string, std::string type)  
