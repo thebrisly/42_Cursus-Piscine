@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brisly <brisly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:06:56 by brisly            #+#    #+#             */
-/*   Updated: 2023/09/12 21:27:29 by brisly           ###   ########.fr       */
+/*   Updated: 2023/09/13 09:59:26 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,35 @@ int main()
 
     return 0;
 }
+
+// class Awesome
+// {
+//   public:
+//     Awesome( void ) : _n( 42 ) { return; }
+//     int get( void ) const { return this->_n; }
+//   private:
+//     int _n;
+// };
+
+// std::ostream & operator<<( std::ostream & o, Awesome const & rhs )
+// {
+//   o << rhs.get();
+//   return o;
+// }
+
+// template< typename T >
+// void print( T& x )
+// {
+//   std::cout << x << std::endl;
+//   return;
+// }
+
+// int main() {
+//   int tab[] = { 0, 1, 2, 3, 4 };
+//   Awesome tab2[5];
+
+//   iter( tab, 5, print<int> );
+//   iter( tab2, 5, print<Awesome> );
+
+//   return 0;
+// }
