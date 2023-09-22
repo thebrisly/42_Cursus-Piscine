@@ -34,6 +34,15 @@ void Span::addNumber(int number)
     this->_container.push_back(number);
 }
 
+void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    if (static_cast<unsigned int>(std::distance(begin, end)) > (this->_size - this->_container.size()))
+
+        throw TooFewNumbersException();
+    this->_container.insert(_container.end(), begin, end);
+    
+}
+
 int Span::shortestSpan()
 {
     if (this->_container.size() <= 1)
@@ -60,5 +69,4 @@ int Span::longestSpan()
     min = *min_element(this->_container.begin(), this->_container.end());
     return (max - min);
 }
-
 
