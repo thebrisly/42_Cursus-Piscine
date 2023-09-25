@@ -40,7 +40,7 @@ class Span
 
             virtual const char *what() const throw()
             {
-                return ("\033[31m There's not enough numbers to find a span \033[0m");
+                return ("\033[31mThere's not enough numbers to find a span \033[0m");
             }
     };
 

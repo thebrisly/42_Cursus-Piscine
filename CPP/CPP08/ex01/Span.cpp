@@ -34,10 +34,10 @@ void Span::addNumber(int number)
     this->_container.push_back(number);
 }
 
+// a cast is needed bc distance is a size_t type
 void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
     if (static_cast<unsigned int>(std::distance(begin, end)) > (this->_size - this->_container.size()))
-
         throw TooFewNumbersException();
     this->_container.insert(_container.end(), begin, end);
     
