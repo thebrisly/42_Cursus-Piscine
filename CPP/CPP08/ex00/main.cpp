@@ -1,11 +1,18 @@
 #include "easyfind.hpp"
+#include <list>
+#include <deque>
 
 int main()
 {
     std::cout << "\033[34m--- Creating a container of integers ---\033[0m" << std::endl;
     //std::vector<int> cont = {1, 2, 3, 4, 5, 43}; //this command would be good but it's c++ 11 - too bad. I need to do all this shit instead :
 
+    // TRYING WITH DIFFERENT TYPES OF VECTORS : (just decomment the line that you wanna test)
+
     std::vector<int> cont;
+    //std::list<int> cont;
+    //std::deque<int> cont;
+
     cont.push_back(1);
     cont.push_back(2);
     cont.push_back(3);
