@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:46:47 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/10/09 14:33:34 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:31:33 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,24 @@ void BitcoinExchange::display_change(const std::string& filename)
         size_t sep = line.find('|');
         if (sep != std::string::npos) 
         {
-            std::string key = line.substr(0, sep);
-            float value = std::atof(line.substr(sep + 1).c_str());
+            std::string key = line.substr(0, sep - 1);
+            float value = std::atof(line.substr(sep + 2).c_str());
             if (this->check_values(value) == 0 && this->check_keys(key) == 0)
             {
-                std::cout << key << "=> " << value << "\033[90m($BTC)\033[0m = " << std::endl;
+                std::cout << key << "=> " << value << "\033[90m($BTC)\033[0m = ";
+                for (std::map<std::string, float>::iterator it = _database.begin(); it != _database.end(); ++it) {
+                    if (it->first == key)
+                    {
+                        float result = it->second * value;
+                        std::cout << result << std::endl;
+                    }     
+                }
+
             }
-            else
-                continue ;
 
         }
+            else
+                continue ;
     }
-    
     input_file.close();
 }

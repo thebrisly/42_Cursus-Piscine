@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:42:49 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/10/09 14:25:18 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:34:46 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <map>
 # include <cstdlib>
 # include <climits>
+# include <algorithm>
 
 class BitcoinExchange {
 
@@ -34,7 +35,7 @@ class BitcoinExchange {
 
     private :
 
-        std::map<std::string, double> _database;
+        std::map<std::string, float> _database;
 
 };
 
