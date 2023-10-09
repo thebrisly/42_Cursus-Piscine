@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:42:49 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/10/09 10:19:38 by lfabbian         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:25:18 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string>
 # include <map>
 # include <cstdlib>
+# include <climits>
 
 class BitcoinExchange {
 
@@ -26,6 +27,10 @@ class BitcoinExchange {
 		~BitcoinExchange();
 		BitcoinExchange(BitcoinExchange const &src);
 		BitcoinExchange &operator=(BitcoinExchange const &src);
+
+        void    display_change(const std::string& filename);
+        int     check_values(float value);
+        int     check_keys(const std::string& key);
 
     private :
 
