@@ -46,6 +46,8 @@ int main() {
         // Acceptez une connexion entrante
         clientSocket = accept(serverSocket, (struct sockaddr*)&clientAddr, &clientLen);
 
+        std::cout << "Nouvelle connexion acceptée." << std::endl;
+
         if (clientSocket < 0) {
             std::cerr << "Erreur lors de l'acceptation de la connexion." << std::endl;
             return 1;
@@ -60,10 +62,13 @@ int main() {
 
             // Envoyer la réponse au client
             send(clientSocket, response.c_str(), response.length(), 0);
+            std::cout << "Réponse envoyée au client." << std::endl;
         }
 
         close(clientSocket);
+        std::cout << "Connexion fermée." << std::endl;
     }
+
 
     close(serverSocket);
     return 0;
