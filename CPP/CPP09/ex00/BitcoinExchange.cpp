@@ -24,7 +24,6 @@ BitcoinExchange::BitcoinExchange (const std::string datas_file)
 	++it_csv;
 	while (it_csv != it_csv_end)
 	{	
-		//std::cout << *it_csv << std::endl;
 		int ind_coma = (*it_csv).find(',');
 		if (ind_coma == -1)
 		{
@@ -39,7 +38,6 @@ BitcoinExchange::BitcoinExchange (const std::string datas_file)
 		}
 
 		std::string exchange_rate_str = (*it_csv).substr(ind_coma + 1, (*it_csv).size());
-		//std::cout << "("<< exchange_rate_str <<")" <<std::endl;
 		if (this->value_format_is_valid(exchange_rate_str) == false)
 		{
 			std::cout << "Line : " << (*it_csv) <<std::endl;
@@ -55,7 +53,6 @@ BitcoinExchange::BitcoinExchange (const std::string datas_file)
 		this->_mp_data.insert(std::make_pair(date, exchange_rate));	
 		++it_csv;
 	}
-	//for_each(this->_mp_data.begin(), this->_mp_data.end(), DisplayMultimap());
 };
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange & src)
@@ -151,32 +148,24 @@ bool BitcoinExchange::date_format_is_valid(std::string date)
 	char c = 0;
 
 	str_f >> n >> c;
-	//std::cout << "n = " << n << " c = " << c << std::endl;
 	if ((n < 1900 || n > 9999) || (c != '-'))
 	{
-		//std::cout << "VERIF3";
-
 		return false;
 	}
 	
 	n = 0;
 	c = 0;
 	str_f >> n >> c;
-	//std::cout << "n = " << n << " c = " << c << std::endl;
 	if ((n < 1 || n > 12) || (c != '-'))
 	{
-		//std::cout << "VERIF2";
-
 		return false;
 	}
 
 	n = 0;
 	c = 0;
 	str_f >> n;
-	//std::cout << "n = " << n << std::endl;
 	if ((n < 1 || n > 31))
 	{
-		//std::cout << "VERIF";
 		return false;
 	}	
 
