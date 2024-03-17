@@ -1,41 +1,54 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 09:42:49 by lfabbian          #+#    #+#             */
-/*   Updated: 2023/10/09 16:34:46 by lfabbian         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef BITCOIN_EXCHANGE_HPP
+#define BITCOIN_EXCHANGE_HPP
 
-#ifndef BITCOINEXCHANGE_HPP
-# define BITCOINEXCHANGE_HPP
-# include <iostream>
-# include <fstream>
-# include <string>
-# include <map>
-# include <cstdlib>
-# include <climits>
-# include <algorithm>
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <sstream>
+#include <map>
+#include <filesystem>
 
-class BitcoinExchange {
+class BitcoinExchange
+{
+	public :
+		BitcoinExchange();
+		BitcoinExchange(const std::string datas_file);
+		BitcoinExchange(const BitcoinExchange & src);
+		BitcoinExchange & operator=(const BitcoinExchange & rhs);
 
-    public :
+		std::multimap<std::string, float> get_mp_data() const;
+		std::multimap<int, std::string> get_output() const;
+		void calculate(const std::string input_file);
+		void display();
 
-        BitcoinExchange(const std::string& filename);
-		~BitcoinExchange();
-		BitcoinExchange(BitcoinExchange const &src);
-		BitcoinExchange &operator=(BitcoinExchange const &src);
+		class IssueWithDatas : public std::exception
+		{
+			virtual const char* what() const throw()
+			{
+				return "Error : incorrect CSV file.";
+			}
+		};
 
-        void    display_change(const std::string& filename);
-        int     check_values(float value);
-        int     check_keys(const std::string& key);
+	class DisplayMultimap
+	{
+		public:
+			template <typename T>
+			void operator()(T & a)
+			{
+				std::cout << a.first << " => " << a.second << std::endl;
+			}
+	};
 
-    private :
+	private :
+    	std::multimap<std::string, float> _mp_data;
+    	std::multimap<int, std::string> _output;
 
-        std::map<std::string, float> _database;
+		std::string extract_date (std::string line);
+		std::string extract_value (std::string line);
+		bool date_format_is_valid(std::string date);
+		bool value_format_is_valid (std::string value);
+
+		float calculate_bc_value(const std::string input_date, const float input_value);
 
 };
 

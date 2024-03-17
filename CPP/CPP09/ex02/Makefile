@@ -1,10 +1,10 @@
-SRCS = main.cpp BitcoinExchange.cpp
+SRCS = main.cpp PmergeMe.cpp
 
-NAME = btc
+NAME = PmergeMe
 
 OBJS := $(SRCS:%.cpp=%.o)
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
 all: $(NAME)
 
