@@ -6,13 +6,13 @@
 /*   By: laura <laura@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 19:41:31 by laura             #+#    #+#             */
-/*   Updated: 2024/03/24 08:59:21 by laura            ###   ########.fr       */
+/*   Updated: 2024/03/24 16:33:26 by laura            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-int main(int argc, char *argv[]) 
+int main(int argc, char **argv) 
 {
     if (argc != 2) 
     {

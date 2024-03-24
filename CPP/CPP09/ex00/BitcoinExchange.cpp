@@ -6,7 +6,7 @@
 /*   By: laura <laura@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 07:38:45 by laura             #+#    #+#             */
-/*   Updated: 2024/03/24 08:59:17 by laura            ###   ########.fr       */
+/*   Updated: 2024/03/24 21:04:58 by laura            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ int BitcoinExchange::checkNumber(double number) const
 		std::cerr << "\033[1;31mError:\033[0m not a positive number." << std::endl;
 		return 0;
 	}
-	else if (number > 2147483647) {
+	else if (number > 999) {
 		std::cerr << "\033[1;31mError:\033[0m too large a number." << std::endl;
 		return 0;
 	}
