@@ -1,4 +1,4 @@
-NAME = btc
+NAME = RPN
 
 OBJ_DIR = objs/
 SRC = main.cpp RPN.cpp
