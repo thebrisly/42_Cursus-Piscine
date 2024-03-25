@@ -6,7 +6,7 @@
 /*   By: lfabbian <lfabbian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 09:52:31 by lfabbian          #+#    #+#             */
-/*   Updated: 2024/03/25 10:42:49 by lfabbian         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:57:12 by lfabbian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ class PmergeMe
 {
 	public :
 
-		PmergeMe(int argc, char **argv);
-		~PmergeMe(void);
-		PmergeMe(PmergeMe const &src);
-		PmergeMe	&operator=(PmergeMe const &src);
+		PmergeMe(int argc, char **argv);				// default constructor
+		PmergeMe(PmergeMe const &src);					// copy constructor
+		~PmergeMe(void);								// destructor
+		PmergeMe &operator=(PmergeMe const &src);		// overloading operator for =
 
 		template <typename T>
 		void display(const T& container);
@@ -36,6 +36,12 @@ class PmergeMe
 		void mergeInsertSortList(std::list<int>& arr);
 
 	private :
+
+		template<typename T>
+		void merge(std::list<T>& left, std::list<T>& right, std::list<T>& result);
+
+		template<typename T>
+		void mergeInsertionSort(std::list<T>& arr);
 
 		PmergeMe(void);
 };
