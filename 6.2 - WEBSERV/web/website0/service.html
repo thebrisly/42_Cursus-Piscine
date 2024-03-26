@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="style0.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Homepage</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+	<section id="text">
+		<h1>Test Téléchargements : </h1>
+		<ul>
+			<li><a href="img/albert-camus.jpg" download>Portrait</a></li>
+		</ul>
+	</section>
+
+    <section>
+        <h1>Test size body : </h1>
+        <form form action="service.html" method="post">
+            <textarea id="DataUser" name="DataUser" rows="10" cols="175">
+            </textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+
+    <section>
+        <h1>Test méthode POST pour les CGI python : </h1>
+        <form action="script.py" method="post">
+            <input type="text" name="DatasUser">
+            <input type="text" name="DatasUser2">
+            <input type="text" name="DatasUser3">
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+
+    <section>
+        <h1>Upload File</h1>
+        <form action="uploadOK.html" method="post" enctype="multipart/form-data">
+            <label for="fileUpload">Choose file to upload:</label>
+            <input type="file" id="fileUpload" name="fileUpload"><br><br>
+            <input type="submit" value="Upload File" name="submit">
+        </form>
+    </section>
+
+	<footer>
+		<p>© 2023 My Website - All Rights Reserved</p>
+		<p>Contact us: contact@example.com</p>
+	</footer>
+
+</body>
+</html>

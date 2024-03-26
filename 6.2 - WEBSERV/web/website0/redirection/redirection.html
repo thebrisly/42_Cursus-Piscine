@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="5;url=127.0.0.1:8888/error_pages/505.html" />
+    <title>Redirection Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #282a36;
+            color: #f8f8f2;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 40px;
+        }
+        p {
+            font-size: 20px;
+        }
+        .loader {
+            border: 16px solid #44475a;
+            border-radius: 50%;
+            border-top: 16px solid #6272a4;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Redirection in Progress...</h1>
+        <p>You will be redirected in 5 seconds</p>
+        <div class="loader"></div>
+    </div>
+</body>
+</html>

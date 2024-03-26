@@ -1,0 +1,67 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 2em 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+main {
+    padding: 30px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2, p {
+    margin-bottom: 30px;
+}
+
+.featured-animals {
+    display: flex;
+    justify-content: space-around;
+}
+
+.animal {
+    text-align: center;
+    width: 400px;
+    margin-bottom: 60px;
+}
+
+.animal img {
+    width: 100%;
+    height: auto;
+    border: 2px solid #333;
+}
+
+.animal p {
+    color: #777;
+}

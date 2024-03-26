@@ -1,0 +1,71 @@
+/* Reset some default styles */
+body, h1, ul, li, a {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply a font throughout the body */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Style for the header */
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+/* Style for the navigation menu */
+nav ul {
+    list-style-type: none;
+    background-color: #444;
+    overflow: hidden;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+/* Style for the gallery */
+#gallery {
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#gallery img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px;
+    border: 5px solid #ddd; /* Add a border around each image */
+    border-radius: 5px; /* Optional: to round the corners of the images */
+}
+
+/* Style for the footer */
+footer {
+    background-color: #2a2a2a; /* Dark background for the footer */
+    color: #f2f2f2; /* Light color for the text */
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+footer p {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}

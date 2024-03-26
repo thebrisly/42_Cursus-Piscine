@@ -1,0 +1,53 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333; /* Dark gray text for general readability */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Styles for the main heading */
+h1 {
+    color: #ff4500; /* Orange color for the main heading */
+    text-align: center;
+}
+
+/* Styles for paragraphs */
+p {
+    color: #2e8b57; /* Sea green for paragraphs */
+    line-height: 1.6;
+}
+
+/* Styles for subheadings */
+h2 {
+    color: #1e90ff; /* Dodger blue for subheadings */
+}
+
+/* Styling for the destination class */
+.destination {
+    background-color: #fffacd; /* Lemon chiffon background */
+    border: 2px solid #deb887; /* Burlywood border */
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.destination img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.destination p {
+    color: #a0522d; /* Sienna color for destination paragraphs */
+    margin-top: 10px;
+}
+
+/* Responsive image styling */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
