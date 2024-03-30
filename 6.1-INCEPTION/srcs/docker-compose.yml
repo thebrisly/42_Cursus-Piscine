@@ -1,0 +1,77 @@
+# Version of docker-compose
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx                        # name of the image
+    container_name: nginx               # name of the container
+    networks:
+      - inception_network               # name of the network
+    depends_on:
+      - wordpress                       # wordpress will be started after nginx
+    build:
+      context: requirements/nginx       # path to the Dockerfile
+      dockerfile: Dockerfile            # name of the Dockerfile
+    env_file: .env                      # path to the .env file
+    ports:
+      - "443:443"                       # port mapping
+    restart: on-failure                 # restart the container if it fails
+    volumes:
+      - wp:/var/www/html                # path to the volume
+
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    env_file: .env
+    networks:
+      - inception_network
+    build:
+      context: requirements/wordpress
+      dockerfile: Dockerfile
+    depends_on:
+      - mariadb
+    restart: on-failure
+    expose:
+      - "9000"
+    volumes:
+      - wp:/var/www/html
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    networks:
+      - inception_network
+    build:
+      context: requirements/mariadb
+      dockerfile: Dockerfile
+      args:
+        - SQL_DATABASE=${SQL_DATABASE}
+        - SQL_USER=${SQL_USER}
+        - SQL_PASSWORD=${SQL_PASSWORD}
+        - SQL_ROOT_PASSWORD=${SQL_ROOT_PASSWORD}
+    env_file: .env
+    restart: on-failure
+    expose:
+      - "3306"
+    volumes:
+      - sql:/var/lib/mysql
+
+volumes:
+  wp:
+    name: wp_volume
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: ${VOLUMES_PATH}/wordpress
+  sql:
+    name: db_volume
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: ${VOLUMES_PATH}/mysql
+
+networks:
+  inception_network:                      # name of the network
+    driver: bridge                        # type of the network
