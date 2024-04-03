@@ -1,6 +1,7 @@
 # Version of docker-compose
 version: '3.8'
 
+# Services
 services:
   nginx:
     image: nginx                        # name of the image
@@ -17,45 +18,46 @@ services:
       - "443:443"                       # port mapping
     restart: on-failure                 # restart the container if it fails
     volumes:
-      - wp:/var/www/html                # path to the volume
+      - wp:/var/www/html    # path to the volume
 
   wordpress:
-    image: wordpress
-    container_name: wordpress
-    env_file: .env
+    image: wordpress                    # name of the image
+    container_name: wordpress           # name of the container
+    env_file: .env                      # path to the .env file
     networks:
-      - inception_network
+      - inception_network               # name of the network
     build:
-      context: requirements/wordpress
-      dockerfile: Dockerfile
+      context: requirements/wordpress   # path to the Dockerfile
+      dockerfile: Dockerfile            # name of the Dockerfile
     depends_on:
-      - mariadb
-    restart: on-failure
+      - mariadb                         # mariadb will be started after wordpress
+    restart: on-failure                 # restart the container if it fails
     expose:
-      - "9000"
+      - "9000"                          # expose port 9000
     volumes:
-      - wp:/var/www/html
+      - wp:/var/www/html    # path to the volume
 
   mariadb:
-    image: mariadb
-    container_name: mariadb
+    image: mariadb                      # name of the image
+    container_name: mariadb             # name of the container
     networks:
-      - inception_network
+      - inception_network               # name of the network
     build:
-      context: requirements/mariadb
-      dockerfile: Dockerfile
+      context: requirements/mariadb     # path to the Dockerfile
+      dockerfile: Dockerfile            # name of the Dockerfile
       args:
         - SQL_DATABASE=${SQL_DATABASE}
         - SQL_USER=${SQL_USER}
         - SQL_PASSWORD=${SQL_PASSWORD}
         - SQL_ROOT_PASSWORD=${SQL_ROOT_PASSWORD}
-    env_file: .env
-    restart: on-failure
+    env_file: .env                      # path to the .env file
+    restart: on-failure                 # restart the container if it fails
     expose:
-      - "3306"
+      - "3306"                          # expose port 3306
     volumes:
-      - sql:/var/lib/mysql
+      - sql:/var/lib/mysql          # path to the volume
 
+# Volumes
 volumes:
   wp:
     name: wp_volume
@@ -72,6 +74,13 @@ volumes:
       o: 'bind'
       device: ${VOLUMES_PATH}/mysql
 
+# Network
 networks:
   inception_network:                      # name of the network
     driver: bridge                        # type of the network
+
+# Build command : docker-compose -p inception up --build -d
+# -p : name of the project
+# up : create and start the containers
+# --build : build the images if they don't exist or if they have been modified
+# -d : run the containers in the background

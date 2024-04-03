@@ -1,4 +1,3 @@
-# Get variables from .env file
 include ./srcs/.env
 
 DOCKER_COMPOSE = ./srcs/docker-compose.yml
@@ -40,3 +39,17 @@ wordpress:
 
 mariadb:
 	docker exec -it mariadb bash
+
+#Usage: make [target]
+# up: Runs the containers
+# build: Builds and run the containers
+# down: Stops and removes the containers
+# clean_data: Deletes and create data folders
+# create_data: Creates data folders
+# delete_data: Deletes data folders
+# purge: Deletes all images
+# purge_volumes: Deletes all volumes
+# fclean: Deletes all images and data folders
+# nginx: Access to nginx container
+# wordpress: Access to wordpress container
+# mariadb: Access to mariadb container
