@@ -1,8 +1,9 @@
-#pragma once 
+#pragma once
 
 #include <iostream>
 
 class Warlock
+
 {
     private :
         std::string name;
@@ -11,6 +12,7 @@ class Warlock
         Warlock();
         Warlock(Warlock const &other);
         Warlock &operator=(Warlock const &other);
+
     public :
         Warlock(std::string const &name, std::string const &title);
         ~Warlock();
